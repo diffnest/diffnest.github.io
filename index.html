@@ -417,7 +417,7 @@
 <li><p>公私钥成对出现，相互解密；<br> 公钥加密，私钥解密。<br> 私钥数字签名，公钥验证。</p>
 </li>
 <li><p>生成RSA秘钥对，主要利用linux OPENSSL</p>
-<p> 2.1 生成RSA私钥 <br><br> 2.2 把RSA私钥转换成PKCS8格式 <br><br> 2.3 生成RSA公钥</p>
+<p> 2.1 生成RSA私钥<br> 2.2 把RSA私钥转换成PKCS8格式<br> 2.3 生成RSA公钥</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">genrsa -out rsa_private_key.pem 1024</span><br><span class="line">pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM –nocrypt</span><br><span class="line">rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem&lt;/br&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>打开rsa_public_key.pem可以看到—–BEGIN PUBLIC KEY—–开头，</p>

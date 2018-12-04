@@ -138,17 +138,17 @@
 
 
 
-  <meta name="description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥  2.2 把RSA私钥转换成PKCS8格式  2.3 生成RSA公钥  123genrsa -out rsa_private_key.pem 1024pkcs8 -topk8">
+  <meta name="description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥 2.2 把RSA私钥转换成PKCS8格式 2.3 生成RSA公钥  123genrsa -out rsa_private_key.pem 1024pkcs8 -topk8 -i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php 使用openssl进行RSA2加解密以及签名算法">
 <meta property="og:url" content="http://diffnest.github.io/2018/12/04/rsa/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥  2.2 把RSA私钥转换成PKCS8格式  2.3 生成RSA公钥  123genrsa -out rsa_private_key.pem 1024pkcs8 -topk8">
+<meta property="og:description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥 2.2 把RSA私钥转换成PKCS8格式 2.3 生成RSA公钥  123genrsa -out rsa_private_key.pem 1024pkcs8 -topk8 -i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-04T12:02:20.247Z">
+<meta property="og:updated_time" content="2018-12-04T12:04:02.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php 使用openssl进行RSA2加解密以及签名算法">
-<meta name="twitter:description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥  2.2 把RSA私钥转换成PKCS8格式  2.3 生成RSA公钥  123genrsa -out rsa_private_key.pem 1024pkcs8 -topk8">
+<meta name="twitter:description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥 2.2 把RSA私钥转换成PKCS8格式 2.3 生成RSA公钥  123genrsa -out rsa_private_key.pem 1024pkcs8 -topk8 -i">
 
 
 
@@ -416,7 +416,7 @@
 <li><p>公私钥成对出现，相互解密；<br> 公钥加密，私钥解密。<br> 私钥数字签名，公钥验证。</p>
 </li>
 <li><p>生成RSA秘钥对，主要利用linux OPENSSL</p>
-<p> 2.1 生成RSA私钥 <br><br> 2.2 把RSA私钥转换成PKCS8格式 <br><br> 2.3 生成RSA公钥</p>
+<p> 2.1 生成RSA私钥<br> 2.2 把RSA私钥转换成PKCS8格式<br> 2.3 生成RSA公钥</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">genrsa -out rsa_private_key.pem 1024</span><br><span class="line">pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM –nocrypt</span><br><span class="line">rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem&lt;/br&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>打开rsa_public_key.pem可以看到—–BEGIN PUBLIC KEY—–开头，</p>
