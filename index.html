@@ -340,6 +340,360 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2018/12/04/rsa/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/04/rsa/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T19:32:32+08:00">2018-12-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#php 使用openssl进行RSA2加解密以及签名算法 </p>
+<blockquote>
+<p>在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；</p>
+</blockquote>
+<ol>
+<li><p>公私钥成对出现，相互解密；<br> 公钥加密，私钥解密。<br> 私钥数字签名，公钥验证。</p>
+</li>
+<li><p>生成RSA秘钥对，主要利用linux OPENSSL</p>
+<p> 2.1 生成RSA私钥 <br></p>
+<pre><code><figure class="highlight plain"><figcaption><span>-out rsa_private_key.pem 1024```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">2.2 把RSA私钥转换成PKCS8格式&lt;/br&gt;</span><br><span class="line">	```pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM –nocrypt</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+</ol>
+<pre><code>2.3 生成RSA公钥&lt;/br&gt;
+    <figure class="highlight plain"><figcaption><span>-in rsa_private_key.pem -pubout -out rsa_public_key.pem```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line">	&gt;打开rsa_public_key.pem可以看到-----BEGIN PUBLIC KEY-----开头，</span><br><span class="line">		-----END PUBLIC KEY-----结尾的没有换行的字符串，这个就是公钥</span><br><span class="line">	</span><br><span class="line">3. PHP中实现加解密类</span><br></pre></td></tr></table></figure>
+</code></pre><p>class RSA {</p>
+<pre><code>private $pubKey = null;
+private $priKey = null;
+
+/**
+* 构造函数
+* @param string 公钥文件（验签和加密时传入）
+* @param string 私钥文件（签名和解密时传入）
+*/
+public function __construct($pubKeyFile = &apos;&apos;, $priKeyFile = &apos;&apos;)
+{
+    if ($pubKeyFile) {
+        $this-&gt;pubKey = $this-&gt;getFileContent($pubKeyFile);
+    }
+    if ($priKeyFile) {
+        $this-&gt;priKey = $this-&gt;getFileContent($priKeyFile);
+    }
+}
+
+/**
+ * RSA签名
+ * @param $data 待签名数据
+ * @param $priKey 商户私钥文件路径 或 密钥内容本身
+ * return $sign 签名结果
+ */
+public function sign($data, $code = &apos;base64&apos;) 
+{
+    $result = openssl_get_privatekey($this-&gt;priKey);
+    if (openssl_sign($data, $sign, $result)) {
+        openssl_free_key($result);
+        $sign = $this-&gt;encode($sign, $code);
+    }
+    return $sign;
+}
+
+/**
+* 验证签名
+* @param $data 待签名数据
+* @param $sign 要校对的的签名结果
+* @param string 签名编码（base64/hex/bin）
+* @return bool
+*/
+public function verify($data, $sign, $code = &apos;base64&apos;)
+{
+    $ret = false;
+    $result = openssl_get_publickey($this-&gt;pubKey);
+    $sign = $this-&gt;decode($sign, $code);
+    if ($sign !== false) {
+        $ret = (bool) openssl_verify($data, $sign, $result); 
+        openssl_free_key($result);
+    }
+    return $ret;
+}
+
+/**
+ * RSA加密
+ * @param $content 需要加密的内容
+ * @param $this-&gt;pubKey 商户公钥文件路径 或 密钥内容本身
+ * return 加密后内容，明文
+ */
+public function encrypt($content, $code = &apos;base64&apos;)
+{
+    $result = openssl_get_publickey($this-&gt;pubKey);
+    $rslt = &apos;&apos;;
+    for ($i = 0; $i &lt; ((strlen($content)-strlen($content)%117) / 117 + 1); $i++) {
+        $data = mb_strcut($content, $i * 117, 117, &apos;utf-8&apos;);
+        openssl_public_encrypt($data, $encrypted, $result);
+        $rslt .= $encrypted;
+    }
+    openssl_free_key($result);
+    $rslt = $this-&gt;encode($rslt, $code);
+    return $rslt;
+}
+
+/**
+ * RSA解密
+ * @param $content 需要解密的内容，密文
+ * @param $this-&gt;priKey 商户私钥文件路径 或 密钥内容本身
+ * return 解密后内容，明文
+ */
+public function decrypt($content, $code = &apos;base64&apos;)
+{
+    $result = openssl_get_privatekey($this-&gt;priKey);
+    $content = $this-&gt;decode($content, $code);
+    $rslt = &apos;&apos;;
+    for ($i = 0; $i &lt; strlen($content)/128; $i++) {
+        $data = substr($content, $i * 128, 128);
+        openssl_private_decrypt($data, $decrypt, $result);
+        $rslt .= $decrypt;
+    }
+    openssl_free_key($result);
+    return $rslt;
+}
+
+private function encode($data, $code)  
+{
+    switch (strtolower($code)) {
+        case &apos;base64&apos;:
+            $data = base64_encode(&apos;&apos;.$data);
+        break;
+    }
+    return $data;
+}
+
+private function decode($data, $code)
+{
+    switch (strtolower($code)) {
+        case &apos;base64&apos;:
+            $data = base64_decode($data);
+        break;
+    }
+    return $data;
+}
+
+private function getFileContent($file)   
+{
+    if (file_exists($file)) {
+        return file_get_contents($file);
+    }
+    return $file;
+}
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4.代码中具体调用：</span><br></pre></td></tr></table></figure></p>
+<p>/**</p>
+<pre><code> * 同步债权信息
+ * @param $orderNo 订单ID
+ * @param $memberId 玖富理财用户ID
+ * @return boolen
+ */
+function syncRepayPlan($sDate, $eDate)
+{
+    if (!$sDate || !$eDate) {
+        return false;
+    }
+    $data = array(&apos;inputCharset&apos; =&gt; jiufuStatus::JIUFU_INPUTCHARSET,
+        &apos;version&apos; =&gt; jiufuStatus::JIUFU_VERSION,
+        &apos;channelId&apos; =&gt; jiufuStatus::JIUFU_CHANNELID,
+        &apos;startTime&apos; =&gt; $sDate,
+        &apos;endTime&apos; =&gt; $eDate,
+    );
+    $requestNo = sprintf(&quot;%d:&apos;%s&apos;:&apos;%s&apos;&quot;,
+        jiufuStatus::REQTYPE_JIUFU_RSYNC_REPAY_PLAN, &apos;jiufuSyncRepayPlan&apos;, uniqid());
+    $dataString = json_encode($data);
+    $info = array(
+        &apos;requestno&apos; =&gt; $requestNo,
+        &apos;type&apos; =&gt; jiufuStatus::REQTYPE_JIUFU_RSYNC_REPAY_PLAN,
+        &apos;reqtime&apos; =&gt; CMI_DATE_NOW,
+        &apos;data&apos; =&gt; $dataString
+    );
+    $r = $this-&gt;xdReqst-&gt;createRequest($requestNo,
+        jiufuStatus::REQTYPE_JIUFU_RSYNC_REPAY_PLAN, $info);
+    if ($r) {
+        $rslt = $this-&gt;excuteReq(__FUNCTION__, $data);
+        return $this-&gt;handleRepayPlan($requestNo, $rslt);
+    }
+}
+
+/**
+ * 处理还款计划
+ * @param $requestNo 请求ID
+ * @param $rslt
+ * @return boolen
+ */
+function handleRepayPlan($requestNo, $rslt)
+{
+    if ($rslt[&apos;returnCode&apos;] != &apos;0000&apos; || empty($rslt[&apos;responseData&apos;])) {
+        printf(&apos;获取还款计划失败%s&apos;, $rslt[&apos;returnMessage&apos;]);
+        $this-&gt;errorMsg(__LINE__. $error);
+    }
+    $dataList = $rslt[&apos;responseData&apos;];
+    foreach ($dataList as $key =&gt; &amp;$value) {
+        $value[&apos;channelId&apos;] = $rslt[&apos;channelId&apos;];
+    }
+    $classFun = __FUNCTION__;
+    $handleObj = new handleData();
+    $handleObj-&gt;valList = $dataList;
+    $r = $handleObj-&gt;$classFun();
+    if ($r[&apos;Status&apos;] == &apos;Fail&apos;) {
+        $error = $r[&apos;Message&apos;];
+        $this-&gt;xdReqst-&gt;updateRequest($requestNo,
+            REQSTATUS_FAILED, array(&apos;data&apos; =&gt; $data, &apos;errorMsg&apos; =&gt; $error));
+        $this-&gt;errorMsg(__LINE__. $error);
+        return false;
+    }
+    $this-&gt;xdReqst-&gt;updateRequest($requestNo, REQSTATUS_SUCCESS, $r);
+    return true;
+}
+
+/**
+* 发送请求
+* @param $reqName 请求名称
+* @param $data 请求数据
+* @return array
+*/
+public function excuteReq($reqName, $data = null)
+{
+    $rsaObj = new rsa(PUBLIC_KEY_PATH, PRIVATE_KEY_PATH);
+
+    //加密加签
+    $secretData = $rsaObj-&gt;encrypt(json_encode($data));
+    $secretSign = $rsaObj-&gt;sign(base64_decode($secretData));
+
+    //请求接口
+    $rslt = $this-&gt;proxy-&gt;$reqName(array(&apos;data&apos; =&gt; $secretData, &apos;sign&apos; =&gt; $secretSign));
+    if (!$rsaObj-&gt;verify(base64_decode($rslt[&apos;data&apos;]), $rslt[&apos;sign&apos;])) {
+        $error = sprintf(&quot;验签失败&quot;);
+        $this-&gt;errorMsg(__LINE__. $error);
+    }
+
+    //解密接口返回数据
+    $rsltData = $rsaObj-&gt;decrypt($rslt[&apos;data&apos;]);
+    return json_decode($rsltData, true);
+}
+</code></pre><p><code>`</code></p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    <div>
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2018/12/03/hello-world/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1029,360 +1383,6 @@
 <p> PHP实例代码</p>
 <pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">$express = &apos;U9rmosZvZcStF5wV8u2e16&apos;;</span><br><span class="line">$ciphertext = &apos;33-34-35-62-37-39-62-33-40-32-62-37-36-61-70-40-101-34-117-61-34-32-33-39-32-38-35-32-33-38-34-34-32-38-&apos;;</span><br><span class="line"></span><br><span class="line">function verifyDecrypt($express, $ciphertext)</span><br><span class="line">   &#123;</span><br><span class="line">       $desObj = new XOR();</span><br><span class="line">       $newString = (string) $desObj-&gt;decrypt($express, $ciphertext);</span><br><span class="line">       </span><br><span class="line">       print_r($newString);</span><br><span class="line">       exit;</span><br><span class="line">       list($ipAddress, $randString, $date) = explode(&apos;-&apos;, $newString);</span><br><span class="line">       if ($ipAddress != &apos;123.57.180.54&apos;) &#123;</span><br><span class="line">           $this-&gt;errorMsg(&apos;ERROR : IP NOT EXIST&apos;);</span><br><span class="line">           return false;</span><br><span class="line">       &#125;</span><br><span class="line">       return true;</span><br><span class="line">   &#125;</span><br><span class="line">调用得到：123.57.180.54-V8u2e-20170630162206</span><br><span class="line"></span><br><span class="line">具体解密代码：</span><br><span class="line">class XOR &#123;</span><br><span class="line">	public function xordecrypt($str, $key)</span><br><span class="line">    &#123;</span><br><span class="line">        $slen = strlen($str);</span><br><span class="line">        $klen = strlen($key);</span><br><span class="line">        for ($i=0; $i &lt; $slen; $i = $i + $klen) &#123;</span><br><span class="line">            $string = substr($str, $i, $klen );</span><br><span class="line">            $xorString .= $key ^ $string;</span><br><span class="line">        &#125;</span><br><span class="line">        return $xorString ? $xorString : &apos;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function decrypt($express, $ciphertext)</span><br><span class="line">    &#123;</span><br><span class="line">        $express = str_replace(&quot;&apos;&quot;, &quot;&quot;, $express);</span><br><span class="line">        $expressNum = substr($express, 20, 2);</span><br><span class="line"></span><br><span class="line">        $ciphertext = str_replace(&quot;&apos;&quot;, &quot;&quot;, $ciphertext);</span><br><span class="line">        $ciphertextArr = explode(&apos;-&apos;, $ciphertext);</span><br><span class="line">        foreach ($ciphertextArr as $cipher) &#123;</span><br><span class="line">            if (!$cipher) &#123;</span><br><span class="line">            	break;</span><br><span class="line">            &#125;</span><br><span class="line">            //异或运算</span><br><span class="line">            $xordecryptString = $this-&gt;xordecrypt($expressNum, intval($cipher));</span><br><span class="line">            //ASCII转字符串</span><br><span class="line">            $newString .= chr($xordecryptString);</span><br><span class="line">        &#125;</span><br><span class="line">        return $newString;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 </code></pre>
-          
-        
-      
-    </div>
-
-    
-    
-    <div>
-      
-    </div>
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2017/07/24/rsa/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/24/rsa/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-24T19:34:49+08:00">2017-07-24</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>php 使用openssl进行RSA2加解密以及签名算法 </p>
-<blockquote>
-<p>在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；</p>
-</blockquote>
-<ol>
-<li><p>公私钥成对出现，相互解密；<br> 公钥加密，私钥解密。<br> 私钥数字签名，公钥验证。</p>
-</li>
-<li><p>生成RSA秘钥对，主要利用linux OPENSSL</p>
-<p> 2.1 生成RSA私钥 <br></p>
-<pre><code><figure class="highlight plain"><figcaption><span>-out rsa_private_key.pem 1024```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">2.2 把RSA私钥转换成PKCS8格式&lt;/br&gt;</span><br><span class="line">	```pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM –nocrypt</span><br></pre></td></tr></table></figure>
-</code></pre></li>
-</ol>
-<pre><code>2.3 生成RSA公钥&lt;/br&gt;
-    <figure class="highlight plain"><figcaption><span>-in rsa_private_key.pem -pubout -out rsa_public_key.pem```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line">	&gt;打开rsa_public_key.pem可以看到-----BEGIN PUBLIC KEY-----开头，</span><br><span class="line">		-----END PUBLIC KEY-----结尾的没有换行的字符串，这个就是公钥</span><br><span class="line">	</span><br><span class="line">3. PHP中实现加解密类</span><br></pre></td></tr></table></figure>
-</code></pre><p>class RSA {</p>
-<pre><code>private $pubKey = null;
-private $priKey = null;
-
-/**
-* 构造函数
-* @param string 公钥文件（验签和加密时传入）
-* @param string 私钥文件（签名和解密时传入）
-*/
-public function __construct($pubKeyFile = &apos;&apos;, $priKeyFile = &apos;&apos;)
-{
-    if ($pubKeyFile) {
-        $this-&gt;pubKey = $this-&gt;getFileContent($pubKeyFile);
-    }
-    if ($priKeyFile) {
-        $this-&gt;priKey = $this-&gt;getFileContent($priKeyFile);
-    }
-}
-
-/**
- * RSA签名
- * @param $data 待签名数据
- * @param $priKey 商户私钥文件路径 或 密钥内容本身
- * return $sign 签名结果
- */
-public function sign($data, $code = &apos;base64&apos;) 
-{
-    $result = openssl_get_privatekey($this-&gt;priKey);
-    if (openssl_sign($data, $sign, $result)) {
-        openssl_free_key($result);
-        $sign = $this-&gt;encode($sign, $code);
-    }
-    return $sign;
-}
-
-/**
-* 验证签名
-* @param $data 待签名数据
-* @param $sign 要校对的的签名结果
-* @param string 签名编码（base64/hex/bin）
-* @return bool
-*/
-public function verify($data, $sign, $code = &apos;base64&apos;)
-{
-    $ret = false;
-    $result = openssl_get_publickey($this-&gt;pubKey);
-    $sign = $this-&gt;decode($sign, $code);
-    if ($sign !== false) {
-        $ret = (bool) openssl_verify($data, $sign, $result); 
-        openssl_free_key($result);
-    }
-    return $ret;
-}
-
-/**
- * RSA加密
- * @param $content 需要加密的内容
- * @param $this-&gt;pubKey 商户公钥文件路径 或 密钥内容本身
- * return 加密后内容，明文
- */
-public function encrypt($content, $code = &apos;base64&apos;)
-{
-    $result = openssl_get_publickey($this-&gt;pubKey);
-    $rslt = &apos;&apos;;
-    for ($i = 0; $i &lt; ((strlen($content)-strlen($content)%117) / 117 + 1); $i++) {
-        $data = mb_strcut($content, $i * 117, 117, &apos;utf-8&apos;);
-        openssl_public_encrypt($data, $encrypted, $result);
-        $rslt .= $encrypted;
-    }
-    openssl_free_key($result);
-    $rslt = $this-&gt;encode($rslt, $code);
-    return $rslt;
-}
-
-/**
- * RSA解密
- * @param $content 需要解密的内容，密文
- * @param $this-&gt;priKey 商户私钥文件路径 或 密钥内容本身
- * return 解密后内容，明文
- */
-public function decrypt($content, $code = &apos;base64&apos;)
-{
-    $result = openssl_get_privatekey($this-&gt;priKey);
-    $content = $this-&gt;decode($content, $code);
-    $rslt = &apos;&apos;;
-    for ($i = 0; $i &lt; strlen($content)/128; $i++) {
-        $data = substr($content, $i * 128, 128);
-        openssl_private_decrypt($data, $decrypt, $result);
-        $rslt .= $decrypt;
-    }
-    openssl_free_key($result);
-    return $rslt;
-}
-
-private function encode($data, $code)  
-{
-    switch (strtolower($code)) {
-        case &apos;base64&apos;:
-            $data = base64_encode(&apos;&apos;.$data);
-        break;
-    }
-    return $data;
-}
-
-private function decode($data, $code)
-{
-    switch (strtolower($code)) {
-        case &apos;base64&apos;:
-            $data = base64_decode($data);
-        break;
-    }
-    return $data;
-}
-
-private function getFileContent($file)   
-{
-    if (file_exists($file)) {
-        return file_get_contents($file);
-    }
-    return $file;
-}
-</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4.代码中具体调用：</span><br></pre></td></tr></table></figure></p>
-<p>/**</p>
-<pre><code> * 同步债权信息
- * @param $orderNo 订单ID
- * @param $memberId 玖富理财用户ID
- * @return boolen
- */
-function syncRepayPlan($sDate, $eDate)
-{
-    if (!$sDate || !$eDate) {
-        return false;
-    }
-    $data = array(&apos;inputCharset&apos; =&gt; jiufuStatus::JIUFU_INPUTCHARSET,
-        &apos;version&apos; =&gt; jiufuStatus::JIUFU_VERSION,
-        &apos;channelId&apos; =&gt; jiufuStatus::JIUFU_CHANNELID,
-        &apos;startTime&apos; =&gt; $sDate,
-        &apos;endTime&apos; =&gt; $eDate,
-    );
-    $requestNo = sprintf(&quot;%d:&apos;%s&apos;:&apos;%s&apos;&quot;,
-        jiufuStatus::REQTYPE_JIUFU_RSYNC_REPAY_PLAN, &apos;jiufuSyncRepayPlan&apos;, uniqid());
-    $dataString = json_encode($data);
-    $info = array(
-        &apos;requestno&apos; =&gt; $requestNo,
-        &apos;type&apos; =&gt; jiufuStatus::REQTYPE_JIUFU_RSYNC_REPAY_PLAN,
-        &apos;reqtime&apos; =&gt; CMI_DATE_NOW,
-        &apos;data&apos; =&gt; $dataString
-    );
-    $r = $this-&gt;xdReqst-&gt;createRequest($requestNo,
-        jiufuStatus::REQTYPE_JIUFU_RSYNC_REPAY_PLAN, $info);
-    if ($r) {
-        $rslt = $this-&gt;excuteReq(__FUNCTION__, $data);
-        return $this-&gt;handleRepayPlan($requestNo, $rslt);
-    }
-}
-
-/**
- * 处理还款计划
- * @param $requestNo 请求ID
- * @param $rslt
- * @return boolen
- */
-function handleRepayPlan($requestNo, $rslt)
-{
-    if ($rslt[&apos;returnCode&apos;] != &apos;0000&apos; || empty($rslt[&apos;responseData&apos;])) {
-        printf(&apos;获取还款计划失败%s&apos;, $rslt[&apos;returnMessage&apos;]);
-        $this-&gt;errorMsg(__LINE__. $error);
-    }
-    $dataList = $rslt[&apos;responseData&apos;];
-    foreach ($dataList as $key =&gt; &amp;$value) {
-        $value[&apos;channelId&apos;] = $rslt[&apos;channelId&apos;];
-    }
-    $classFun = __FUNCTION__;
-    $handleObj = new handleData();
-    $handleObj-&gt;valList = $dataList;
-    $r = $handleObj-&gt;$classFun();
-    if ($r[&apos;Status&apos;] == &apos;Fail&apos;) {
-        $error = $r[&apos;Message&apos;];
-        $this-&gt;xdReqst-&gt;updateRequest($requestNo,
-            REQSTATUS_FAILED, array(&apos;data&apos; =&gt; $data, &apos;errorMsg&apos; =&gt; $error));
-        $this-&gt;errorMsg(__LINE__. $error);
-        return false;
-    }
-    $this-&gt;xdReqst-&gt;updateRequest($requestNo, REQSTATUS_SUCCESS, $r);
-    return true;
-}
-
-/**
-* 发送请求
-* @param $reqName 请求名称
-* @param $data 请求数据
-* @return array
-*/
-public function excuteReq($reqName, $data = null)
-{
-    $rsaObj = new rsa(PUBLIC_KEY_PATH, PRIVATE_KEY_PATH);
-
-    //加密加签
-    $secretData = $rsaObj-&gt;encrypt(json_encode($data));
-    $secretSign = $rsaObj-&gt;sign(base64_decode($secretData));
-
-    //请求接口
-    $rslt = $this-&gt;proxy-&gt;$reqName(array(&apos;data&apos; =&gt; $secretData, &apos;sign&apos; =&gt; $secretSign));
-    if (!$rsaObj-&gt;verify(base64_decode($rslt[&apos;data&apos;]), $rslt[&apos;sign&apos;])) {
-        $error = sprintf(&quot;验签失败&quot;);
-        $this-&gt;errorMsg(__LINE__. $error);
-    }
-
-    //解密接口返回数据
-    $rsltData = $rsaObj-&gt;decrypt($rslt[&apos;data&apos;]);
-    return json_decode($rsltData, true);
-}
-</code></pre><p><code>`</code></p>
-
           
         
       
