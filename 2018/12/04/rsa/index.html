@@ -138,17 +138,17 @@
 
 
 
-  <meta name="description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥    1genrsa -out rsa_private_key.pem 1024 2.2 把RSA私钥转换成PKCS8格式&amp;lt;/br&amp;gt;      1pkcs8 -to">
+  <meta name="description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥    1genrsa -out rsa_private_key.pem 1024 2.2 把RSA私钥转换成PKCS8格式&amp;lt;/br&amp;gt; 1pkcs8 -topk8 -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php 使用openssl进行RSA2加解密以及签名算法">
 <meta property="og:url" content="http://diffnest.github.io/2018/12/04/rsa/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥    1genrsa -out rsa_private_key.pem 1024 2.2 把RSA私钥转换成PKCS8格式&amp;lt;/br&amp;gt;      1pkcs8 -to">
+<meta property="og:description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥    1genrsa -out rsa_private_key.pem 1024 2.2 把RSA私钥转换成PKCS8格式&amp;lt;/br&amp;gt; 1pkcs8 -topk8 -">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-04T11:49:32.316Z">
+<meta property="og:updated_time" content="2018-12-04T11:51:12.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php 使用openssl进行RSA2加解密以及签名算法">
-<meta name="twitter:description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥    1genrsa -out rsa_private_key.pem 1024 2.2 把RSA私钥转换成PKCS8格式&amp;lt;/br&amp;gt;      1pkcs8 -to">
+<meta name="twitter:description" content="在对接玖富债权项目中，用到了RSA加解密算法，特此记录下；   公私钥成对出现，相互解密； 公钥加密，私钥解密。 私钥数字签名，公钥验证。  生成RSA秘钥对，主要利用linux OPENSSL  2.1 生成RSA私钥    1genrsa -out rsa_private_key.pem 1024 2.2 把RSA私钥转换成PKCS8格式&amp;lt;/br&amp;gt; 1pkcs8 -topk8 -">
 
 
 
@@ -421,16 +421,10 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genrsa -out rsa_private_key.pem 1024</span><br></pre></td></tr></table></figure>
 <pre><code>2.2 把RSA私钥转换成PKCS8格式&lt;/br&gt;
-
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM –nocrypt</span><br></pre></td></tr></table></figure>
-
-
-2.3 生成RSA公钥&lt;/br&gt;
-
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem</span><br></pre></td></tr></table></figure>
-
-
-&gt;打开rsa_public_key.pem可以看到-----BEGIN PUBLIC KEY-----开头，
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM –nocrypt</span><br></pre></td></tr></table></figure>
+<pre><code>2.3 生成RSA公钥&lt;/br&gt;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem</span><br></pre></td></tr></table></figure>
+<pre><code>&gt;打开rsa_public_key.pem可以看到-----BEGIN PUBLIC KEY-----开头，
     -----END PUBLIC KEY-----结尾的没有换行的字符串，这个就是公钥
 </code></pre><ol start="3">
 <li>PHP中实现加解密类</li>
