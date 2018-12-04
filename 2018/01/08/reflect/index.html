@@ -138,20 +138,24 @@
 
 
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="反射类应该怎么用？？ 很久之前用过关于反射相关的函数，一直没时间整理，趁下班等巴士的这段时间，整理下   ###1.反射是什么？它是指在PHP运行状态中，扩展分析PHP程序，导出或提取出关于类、方法、属性、参数等的详细信息，包括注释。这种动态获取的信息以及动态调用对象的方法的功能称为反射API。反射是操纵面向对象范型中元模型的API，其功能十分强大，可帮助我们构建复杂，可扩展的应用。 ###2.">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://diffnest.github.io/archives/2018/index.html">
+<meta property="og:url" content="http://diffnest.github.io/2018/01/08/reflect/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="反射类应该怎么用？？ 很久之前用过关于反射相关的函数，一直没时间整理，趁下班等巴士的这段时间，整理下   ###1.反射是什么？它是指在PHP运行状态中，扩展分析PHP程序，导出或提取出关于类、方法、属性、参数等的详细信息，包括注释。这种动态获取的信息以及动态调用对象的方法的功能称为反射API。反射是操纵面向对象范型中元模型的API，其功能十分强大，可帮助我们构建复杂，可扩展的应用。 ###2.">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-08T11:33:45.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="反射类应该怎么用？？ 很久之前用过关于反射相关的函数，一直没时间整理，趁下班等巴士的这段时间，整理下   ###1.反射是什么？它是指在PHP运行状态中，扩展分析PHP程序，导出或提取出关于类、方法、属性、参数等的详细信息，包括注释。这种动态获取的信息以及动态调用对象的方法的功能称为反射API。反射是操纵面向对象范型中元模型的API，其功能十分强大，可帮助我们构建复杂，可扩展的应用。 ###2.">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/archives/2018/">
+  <link rel="canonical" href="http://diffnest.github.io/2018/01/08/reflect/">
 
 
 
@@ -161,7 +165,7 @@
   };
 </script>
 
-  <title>Archive | Hexo</title>
+  <title> | Hexo</title>
   
 
 
@@ -208,7 +212,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -319,130 +323,188 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 6 posts in total. Keep on posting.
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2018/01/08/reflect/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/03/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-03T19:12:07+08:00" content="2018-12-03">
-          12-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-08T19:33:45+08:00">2018-01-08</time>
+            
 
-    </header>
-  </article>
+            
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/08/reflect/" itemprop="url">
-              
-                <span itemprop="name">Untitled</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-01-08T19:33:45+08:00" content="2018-01-08">
-          01-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h2 id="反射类应该怎么用？？"><a href="#反射类应该怎么用？？" class="headerlink" title="反射类应该怎么用？？"></a>反射类应该怎么用？？<br></h2><blockquote>
+<p>很久之前用过关于反射相关的函数，一直没时间整理，趁下班等巴士的这段时间，整理下</p>
+</blockquote>
+<hr>
+<p>###1.反射是什么？<br><br>它是指在PHP运行状态中，扩展分析PHP程序，导出或提取出关于类、方法、属性、参数等的详细信息，包括注释。这种动态获取的信息以及动态调用对象的方法的功能称为反射API。<br>反射是操纵面向对象范型中元模型的API，其功能十分强大，可帮助我们构建复杂，可扩展的应用。</p>
+<p>###2. 反射应用场景</p>
+<blockquote>
+<ul>
+<li>生成文档（生成代码文档，方便查阅）</li>
+<li>自动加载插件（使用加载的配置类，比如系统的配置文件，过滤常量）</li>
+<li>加载第三方封装类库（加载类库，调用相关方法）</li>
+</ul>
+</blockquote>
+<p>###3. 实例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    abstract class Module &#123;    #核心Module类库</span><br><span class="line">        function baseFunc() &#123;</span><br><span class="line">            echo &quot;I am baseFunc&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        abstract function execute();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class ModuleRunner </span><br><span class="line">    &#123;</span><br><span class="line">        #模拟xml配置，动态配置需要加载的Module</span><br><span class="line">        private $C = array (    </span><br><span class="line">            &quot;PersonModule&quot; =&gt; array(&quot;person&quot; =&gt; &quot;bob&quot;),</span><br><span class="line">            &quot;FtpModule&quot; =&gt; array(&quot;host&quot; =&gt; &quot;example.com&quot;, &quot;user&quot; =&gt; &quot;anon&quot;)</span><br><span class="line">        );</span><br><span class="line">        </span><br><span class="line">        private $modules = array();</span><br><span class="line">        </span><br><span class="line">        #初始化ModuleRunner，加载配置中的Module</span><br><span class="line">        function init() </span><br><span class="line">        &#123;   </span><br><span class="line">            $parent = new ReflectionClass(&quot;Module&quot;);</span><br><span class="line">            foreach($this-&gt;C as $cName =&gt; $params) </span><br><span class="line">            &#123;    </span><br><span class="line">                #检查配置中的Module是否合法</span><br><span class="line">                $mClass = new ReflectionClass($cName);</span><br><span class="line">                #检查是否是Module的子类型</span><br><span class="line">		        if(! $mClass-&gt;isSubclassOf($parent)) &#123;    </span><br><span class="line">                    throw new Exception(&quot;unknown type : &#123;$cName&#125;&quot;);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                $module = $mClass-&gt;newInstance();</span><br><span class="line">                #检查配置中的函数的参数格式是否正确</span><br><span class="line">                foreach($mClass-&gt;getMethods() as $method) </span><br><span class="line">                &#123;   </span><br><span class="line">                    $this-&gt;handleMothod($module, $method, $params);</span><br><span class="line">                &#125;</span><br><span class="line">                #加载Module</span><br><span class="line">                array_push($this-&gt;modules, $module);   </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        #检查Module中的方法参数是否和传入的$params名字相同,并且具有set方法</span><br><span class="line">        private function handleMothod(Module $module, ReflectionMethod $method, $params) </span><br><span class="line">        &#123;    </span><br><span class="line">  </span><br><span class="line">            $name = $method-&gt;getName();</span><br><span class="line">            $args = $method-&gt;getParameters();</span><br><span class="line"></span><br><span class="line">            #如果没有配置中的类的方法的参数个数不为1,或者方法名前3个字母不为set,返回false</span><br><span class="line">            if(count($args) != 1 || substr($name, 0, 3) != &quot;set&quot;) &#123;    </span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            #如果方法名后三个字母与配置中的参数名不同,返回false</span><br><span class="line">            $property = strtolower(substr($name, 3));</span><br><span class="line">            if(!isset($params[$property])) &#123;    </span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            #获取参数的类型</span><br><span class="line">            $argClass = $args[0]-&gt;getClass();    </span><br><span class="line"></span><br><span class="line">            if (empty($argClass)) &#123;</span><br><span class="line">                #参数无类型限制则直接调用set方法</span><br><span class="line">                $method-&gt;invoke($module, $params[$property]);   </span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                #有类型限制则新建一个实例并调用set方法</span><br><span class="line">                $method-&gt;invoke($module, $argClass-&gt;newInstance($params[$property]));    #</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        public function getModules() </span><br><span class="line">        &#123;</span><br><span class="line">            return $this-&gt;modules;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class Person &#123;    #第三方类</span><br><span class="line">        public $name;</span><br><span class="line">        </span><br><span class="line">        function __construct($name) &#123;</span><br><span class="line">            $this-&gt;name = $name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class FtpModule extends Module &#123;    #用户自定义第三方Module</span><br><span class="line">        private $host = &quot;default host&quot;;</span><br><span class="line">        private $user = &quot;default user&quot;;</span><br><span class="line">        </span><br><span class="line">        function setHost($host) &#123;</span><br><span class="line">            $this-&gt;host = $host;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        function setUser($user) &#123;</span><br><span class="line">            $this-&gt;user = $user;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        function execute() &#123;</span><br><span class="line">            echo &quot;&#123;$this-&gt;user&#125; user &#123;$this-&gt;host&#125;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    class PersonModule extends Module &#123;    #用户自定义第三方Module</span><br><span class="line">        private $person;</span><br><span class="line">    </span><br><span class="line">        function setPerson(Person $person) &#123;</span><br><span class="line">            $this-&gt;person = $person;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        function execute() &#123;</span><br><span class="line">            if(isset($person)) &#123;</span><br><span class="line">                echo &quot;I am &#123;$this-&gt;person-&gt;name&#125;&quot;;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                echo &quot;I am no user&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    $modRunner = new ModuleRunner();</span><br><span class="line">    $modRunner-&gt;init();</span><br><span class="line">//    var_dump($modRunner);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+      
     </div>
+
+    
+    
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/27/实战/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/03/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -463,8 +525,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -509,6 +580,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#反射类应该怎么用？？"><span class="nav-number">1.</span> <span class="nav-text">反射类应该怎么用？？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -656,6 +743,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
 
   
 
