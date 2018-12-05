@@ -146,7 +146,7 @@
 <meta property="og:site_name" content="Writing more than life">
 <meta property="og:description" content="主要用到2个函数，pcntl_fork, pcntl_wait;  pcntl_fork:　　一次调用两次返回，在父进程中返回子进程pid；　　在子进程中返回0，出错返回-1。 pcntl_wait ( int &amp;amp;$status [, int $options ] )：　　 阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIG">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T12:09:55.208Z">
+<meta property="og:updated_time" content="2018-12-05T12:12:03.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP多进程">
 <meta name="twitter:description" content="主要用到2个函数，pcntl_fork, pcntl_wait;  pcntl_fork:　　一次调用两次返回，在父进程中返回子进程pid；　　在子进程中返回0，出错返回-1。 pcntl_wait ( int &amp;amp;$status [, int $options ] )：　　 阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIG">
@@ -449,8 +449,8 @@
         <blockquote>
 <p>主要用到2个函数，pcntl_fork, pcntl_wait;</p>
 </blockquote>
-<h3 id="pcntl-fork"><a href="#pcntl-fork" class="headerlink" title="pcntl_fork:"></a>pcntl_fork:<br></h3><p>　　一次调用两次返回，在父进程中返回子进程pid；<br><br>　　在子进程中返回0，出错返回-1。</p>
-<h3 id="pcntl-wait-int-amp-status-int-options-："><a href="#pcntl-wait-int-amp-status-int-options-：" class="headerlink" title="pcntl_wait ( int &amp;$status [, int $options ] )："></a>pcntl_wait ( int &amp;$status [, int $options ] )：<br></h3><p>　　 阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIGCHLD不算。使用$status返回子进程的状态码，并可以指定第二个参数来说明是否以阻塞状态调用;</p>
+<h3 id="pcntl-fork"><a href="#pcntl-fork" class="headerlink" title="pcntl_fork:"></a>pcntl_fork:<br></h3><p>　　一次调用两次返回，在父进程中返回子进程pid；<br>　　在子进程中返回0，出错返回-1。</p>
+<h3 id="pcntl-wait-int-amp-status-int-options-："><a href="#pcntl-wait-int-amp-status-int-options-：" class="headerlink" title="pcntl_wait ( int &amp;$status [, int $options ] )："></a>pcntl_wait ( int &amp;$status [, int $options ] )：</h3><p>　　 阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIGCHLD不算。使用$status返回子进程的状态码，并可以指定第二个参数来说明是否以阻塞状态调用;</p>
 <pre><code>阻塞方式调用的，函数返回值为子进程的pid,如果没有子进程返回值为-1；
 非阻塞方式调用，函数还可以在有子进程在运行但没有结束的子进程时返回0。
 目的：父进程必须等待一个子进程退出后，再创建下一个子进程。
