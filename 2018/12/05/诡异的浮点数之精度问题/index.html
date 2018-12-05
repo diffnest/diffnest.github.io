@@ -138,24 +138,24 @@
 
 
 
-  <meta name="description" content="以梦为马，明日天涯">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://diffnest.github.io/tags/index.html">
+  <meta name="description" content="最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：123456789101112&amp;lt;?php$totalRate = 10;$rate = 8.4;$dVal = $totalRate - $rate;//利率差$serviceFee = 1.6;//服务费利率va">
+<meta property="og:type" content="article">
+<meta property="og:title" content="诡异的浮点数之精度问题">
+<meta property="og:url" content="http://diffnest.github.io/2018/12/05/诡异的浮点数之精度问题/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="以梦为马，明日天涯">
+<meta property="og:description" content="最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：123456789101112&amp;lt;?php$totalRate = 10;$rate = 8.4;$dVal = $totalRate - $rate;//利率差$serviceFee = 1.6;//服务费利率va">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T06:00:27.294Z">
+<meta property="og:updated_time" content="2018-12-05T11:50:42.771Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="以梦为马，明日天涯">
+<meta name="twitter:title" content="诡异的浮点数之精度问题">
+<meta name="twitter:description" content="最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：123456789101112&amp;lt;?php$totalRate = 10;$rate = 8.4;$dVal = $totalRate - $rate;//利率差$serviceFee = 1.6;//服务费利率va">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/tags/">
+  <link rel="canonical" href="http://diffnest.github.io/2018/12/05/诡异的浮点数之精度问题/">
 
 
 
@@ -165,7 +165,7 @@
   };
 </script>
 
-  <title>tags | Writing more than life</title>
+  <title>诡异的浮点数之精度问题 | Writing more than life</title>
   
 
 
@@ -341,85 +341,198 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2018/12/05/诡异的浮点数之精度问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Echo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/tx.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Writing more than life">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">tags</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                2 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/PHP/" style="font-size: 12px; color: #ccc">PHP</a> <a href="/tags/加密/" style="font-size: 12px; color: #ccc">加密</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">诡异的浮点数之精度问题</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T19:50:12+08:00">2018-12-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <blockquote>
+<p>最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$totalRate = 10;</span><br><span class="line">$rate = 8.4;</span><br><span class="line">$dVal = $totalRate - $rate;//利率差</span><br><span class="line">$serviceFee = 1.6;//服务费利率</span><br><span class="line"></span><br><span class="line">var_dump($dVal === $serviceFee);</span><br><span class="line">var_dump(floatval($dVal) == floatval($serviceFee));</span><br><span class="line"></span><br><span class="line">printf(&quot;%.020f&quot;, $dVal);</span><br><span class="line">echo PHP_EOL;</span><br><span class="line">printf(&quot;%.020f&quot;, $serviceFee);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br><span class="line">1.59999999999999964473</span><br><span class="line">1.60000000000000008882</span><br></pre></td></tr></table></figure>
+<p>出现这个是因为计算机底层二进制无法精确表示浮点数；<br>如下所示：<br>小数转二进制方法：<br>整数部分采用除以2取余方法<br>小数部分采用乘以2取整方法</p>
+<p>如：8.4转二进制<br>整数部分是8：<br>8/2=4 8%2=0<br>4/2=2 4%2=0<br>2/2=1 2%2=0<br>1比2小，因此不需要计算下去，整数8的二进制为 1000</p>
+<p>小数部分0.4：<br>0.4 <em> 2 = 0.8   =&gt; 0<br>0.8 </em> 2 = 1.6    =&gt; 1<br>0.6 <em> 2 = 1.2    =&gt; 1<br>0.2 </em> 2 = 0.4   =&gt; 0<br>0.4 <em> 2 = 0.8   =&gt; 0<br>0.8 </em> 2 = 1.6    =&gt; 1<br>0.6 <em> 2 = 1.2    =&gt; 1<br>0.2 </em> 2 = 0.4   =&gt; 0<br>0.4 <em> 2 = 0.8   =&gt; 0<br>0.8 </em> 2 = 1.6    =&gt; 1<br>0.6 <em> 2 = 1.2    =&gt; 1<br>0.2 </em> 2 = 0.4   =&gt; 0</p>
+<p>1000.0110011001100110…….<br> 这样一直循环下去，当截取精度为N时，N后的数会被舍去，导致精度丢失，<br>所以在上例中，8.4在计算机转为二进制时精度就已经丢失了，导致相减出的差值不等于1.6；</p>
+<p>正确比较浮点数的方法:<br>1.使用round方法处理后再比较；<br>2.使用高精度运算方法；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(round(($totalRate - $rate), 1) == round($serviceFee, 1));</span><br><span class="line"></span><br><span class="line">var_dump(bcsub($totalRate, $rate, 1) == $serviceFee);</span><br><span class="line"></span><br><span class="line">var_dump(bccomp($dVal, $serviceFee, 1));</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bool(true)</span><br><span class="line">bool(true)</span><br><span class="line">int(0) // 0表示两个浮点数值相等</span><br></pre></td></tr></table></figure>
+<p>php的官方原文地址：<a href="http://php.net/manual/zh/language.types.float.php" target="_blank" rel="noopener">http://php.net/manual/zh/language.types.float.php</a><br><a href="https://diffnest.github.io/myblog/#/posts/6">PHP 高精度函数</a></p>
+
       
     </div>
-    
-
-
 
     
     
+    <div>
+      
+          <div>
     
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/wxpay.png" alt="Echo WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/05/Nginx-php-fpm的运行原理/" rel="next" title="Nginx+php-fpm的运行原理">
+                <i class="fa fa-chevron-left"></i> Nginx+php-fpm的运行原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
