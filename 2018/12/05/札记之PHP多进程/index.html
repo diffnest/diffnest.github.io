@@ -138,18 +138,18 @@
 
 
 
-  <meta name="description" content="主要用到2个函数，pcntl_fork, pcntl_wait;  pcntl_fork:　　一次调用两次返回，在父进程中返回子进程pid；　　在子进程中返回0，出错返回-1。 pcntl_wait ( int &amp;amp;$status [, int $options ] )：　　 阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIG">
+  <meta name="description" content="主要用到2个函数，pcntl_fork, pcntl_wait;  pcntl_fork:　　一次调用两次返回，在父进程中返回子进程pid；　　在子进程中返回0，出错返回-1。 pcntl_wait ( int &amp;amp;$status [, int $options ] )：阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIGCHL">
 <meta name="keywords" content="多进程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="札记之PHP多进程">
 <meta property="og:url" content="http://diffnest.github.io/2018/12/05/札记之PHP多进程/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="主要用到2个函数，pcntl_fork, pcntl_wait;  pcntl_fork:　　一次调用两次返回，在父进程中返回子进程pid；　　在子进程中返回0，出错返回-1。 pcntl_wait ( int &amp;amp;$status [, int $options ] )：　　 阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIG">
+<meta property="og:description" content="主要用到2个函数，pcntl_fork, pcntl_wait;  pcntl_fork:　　一次调用两次返回，在父进程中返回子进程pid；　　在子进程中返回0，出错返回-1。 pcntl_wait ( int &amp;amp;$status [, int $options ] )：阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIGCHL">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T12:12:41.003Z">
+<meta property="og:updated_time" content="2018-12-05T12:13:52.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP多进程">
-<meta name="twitter:description" content="主要用到2个函数，pcntl_fork, pcntl_wait;  pcntl_fork:　　一次调用两次返回，在父进程中返回子进程pid；　　在子进程中返回0，出错返回-1。 pcntl_wait ( int &amp;amp;$status [, int $options ] )：　　 阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIG">
+<meta name="twitter:description" content="主要用到2个函数，pcntl_fork, pcntl_wait;  pcntl_fork:　　一次调用两次返回，在父进程中返回子进程pid；　　在子进程中返回0，出错返回-1。 pcntl_wait ( int &amp;amp;$status [, int $options ] )：阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIGCHL">
 
 
 
@@ -450,7 +450,7 @@
 <p>主要用到2个函数，pcntl_fork, pcntl_wait;</p>
 </blockquote>
 <h3 id="pcntl-fork"><a href="#pcntl-fork" class="headerlink" title="pcntl_fork:"></a>pcntl_fork:<br></h3><p>　　一次调用两次返回，在父进程中返回子进程pid；<br>　　在子进程中返回0，出错返回-1。</p>
-<h3 id="pcntl-wait-int-amp-status-int-options-："><a href="#pcntl-wait-int-amp-status-int-options-：" class="headerlink" title="pcntl_wait ( int &amp;$status [, int $options ] )："></a>pcntl_wait ( int &amp;$status [, int $options ] )：</h3><p>　　 阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIGCHLD不算。使用$status返回子进程的状态码，并可以指定第二个参数来说明是否以阻塞状态调用;</p>
+<h3 id="pcntl-wait-int-amp-status-int-options-："><a href="#pcntl-wait-int-amp-status-int-options-：" class="headerlink" title="pcntl_wait ( int &amp;$status [, int $options ] )："></a>pcntl_wait ( int &amp;$status [, int $options ] )：</h3><p>阻塞当前进程，直到任意一个子进程退出或收到一个结束当前进程的信号,注意是结束当前进程的信号,子进程结束发送的SIGCHLD不算。使用$status返回子进程的状态码，并可以指定第二个参数来说明是否以阻塞状态调用;</p>
 <p>阻塞方式调用的，函数返回值为子进程的pid,如果没有子进程返回值为-1；<br>非阻塞方式调用，函数还可以在有子进程在运行但没有结束的子进程时返回0。<br>目的：父进程必须等待一个子进程退出后，再创建下一个子进程。</p>
 <h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO:"></a>DEMO:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function transfer($class, $method = &apos;run&apos;, $opt)</span><br><span class="line">&#123;</span><br><span class="line">    $className = ucfirst($class);</span><br><span class="line">    $instance = new $className();</span><br><span class="line">    $instance-&gt;$method($opt);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function runProcess($func, $class, $method, $opt = array(), $pNum = 1) </span><br><span class="line">&#123;</span><br><span class="line">	while (true) </span><br><span class="line">	&#123;</span><br><span class="line">		$pid = pcntl_fork();</span><br><span class="line">		if ($pid == -1) &#123;</span><br><span class="line">			exit(&quot;could not fork&quot; . posix_getpid() . &quot;\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		if ($pid) &#123;</span><br><span class="line">			static $executeNum = 0;</span><br><span class="line">			$executeNum ++;</span><br><span class="line">			if ($executeNum &gt;= $pNum) &#123;</span><br><span class="line">				pcntl_wait($status);</span><br><span class="line">				$executeNum --;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			$this-&gt;$func($class, $method, $opt);</span><br><span class="line">			sleep(1);</span><br><span class="line">			exit(0);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">runProcess(&quot;transfer&quot;, $class, $method, $opt, 8);</span><br></pre></td></tr></table></figure>
 
