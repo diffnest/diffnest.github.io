@@ -138,18 +138,18 @@
 
 
 
-  <meta name="description" content="最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：123456789101112&amp;lt;?php$totalRate = 10;$rate = 8.4;$dVal = $totalRate - $rate;//利率差$serviceFee = 1.6;//服务费利率va">
+  <meta name="description" content="最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：  123456789101112&amp;lt;?php$totalRate = 10;$rate = 8.4;$dVal = $totalRate - $rate;//利率差$serviceFee = 1.6;//服务费利率">
 <meta name="keywords" content="精度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="诡异的浮点数之精度问题">
 <meta property="og:url" content="http://diffnest.github.io/2018/12/05/诡异的浮点数之精度问题/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：123456789101112&amp;lt;?php$totalRate = 10;$rate = 8.4;$dVal = $totalRate - $rate;//利率差$serviceFee = 1.6;//服务费利率va">
+<meta property="og:description" content="最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：  123456789101112&amp;lt;?php$totalRate = 10;$rate = 8.4;$dVal = $totalRate - $rate;//利率差$serviceFee = 1.6;//服务费利率">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T11:53:05.075Z">
+<meta property="og:updated_time" content="2018-12-05T11:55:22.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="诡异的浮点数之精度问题">
-<meta name="twitter:description" content="最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：123456789101112&amp;lt;?php$totalRate = 10;$rate = 8.4;$dVal = $totalRate - $rate;//利率差$serviceFee = 1.6;//服务费利率va">
+<meta name="twitter:description" content="最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：  123456789101112&amp;lt;?php$totalRate = 10;$rate = 8.4;$dVal = $totalRate - $rate;//利率差$serviceFee = 1.6;//服务费利率">
 
 
 
@@ -447,8 +447,9 @@
 
       
         <blockquote>
-<p>最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$totalRate = 10;</span><br><span class="line">$rate = 8.4;</span><br><span class="line">$dVal = $totalRate - $rate;//利率差</span><br><span class="line">$serviceFee = 1.6;//服务费利率</span><br><span class="line"></span><br><span class="line">var_dump($dVal === $serviceFee);</span><br><span class="line">var_dump(floatval($dVal) == floatval($serviceFee));</span><br><span class="line"></span><br><span class="line">printf(&quot;%.020f&quot;, $dVal);</span><br><span class="line">echo PHP_EOL;</span><br><span class="line">printf(&quot;%.020f&quot;, $serviceFee);</span><br></pre></td></tr></table></figure></p>
+<p>最近在计算还款计划利率差，涉及两个浮点数的比较，结果令人百思不得其解，最终得出一个真理：“永远不要相信浮点数已精确到最后一位，也永远不要用等号比较两个浮点数是否相等”，详情如下：</p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$totalRate = 10;</span><br><span class="line">$rate = 8.4;</span><br><span class="line">$dVal = $totalRate - $rate;//利率差</span><br><span class="line">$serviceFee = 1.6;//服务费利率</span><br><span class="line"></span><br><span class="line">var_dump($dVal === $serviceFee);</span><br><span class="line">var_dump(floatval($dVal) == floatval($serviceFee));</span><br><span class="line"></span><br><span class="line">printf(&quot;%.020f&quot;, $dVal);</span><br><span class="line">echo PHP_EOL;</span><br><span class="line">printf(&quot;%.020f&quot;, $serviceFee);</span><br></pre></td></tr></table></figure>
 <p>输出结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br><span class="line">1.59999999999999964473</span><br><span class="line">1.60000000000000008882</span><br></pre></td></tr></table></figure>
 <p>出现这个是因为计算机底层二进制无法精确表示浮点数；<br>如下所示：<br>小数转二进制方法：<br>整数部分采用除以2取余方法<br>小数部分采用乘以2取整方法</p>
