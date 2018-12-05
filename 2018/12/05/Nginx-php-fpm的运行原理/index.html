@@ -146,7 +146,7 @@
 <meta property="og:site_name" content="Writing more than life">
 <meta property="og:description" content="最近在看nginx，加上自己的理解，整理下关于整个nginx，php-fpm的调用流程；1.1 Nginx不只有处理http请求的功能，还能做反向代理;1.2 Nginx通过反向代理功能将动态请求转向后端Php-fpm;1.3 对于nginx来说，php只是一个运行在9000端口的程序而已；  php访问动态web过程：用户从浏览器发起对web的访问（http://jr.jiayuan.com）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T11:45:44.303Z">
+<meta property="og:updated_time" content="2018-12-05T11:46:50.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx+php-fpm的运行原理">
 <meta name="twitter:description" content="最近在看nginx，加上自己的理解，整理下关于整个nginx，php-fpm的调用流程；1.1 Nginx不只有处理http请求的功能，还能做反向代理;1.2 Nginx通过反向代理功能将动态请求转向后端Php-fpm;1.3 对于nginx来说，php只是一个运行在9000端口的程序而已；  php访问动态web过程：用户从浏览器发起对web的访问（http://jr.jiayuan.com）">
@@ -452,7 +452,7 @@
 <h3 id="php访问动态web过程："><a href="#php访问动态web过程：" class="headerlink" title="php访问动态web过程："></a>php访问动态web过程：<br></h3><p>用户从浏览器发起对web的访问（<a href="http://jr.jiayuan.com）" target="_blank" rel="noopener">http://jr.jiayuan.com）</a>, 用户和nginx服务器进行三次握手进行TCP连接；</p>
 <ol>
 <li>nignx将http请求信息发送给nginx服务器；</li>
-<li>nginx根据用户访问url和后缀对请求进行判断；<br><br>(即当客户端请求到达Web Server Nginx时，Nginx通过location指令，将所有以php为后缀的文件都交给127.0.0.1:9000来处理，即Nginx通过location指令，将所有以php为后缀的文件都交给127.0.0.1:9000来处理）</li>
+<li>nginx根据用户访问url和后缀对请求进行判断；<br>(即当客户端请求到达Web Server Nginx时，Nginx通过location指令，将所有以php为后缀的文件都交给127.0.0.1:9000来处理，即Nginx通过location指令，将所有以php为后缀的文件都交给127.0.0.1:9000来处理）</li>
 <li>nginx将请求交给fastcgi，通过fastcgi_pass将用户的请求发送给php-fpm<br>如果用户访问的是静态资源呢，nginx直接将用户请求的静态资源返回给用户；</li>
 <li>fastcgi_pass将动态资源交给php-fpm后，php-fpm会将资源转给已等待的php脚本解析服务器的wrapper;</li>
 <li>wrapper收到php-fpm转过来的请求后，wrapper会生成一个新的线程调用php动态程序解析服务器，如果用户请求的是需要读取例如MySQL数据库等，将会触发读库操作;如果用户请求的是如图片/附件等，PHP会触发一次查询后端存储服务器如通过NFS进行存储的存储集群;</li>
