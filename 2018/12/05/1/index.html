@@ -138,23 +138,29 @@
 
 
 
-  <meta name="description" content="以梦为马，明日天涯">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Writing more than life">
-<meta property="og:url" content="http://diffnest.github.io/tags/精度/index.html">
+  <meta name="description" content="PHP垃圾回收以及内存泄漏  判断是否为垃圾的一个重要标准是有没有变量名指向变量容器zval,垃圾回收说到底是对变量及其所关联内存对象的操作，即当变量的引用数等于0时，就会被销毁;   首先看下存储结构体（zend/zend.h）  12345678910111213141516171819typedef union _zvalue_value &amp;#123;	long lval;					/* l">
+<meta name="keywords" content="垃圾回收">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP垃圾回收以及内存泄漏">
+<meta property="og:url" content="http://diffnest.github.io/2018/12/05/1/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="以梦为马，明日天涯">
+<meta property="og:description" content="PHP垃圾回收以及内存泄漏  判断是否为垃圾的一个重要标准是有没有变量名指向变量容器zval,垃圾回收说到底是对变量及其所关联内存对象的操作，即当变量的引用数等于0时，就会被销毁;   首先看下存储结构体（zend/zend.h）  12345678910111213141516171819typedef union _zvalue_value &amp;#123;	long lval;					/* l">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-images.githubusercontent.com/6230204/37398797-9d266114-27ba-11e8-9ebb-74fef58f44ae.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/6230204/37398867-ca0aa0be-27ba-11e8-878b-efc3465eb72e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/6230204/37398906-e92f0b74-27ba-11e8-8dda-cd12b1b79835.png">
+<meta property="og:updated_time" content="2018-12-05T11:59:50.884Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Writing more than life">
-<meta name="twitter:description" content="以梦为马，明日天涯">
+<meta name="twitter:title" content="PHP垃圾回收以及内存泄漏">
+<meta name="twitter:description" content="PHP垃圾回收以及内存泄漏  判断是否为垃圾的一个重要标准是有没有变量名指向变量容器zval,垃圾回收说到底是对变量及其所关联内存对象的操作，即当变量的引用数等于0时，就会被销毁;   首先看下存储结构体（zend/zend.h）  12345678910111213141516171819typedef union _zvalue_value &amp;#123;	long lval;					/* l">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/6230204/37398797-9d266114-27ba-11e8-9ebb-74fef58f44ae.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/tags/精度/">
+  <link rel="canonical" href="http://diffnest.github.io/2018/12/05/1/">
 
 
 
@@ -164,7 +170,7 @@
   };
 </script>
 
-  <title>Tag: 精度 | Writing more than life</title>
+  <title>PHP垃圾回收以及内存泄漏 | Writing more than life</title>
   
 
 
@@ -211,7 +217,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -340,79 +346,253 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>精度<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2018/12/05/1/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Echo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/tx.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Writing more than life">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/05/诡异的浮点数之精度问题/" itemprop="url">
-              
-                <span itemprop="name">诡异的浮点数之精度问题</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">PHP垃圾回收以及内存泄漏</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-05T19:50:12+08:00" content="2018-12-05">
-          12-05
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T19:59:06+08:00">2018-12-05</time>
+            
 
-    </header>
-  </article>
+            
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>PHP垃圾回收以及内存泄漏</p>
+<blockquote>
+<p>判断是否为垃圾的一个重要标准是有没有变量名指向变量容器zval,垃圾回收说到底是对变量及其所关联内存对象的操作，即当变量的引用数等于0时，就会被销毁;</p>
+</blockquote>
+<ol>
+<li><h3 id="首先看下存储结构体（zend-zend-h）"><a href="#首先看下存储结构体（zend-zend-h）" class="headerlink" title="首先看下存储结构体（zend/zend.h）"></a>首先看下存储结构体（zend/zend.h）</h3></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">typedef union _zvalue_value &#123;</span><br><span class="line">	long lval;					/* long value */</span><br><span class="line">	double dval;				/* double value */</span><br><span class="line">	struct &#123;</span><br><span class="line">		char *val;</span><br><span class="line">		int len;</span><br><span class="line">	&#125; str;</span><br><span class="line">	HashTable *ht;				/* hash table value */</span><br><span class="line">	zend_object_value obj;</span><br><span class="line">	zend_ast *ast;</span><br><span class="line">&#125; zvalue_value;</span><br><span class="line"></span><br><span class="line">struct _zval_struct &#123;</span><br><span class="line">	/* Variable information */</span><br><span class="line">	zvalue_value value;		/* value */ 即是上述所说的zvalue_value,也就是存储的数据</span><br><span class="line">	zend_uint refcount__gc; //即是变量的引用数，变量引用计算器。</span><br><span class="line">	zend_uchar type;	/* active type */ 变量的类型，为了保存当前所存储的数据，是哪一个类型的数据</span><br><span class="line">	zend_uchar is_ref__gc; //变量是否被引用</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><h3 id="生成垃圾："><a href="#生成垃圾：" class="headerlink" title="生成垃圾："></a>生成垃圾：</h3></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = array(&apos;one&apos;);</span><br><span class="line">xdebug_debug_zval(&apos;a&apos;);</span><br><span class="line"></span><br><span class="line">$a[] = &amp; $a;</span><br><span class="line">xdebug_debug_zval(&apos;a&apos;);</span><br><span class="line"></span><br><span class="line">unset($a);</span><br><span class="line">xdebug_debug_zval(&apos;a&apos;);</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a: (refcount=2, is_ref=0)=array (</span><br><span class="line">    0 =&gt; (refcount=1, is_ref=0)=&apos;one&apos;</span><br><span class="line">)</span><br><span class="line">a: (refcount=2, is_ref=1)=array (</span><br><span class="line">    0 =&gt; (refcount=2, is_ref=0)=&apos;one&apos;, </span><br><span class="line">    1 =&gt; (refcount=2, is_ref=1)=...</span><br><span class="line">)</span><br><span class="line">a: no such symbol</span><br></pre></td></tr></table></figure>
+<p>如图所示：<br>     unset前：此时$a的内部构造可以形象的用下图表示：<br><img src="https://user-images.githubusercontent.com/6230204/37398797-9d266114-27ba-11e8-9ebb-74fef58f44ae.png" alt="default"></p>
+<pre><code>unset后：此时的情况可以用下图表示：
+</code></pre><p><img src="https://user-images.githubusercontent.com/6230204/37398867-ca0aa0be-27ba-11e8-878b-efc3465eb72e.png" alt="default"></p>
+<p>当执行unset($a);此时$a已经不在符号表中了，用户无法再访问此变量，但是$a之前指向的zval的refcount变为1而不是0，因此不能被回收，这样产生了内存泄露；<br>unset只是断开一个变量到一块内存区域的连接，同时将该内存区域的引用计数-1；</p>
+<ol start="3">
+<li><h3 id="GC回收实现："><a href="#GC回收实现：" class="headerlink" title="GC回收实现："></a>GC回收实现：</h3>首先我们有几个基本的准则：<br>1：如果一个zval的refcount增加，那么此zval还在使用，不属于垃圾</li>
+</ol>
+<p>2：如果一个zval的refcount减少到0， 那么zval可以被释放掉，不属于垃圾</p>
+<p>3：如果一个zval的refcount减少之后大于0，那么此zval还不能被释放，此zval可能成为一个垃圾</p>
+<p>只有在准则3下，GC才会把zval收集起来，然后通过新的算法来判断此zval是否为垃圾。<br><img src="https://user-images.githubusercontent.com/6230204/37398906-e92f0b74-27ba-11e8-8dda-cd12b1b79835.png" alt="default"></p>
+<p>A：为了避免每次变量的refcount减少的时候都调用GC的算法进行垃圾判断，此算法会先把所有前面准则3情况下的zval节点放入一个节点(root)缓冲区(root buffer)，并且将这些zval节点标记成紫色，同时算法必须确保每一个zval节点在缓冲区中之出现一次。当缓冲区被节点塞满的时候，GC才开始开始对缓冲区中的zval节点进行垃圾判断。</p>
+<p>B：当缓冲区满了之后，算法以深度优先对每一个节点所包含的zval进行减1操作，为了确保不会对同一个zval的refcount重复执行减1操作，一旦zval的refcount减1之后会将zval标记成灰色。需要强调的是，这个步骤中，起初节点zval本身不做减1操作，但是如果节点zval中包含的zval又指向了节点zval（环形引用），那么这个时候需要对节点zval进行减1操作。</p>
+<p>C：算法再次以深度优先判断每一个节点包含的zval的值，如果zval的refcount等于0，那么将其标记成白色(代表垃圾)，如果zval的refcount大于0，那么将对此zval以及其包含的zval进行refcount加1操作，这个是对非垃圾的还原操作，同时将这些zval的颜色变成黑色（zval的默认颜色属性）</p>
+<p>D：遍历zval节点，将C中标记成白色的节点zval释放掉。</p>
+<p>这ABCD四个过程是手册中对这个算法的介绍，这还不是那么容易理解其中的原理，这个算法到底是个什么意思呢？我自己的理解是这样的：</p>
+<p>比如还是前面那个变成垃圾的数组$a对应的zval,命名为zval_a,  如果没有执行unset， zval_a的refcount为2,分别由$a和$a中的索引1指向这个zval。  用算法对这个数组中的所有元素（索引0和索引1）的zval的refcount进行减1操作，由于索引1对应的就是zval_a，所以这个时候zval_a的refcount应该变成了1，这样zval_a就不是一个垃圾。如果执行了unset操作，zval_a的refcount就是1，由zval_a中的索引1指向zval_a,用算法对数组中的所有元素（索引0和索引1）的zval的refcount进行减1操作，这样zval_a的refcount就会变成0，于是就发现zval_a是一个垃圾了。 算法就这样发现了顽固的垃圾数据。</p>
+<p>举了这个例子，读者大概应该能够知道其中的端倪：</p>
+<p>对于一个包含环形引用的数组，对数组中包含的每个元素的zval进行减1操作，之后如果发现数组自身的zval的refcount变成了0，那么可以判断这个数组是一个垃圾。</p>
+<p>参考链接：1. <a href="http://blog.csdn.net/phpkernel/article/details/5734743" target="_blank" rel="noopener">http://blog.csdn.net/phpkernel/article/details/5734743</a></p>
+<ol start="2">
+<li><a href="http://blog.csdn.net/u011250882/article/details/49564043" target="_blank" rel="noopener">http://blog.csdn.net/u011250882/article/details/49564043</a></li>
+</ol>
 
       
     </div>
 
+    
+    
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/wxpay.png" alt="Echo WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/垃圾回收/" rel="tag"><i class="fa fa-tag"> 垃圾回收</i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/05/一段PHP代码引发一段-Segmentation-fault-错误？/" rel="next" title="一段PHP代码引发一段(Segmentation fault)错误？">
+                <i class="fa fa-chevron-left"></i> 一段PHP代码引发一段(Segmentation fault)错误？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -433,8 +613,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -551,6 +740,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先看下存储结构体（zend-zend-h）"><span class="nav-number">1.</span> <span class="nav-text">首先看下存储结构体（zend/zend.h）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成垃圾："><span class="nav-number">2.</span> <span class="nav-text">生成垃圾：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GC回收实现："><span class="nav-number">3.</span> <span class="nav-text">GC回收实现：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -698,6 +903,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
 
   
 
