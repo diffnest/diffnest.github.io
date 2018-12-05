@@ -149,7 +149,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/6230204/37398797-9d266114-27ba-11e8-9ebb-74fef58f44ae.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/6230204/37398867-ca0aa0be-27ba-11e8-878b-efc3465eb72e.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/6230204/37398906-e92f0b74-27ba-11e8-8dda-cd12b1b79835.png">
-<meta property="og:updated_time" content="2018-12-05T12:02:56.537Z">
+<meta property="og:updated_time" content="2018-12-05T12:08:24.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP垃圾回收以及内存泄漏">
 <meta name="twitter:description" content="PHP垃圾回收以及内存泄漏  判断是否为垃圾的一个重要标准是有没有变量名指向变量容器zval,垃圾回收说到底是对变量及其所关联内存对象的操作，即当变量的引用数等于0时，就会被销毁;   首先看下存储结构体（zend/zend.h）  12345678910111213141516171819typedef union _zvalue_value &amp;#123;	long lval;					/* l">
@@ -465,8 +465,7 @@
 <p>结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a: (refcount=2, is_ref=0)=array (</span><br><span class="line">    0 =&gt; (refcount=1, is_ref=0)=&apos;one&apos;</span><br><span class="line">)</span><br><span class="line">a: (refcount=2, is_ref=1)=array (</span><br><span class="line">    0 =&gt; (refcount=2, is_ref=0)=&apos;one&apos;, </span><br><span class="line">    1 =&gt; (refcount=2, is_ref=1)=...</span><br><span class="line">)</span><br><span class="line">a: no such symbol</span><br></pre></td></tr></table></figure>
 <p>如图所示：<br>     unset前：此时$a的内部构造可以形象的用下图表示：<br><img src="https://user-images.githubusercontent.com/6230204/37398797-9d266114-27ba-11e8-9ebb-74fef58f44ae.png" alt="default"></p>
-<pre><code>unset后：此时的情况可以用下图表示：
-</code></pre><p><img src="https://user-images.githubusercontent.com/6230204/37398867-ca0aa0be-27ba-11e8-878b-efc3465eb72e.png" alt="default"></p>
+<p>unset后：此时的情况可以用下图表示：<br><img src="https://user-images.githubusercontent.com/6230204/37398867-ca0aa0be-27ba-11e8-878b-efc3465eb72e.png" alt="default"></p>
 <p>当执行unset($a);此时$a已经不在符号表中了，用户无法再访问此变量，但是$a之前指向的zval的refcount变为1而不是0，因此不能被回收，这样产生了内存泄露；<br>unset只是断开一个变量到一块内存区域的连接，同时将该内存区域的引用计数-1；</p>
 <ol start="3">
 <li><h3 id="GC回收实现："><a href="#GC回收实现：" class="headerlink" title="GC回收实现："></a>GC回收实现：</h3>首先我们有几个基本的准则：<br>1：如果一个zval的refcount增加，那么此zval还在使用，不属于垃圾</li>
