@@ -138,25 +138,27 @@
 
 
 
-  <meta name="description" content="最近在看nginx，加上自己的理解，整理下关于整个nginx，php-fpm的调用流程；1.1 Nginx不只有处理http请求的功能，还能做反向代理;1.2 Nginx通过反向代理功能将动态请求转向后端Php-fpm;1.3 对于nginx来说，php只是一个运行在9000端口的程序而已；  php访问动态web过程：用户从浏览器发起对web的访问（http://jr.jiayuan.com）">
-<meta name="keywords" content="PHP">
+  <meta name="description" content="1. 创建并且初始化一个HashTable1234567891011121314151617ZEND_API int _zend_hash_init(HashTable *ht, uint nSize, dtor_func_t pDestructor, zend_bool persistent ZEND_FILE_LINE_DC)&amp;#123;	uint i = 3;	SET_INCONSISTEN">
+<meta name="keywords" content="HashTable">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx+php-fpm的运行原理">
-<meta property="og:url" content="http://diffnest.github.io/2018/12/05/Nginx-php-fpm的运行原理/index.html">
+<meta property="og:title" content="PHP HashTable结构">
+<meta property="og:url" content="http://diffnest.github.io/2018/12/05/PHP-HashTable结构/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="最近在看nginx，加上自己的理解，整理下关于整个nginx，php-fpm的调用流程；1.1 Nginx不只有处理http请求的功能，还能做反向代理;1.2 Nginx通过反向代理功能将动态请求转向后端Php-fpm;1.3 对于nginx来说，php只是一个运行在9000端口的程序而已；  php访问动态web过程：用户从浏览器发起对web的访问（http://jr.jiayuan.com）">
+<meta property="og:description" content="1. 创建并且初始化一个HashTable1234567891011121314151617ZEND_API int _zend_hash_init(HashTable *ht, uint nSize, dtor_func_t pDestructor, zend_bool persistent ZEND_FILE_LINE_DC)&amp;#123;	uint i = 3;	SET_INCONSISTEN">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T11:48:17.246Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/6230204/37512835-247572ca-293e-11e8-9dfc-31de561c7c55.png">
+<meta property="og:updated_time" content="2018-12-05T12:05:05.284Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx+php-fpm的运行原理">
-<meta name="twitter:description" content="最近在看nginx，加上自己的理解，整理下关于整个nginx，php-fpm的调用流程；1.1 Nginx不只有处理http请求的功能，还能做反向代理;1.2 Nginx通过反向代理功能将动态请求转向后端Php-fpm;1.3 对于nginx来说，php只是一个运行在9000端口的程序而已；  php访问动态web过程：用户从浏览器发起对web的访问（http://jr.jiayuan.com）">
+<meta name="twitter:title" content="PHP HashTable结构">
+<meta name="twitter:description" content="1. 创建并且初始化一个HashTable1234567891011121314151617ZEND_API int _zend_hash_init(HashTable *ht, uint nSize, dtor_func_t pDestructor, zend_bool persistent ZEND_FILE_LINE_DC)&amp;#123;	uint i = 3;	SET_INCONSISTEN">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/6230204/37512835-247572ca-293e-11e8-9dfc-31de561c7c55.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/2018/12/05/Nginx-php-fpm的运行原理/">
+  <link rel="canonical" href="http://diffnest.github.io/2018/12/05/PHP-HashTable结构/">
 
 
 
@@ -166,7 +168,7 @@
   };
 </script>
 
-  <title>Nginx+php-fpm的运行原理 | Writing more than life</title>
+  <title>PHP HashTable结构 | Writing more than life</title>
   
 
 
@@ -362,7 +364,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2018/12/05/Nginx-php-fpm的运行原理/">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2018/12/05/PHP-HashTable结构/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Echo">
@@ -379,7 +381,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Nginx+php-fpm的运行原理</h1>
+          <h1 class="post-title" itemprop="name headline">PHP HashTable结构</h1>
         
 
         <div class="post-meta">
@@ -391,7 +393,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T19:18:57+08:00">2018-12-05</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-05T20:03:55+08:00">2018-12-05</time>
             
 
             
@@ -446,27 +448,18 @@
       
 
       
-        <blockquote>
-<p>最近在看nginx，加上自己的理解，整理下关于整个nginx，php-fpm的调用流程；<br>1.1 Nginx不只有处理http请求的功能，还能做反向代理;<br>1.2 Nginx通过反向代理功能将动态请求转向后端Php-fpm;<br>1.3 对于nginx来说，php只是一个运行在9000端口的程序而已；</p>
-</blockquote>
-<h3 id="php访问动态web过程："><a href="#php访问动态web过程：" class="headerlink" title="php访问动态web过程："></a>php访问动态web过程：<br></h3><p>用户从浏览器发起对web的访问（<a href="http://jr.jiayuan.com）" target="_blank" rel="noopener">http://jr.jiayuan.com）</a>, 用户和nginx服务器进行三次握手进行TCP连接；</p>
-<ol>
-<li>nignx将http请求信息发送给nginx服务器；</li>
-<li>nginx根据用户访问url和后缀对请求进行判断；<br>(即当客户端请求到达Web ServerNginx时，Nginx通过location指令，将所有以php为后缀的文件都交给127.0.0.1:9000来处理，即Nginx通过location指令，将所有以php为后缀的文件都交给127.0.0.1:9000来处理）</li>
-<li>nginx将请求交给fastcgi，通过fastcgi_pass将用户的请求发送给php-fpm<br>如果用户访问的是静态资源呢，nginx直接将用户请求的静态资源返回给用户；</li>
-<li>fastcgi_pass将动态资源交给php-fpm后，php-fpm会将资源转给已等待的php脚本解析服务器的wrapper;</li>
-<li>wrapper收到php-fpm转过来的请求后，wrapper会生成一个新的线程调用php动态程序解析服务器，如果用户请求的是需要读取例如MySQL数据库等，将会触发读库操作;如果用户请求的是如图片/附件等，PHP会触发一次查询后端存储服务器如通过NFS进行存储的存储集群;</li>
-<li>php会将查询到的结果返回给nginx;</li>
-<li>nginx构造一个响应报文将结果返回给用户;</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">server</span><br><span class="line">&#123;</span><br><span class="line">        listen     80;  #监听80端口，接收http请求</span><br><span class="line">        server_name jr.jiayuan.dev;</span><br><span class="line">        index index.html index.htm index.php;</span><br><span class="line">        root  /var/ProjectJR/www/;</span><br><span class="line">        location ~ ^.*/(include|includes|tem.comtes)/.* &#123;</span><br><span class="line">           deny  all;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!-e $request_filename) &#123;</span><br><span class="line">                rewrite ^/(.*)$ /index.php?$1.comst;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        #当请求网站下php文件的时候，反向代理到php-fpm</span><br><span class="line">        location ~ .*\.php?$</span><br><span class="line">        &#123;</span><br><span class="line">                include fcgi.conf;#加载nginx的fastcgi模块</span><br><span class="line">                #fastcgi_pass   unix:/tmp/php-cgi.sock;</span><br><span class="line">                fastcgi_pass    127.0.0.1:9000;#nginx fastcgi进程监听的IP地址和端口</span><br><span class="line">                fastcgi_index   index.php; </span><br><span class="line">        &#125;</span><br><span class="line">        location ~ .*\.(sh|pl|rar|zip|doc|asp|aspx|file|old|bak|tpl|dat) &#123;</span><br><span class="line">                deny  all;</span><br><span class="line">        &#125;</span><br><span class="line">        error_page  404   /404.html;</span><br><span class="line">        error_page  403   /404.html;</span><br><span class="line">        error_page   502 503 504         /404.html;</span><br><span class="line">        access_log  /var/log/httpd/jr.jiayuan.dev_access_log  main;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注：</p>
-<h3 id="fastcgi-pass指令，这个指令用于指定fpm进程监听的地址，"><a href="#fastcgi-pass指令，这个指令用于指定fpm进程监听的地址，" class="headerlink" title="fastcgi_pass指令，这个指令用于指定fpm进程监听的地址，"></a>fastcgi_pass指令，这个指令用于指定fpm进程监听的地址，</h3><p>Nginx会把所有的php请求翻译成 fastcgi 请求之后再发送到这个地址；</p>
-<h3 id="include-fcgi-conf-表示nginx会调用fastcgi接口"><a href="#include-fcgi-conf-表示nginx会调用fastcgi接口" class="headerlink" title="include fcgi.conf #表示nginx会调用fastcgi接口"></a>include fcgi.conf #表示nginx会调用fastcgi接口</h3><p> fastcgi_pass    127.0.0.1:9000; </p>
-<p> #表示nginx通过fastcgi_pass将用户请求的资源发给127.0.0.1:9000进行解析，这里的nginx和php脚本解析服务器是在同一台机器上，所以127.0.0.1:9000表示的就是本地的php脚本解析服务器。nginx会调用php相关脚本解析程序对用户访问的资源进行解析;</p>
-<p>nginx与php-fpm完整的流程:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">jr.jiayuan.com</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">      Nginx</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">路由到jr.jiayuan.com/index.php</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">加载nginx的fast-cgi模块</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">fast-cgi监听127.0.0.1:9000地址</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">jr.jiayuan.com/index.php请求到达127.0.0.1:9000</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">php-fpm 监听127.0.0.1:9000</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">php-fpm 接收到请求，启用worker进程处理请求</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">php-fpm 会将资源转给php脚本解析服务器的wrapper</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">wrapper将启动一个新的进程，新的进程来调用php-cgi</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">php-fpm 处理完请求，返回给nginx</span><br><span class="line">        |</span><br><span class="line">        |</span><br><span class="line">nginx将结果通过http返回给浏览器</span><br></pre></td></tr></table></figure>
-<p>参考链接：<a href="http://blog.51cto.com/runningyongboy/1722299" target="_blank" rel="noopener">http://blog.51cto.com/runningyongboy/1722299</a></p>
+        <h3 id="1-创建并且初始化一个HashTable"><a href="#1-创建并且初始化一个HashTable" class="headerlink" title="1. 创建并且初始化一个HashTable"></a>1. 创建并且初始化一个HashTable</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ZEND_API int _zend_hash_init(HashTable *ht, uint nSize, dtor_func_t pDestructor, zend_bool persistent ZEND_FILE_LINE_DC)</span><br><span class="line">&#123;</span><br><span class="line">	uint i = 3;</span><br><span class="line"></span><br><span class="line">	SET_INCONSISTENT(HT_OK);</span><br><span class="line"></span><br><span class="line">	if (nSize &gt;= 0x80000000) &#123;</span><br><span class="line">		/* prevent overflow */</span><br><span class="line">		ht-&gt;nTableSize = 0x80000000;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		while ((1U &lt;&lt; i) &lt; nSize) &#123;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		ht-&gt;nTableSize = 1 &lt;&lt; i;</span><br><span class="line">	&#125;</span><br><span class="line">	·······</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>*ht是指针，指向一个HashTable，我们既可以&amp;一个已存在的HashTable变量， 也可以通过emalloc()、pemalloc()等函数来直接申请一块内存， 不过最常用的方法还是用ALLOC_HASHTABLE(ht)宏来让内核自动的替我们完成这项工作。 ALLOC_HASHTABLE(ht)所做的工作相当于ht = emalloc(sizeof(HashTable));</li>
+<li>nSize代表着这个HashTable可以拥有的元素的最大数量(HashTable能够包含任意数量的元素， 这个值只是为了提前申请好内存，提高性能，省的不停的进行rehash操作)。;</li>
+<li>pHashFunction是早期的Zend Engine中的一个参数，为了兼容没有去掉它， 但它已经没有用处了，所以我们直接赋成NULL就可以了。在原来， 它其实是一个钩子，用来让用户自己hook一个散列函数，替换php默认的DJBX33A算法实现。</li>
+<li>pDestructor也代表着一个回调函数，当我们删除或者修改HashTable中其中一个元素时候便会调用， 它的函数原型必须是这样的：void method_name(void pElement);这里的pElement是一个指针，指向HashTable中那么将要被删除或者修改的那个数据，而数据的类型往往也是个指针。</li>
+<li>persistent是最后一个参数，它的含义非常简单。 如果它为true，那么这个HashTable将永远存在于内存中，而不会在RSHUTDOWN阶段自动被注销掉。 此时第一个参数ht所指向的地址必须是通过pemalloc()函数申请的。<h3 id="2-C中hashtable结构体解释（zend-Zend-hash-h）"><a href="#2-C中hashtable结构体解释（zend-Zend-hash-h）" class="headerlink" title="2. C中hashtable结构体解释（zend/Zend_hash.h）"></a>2. C中hashtable结构体解释（zend/Zend_hash.h）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _hashtable &#123;</span><br><span class="line">	uint nTableSize; //hash Bucket的大小，最小为8，以2x增长</span><br><span class="line">	uint nTableMask; //nTableSize-1，掩码，用于根据hash值计算存储位置。</span><br><span class="line">	uint nNumOfElements;//hash Bucket中当前存在的元素个数，count()函数会直接返回此值 ，是PHP数组中实际存储元素的个数，我们使用count,sizeof计算的就是获取的这个值</span><br><span class="line">	ulong nNextFreeElement;//下一个数字索引的位置（当我们申请一个空下标元素的时候就需要用到此项，比如$ret[] = &apos;apple&apos;。）</span><br><span class="line">	Bucket *pInternalPointer;//当前遍历的指针（foreach比for快的原因之一）</span><br><span class="line">	Bucket *pListHead;//存储数组头元素指针（对应就是数组的起始）</span><br><span class="line">	Bucket *pListTail;//存储数组尾元素指针（对应就是数组的结束元素）</span><br><span class="line">	Bucket **arBuckets;//存储hash数组</span><br><span class="line">	dtor_func_t pDestructor;//在删除元素时执行的回调函数，用于资源的释放</span><br><span class="line">	zend_bool persistent;//指出了Bucket内存分配的方式。如果persisient为TRUE，则使用操作系统本身的内存分配函数为Bucket分配内存，否则使用PHP的内存分配函数。</span><br><span class="line">	unsigned char nApplyCount;//标记当前hash Bucket被递归访问的次数（防止多次递归）</span><br><span class="line">	zend_bool bApplyProtection;//标记当前hash桶允许不允许多次访问，不允许时，最多只能递归3次</span><br><span class="line">#if ZEND_DEBUG</span><br><span class="line">	int inconsistent;</span><br><span class="line">#endif</span><br><span class="line">&#125; HashTable;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-C中bucket结构体解释（zend-Zend-hash-h）"><a href="#3-C中bucket结构体解释（zend-Zend-hash-h）" class="headerlink" title="3.C中bucket结构体解释（zend/Zend_hash.h）"></a>3.C中bucket结构体解释（zend/Zend_hash.h）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">typedef struct bucket &#123;</span><br><span class="line">	/* Used for numeric indexing */</span><br><span class="line">	ulong h; //对char *key进行hash后的值，数字索引的话就是索引值	uint nKeyLength;//hash关键字的长度，如果数组索引为数字，此值为0</span><br><span class="line">	void *pData; //指向value，一般是用户数据的副本，如果是指针数据，则指向pDataPtr</span><br><span class="line">	void *pDataPtr; //如果是指针数据，此值会指向真正的value，同时上面pData会指向此值</span><br><span class="line">	struct bucket *pListNext;//整个hash表的下一元素</span><br><span class="line">	struct bucket *pListLast;//整个哈希表该元素的上一个元素</span><br><span class="line">	struct bucket *pNext;//存放在同一个hash Bucket内的下一个元素</span><br><span class="line">	struct bucket *pLast;//同一个哈希bucket的上一个元素</span><br><span class="line">	const char *arKey;</span><br><span class="line">	/*存储字符索引，此项必须放在最未尾，因为此处只字义了1个字节，存储的实际上是指向char *key的值，</span><br><span class="line">    这就意味着可以省去再赋值一次的消耗，而且，有时此值并不需要，所以同时还节省了空间。</span><br><span class="line">    */</span><br><span class="line">&#125; Bucket;</span><br></pre></td></tr></table></figure>
+<h4 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h4><p>1.h是一个哈希值，未经过掩码矫正的哈希DBJ算出来的原始值。或是数字索引的数字(通过nKeyLength=0来表示是数字索引)。而对于字符串索引来说, 索引值保存在arKey中, 索引的长度保存在nKeyLength中.<br>2.arKey，用来记录作为哈希计算的字符串，nKeyLength是哈希字符串的长度，对于整形键值是用不到这两项的。<br>3.pData以及pDataPtr是实际存储数据的指针，在PHP里面他们通常是指向一个zval结构。在Bucket中，实际的数据是保存在pData指针指向的内存块中，通常这个内存块是系统另外分配的。但有一种情况例外，就是当Bucket保存 的数据是一个指针时，HashTable将不会另外请求系统分配空间来保存这个指针，而是直接将该指针保存到pDataPtr中，然后再将pData指向 本结构成员的地址。这样可以提高效率，减少内存碎片。由此我们可以看到PHP HashTable设计的精妙之处。如果Bucket中的数据不是一个指针，pDataPtr为NULL。<br>4.pListNext, pListLast 指定了整个数组的顺序，PHP中的遍历就是通过哈希结构体中的pListHead bucket依次遍历pListNext直到数组结束。<br>5.pNext和pLast 这两个指针是用来解决哈希冲突的，这个在下面哈希冲突中详细介绍，在PHP的哈希表冲突的处理采用的是拉链法也就是在每个可能冲突的键值位置拉出一个链表来存储对应的键值数据。<br>6.arKey 最后一个元素, 这个是flexible array技巧, 可以节省内存,和方便初始化的一种做法, 具体的参看<a href="http://blog.csdn.net/zhangboyj/article/details/6232168" target="_blank" rel="noopener">http://blog.csdn.net/zhangboyj/article/details/6232168</a> （c99 柔性数组成员），博文中特意指出不能用arKey[1]的写法，这个我现在还不太懂。</p>
+<h3 id="4-BUCKET结构图（一图解千惑）"><a href="#4-BUCKET结构图（一图解千惑）" class="headerlink" title="4. BUCKET结构图（一图解千惑）"></a>4. BUCKET结构图（一图解千惑）</h3><p><img src="https://user-images.githubusercontent.com/6230204/37512835-247572ca-293e-11e8-9dfc-31de561c7c55.png" alt="wc"><br>下面是引用了tipi里面的插入说明:<br>如图中左下角的假设，假设依次插入了Bucket1，Bucket2，Bucket3三个元素：<br>1、插入Bucket1时，哈希表为空，经过哈希后定位到索引为1的槽位。此时的1槽位只有一个元素Bucket1。 其中Bucket1的pData或者pDataPtr指向的是Bucket1所存储的数据。此时由于没有链接关系。pNext， pLast，pListNext，pListLast指针均为空。同时在HashTable结构体中也保存了整个哈希表的第一个元素指针， 和最后一个元素指针，此时HashTable的pListHead和pListTail指针均指向Bucket1。<br>2、插入Bucket2时，由于Bucket2的key和Bucket1的key出现冲突，此时将Bucket2放在双链表的前面。 由于Bucket2后插入并置于链表的前端，此时Bucket2.pNext指向Bucket1，由于Bucket2后插入。 Bucket1.pListNext指向Bucket2，这时Bucket2就是哈希表的最后一个元素，这是HashTable.pListTail指向Bucket2。\3、插入Bucket3，该key没有哈希到槽位1，这时Bucket2.pListNext指向Bucket3，因为Bucket3后插入。 同时HashTable.pListTail改为指向Bucket3。<br>简单来说就是哈希表的Bucket结构维护了哈希表中插入元素的先后顺序，哈希表结构维护了整个哈希表的头和尾。 在操作哈希表的过程中始终保持预算之间的关系。</p>
 
       
     </div>
@@ -524,7 +517,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"> PHP</i></a>
+            <a href="/tags/HashTable/" rel="tag"><i class="fa fa-tag"> HashTable</i></a>
           
         </div>
       
@@ -537,8 +530,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/rsa/" rel="next" title="php 使用openssl进行RSA2加解密以及签名算法">
-                <i class="fa fa-chevron-left"></i> php 使用openssl进行RSA2加解密以及签名算法
+              <a href="/2018/12/05/PHP垃圾回收以及内存泄漏/" rel="next" title="PHP垃圾回收以及内存泄漏">
+                <i class="fa fa-chevron-left"></i> PHP垃圾回收以及内存泄漏
               </a>
             
           </div>
@@ -546,10 +539,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/05/诡异的浮点数之精度问题/" rel="prev" title="诡异的浮点数之精度问题">
-                诡异的浮点数之精度问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -737,7 +726,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#php访问动态web过程："><span class="nav-number">1.</span> <span class="nav-text">php访问动态web过程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fastcgi-pass指令，这个指令用于指定fpm进程监听的地址，"><span class="nav-number">2.</span> <span class="nav-text">fastcgi_pass指令，这个指令用于指定fpm进程监听的地址，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#include-fcgi-conf-表示nginx会调用fastcgi接口"><span class="nav-number">3.</span> <span class="nav-text">include fcgi.conf #表示nginx会调用fastcgi接口</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建并且初始化一个HashTable"><span class="nav-number">1.</span> <span class="nav-text">1. 创建并且初始化一个HashTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-C中hashtable结构体解释（zend-Zend-hash-h）"><span class="nav-number">2.</span> <span class="nav-text">2. C中hashtable结构体解释（zend/Zend_hash.h）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-C中bucket结构体解释（zend-Zend-hash-h）"><span class="nav-number">3.</span> <span class="nav-text">3.C中bucket结构体解释（zend/Zend_hash.h）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解释："><span class="nav-number">3.1.</span> <span class="nav-text">解释：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-BUCKET结构图（一图解千惑）"><span class="nav-number">4.</span> <span class="nav-text">4. BUCKET结构图（一图解千惑）</span></a></li></ol></div>
             
 
           </div>
