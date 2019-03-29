@@ -138,19 +138,19 @@
 
 
 
-  <meta name="description" content="最近在看xdebug_debug_zval，遇到一诡异问题，记录下：  代码如下：   123456789&amp;lt;?php	function test($b) &amp;#123;        xdebug_debug_zval(&amp;apos;b&amp;apos;);    &amp;#125;    $a = 1;    xdebug_debug_zval(&amp;apos;a&amp;apos;);    test($a);">
+  <meta name="description" content="最近在看xdebug_debug_zval，遇到一诡异问题，记录下：  代码如下：   123456789&amp;lt;?php	function test($b) &amp;#123;        xdebug_debug_zval(&apos;b&apos;);    &amp;#125;    $a = 1;    xdebug_debug_zval(&apos;a&apos;);    test($a); 结果如下： 12a: (refcount">
 <meta name="keywords" content="xdebug_debug_zval">
 <meta property="og:type" content="article">
 <meta property="og:title" content="札记之引用诡异xdebug_debug_zval输出">
 <meta property="og:url" content="http://diffnest.github.io/2018/12/06/札记之引用诡异xdebug-debug-zval输出/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="最近在看xdebug_debug_zval，遇到一诡异问题，记录下：  代码如下：   123456789&amp;lt;?php	function test($b) &amp;#123;        xdebug_debug_zval(&amp;apos;b&amp;apos;);    &amp;#125;    $a = 1;    xdebug_debug_zval(&amp;apos;a&amp;apos;);    test($a);">
+<meta property="og:description" content="最近在看xdebug_debug_zval，遇到一诡异问题，记录下：  代码如下：   123456789&amp;lt;?php	function test($b) &amp;#123;        xdebug_debug_zval(&apos;b&apos;);    &amp;#125;    $a = 1;    xdebug_debug_zval(&apos;a&apos;);    test($a); 结果如下： 12a: (refcount">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-images.githubusercontent.com/6230204/38023149-13d0fcbc-32b4-11e8-9f3a-292bda530294.png">
-<meta property="og:updated_time" content="2018-12-06T07:18:26.924Z">
+<meta property="og:updated_time" content="2019-03-29T04:39:02.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之引用诡异xdebug_debug_zval输出">
-<meta name="twitter:description" content="最近在看xdebug_debug_zval，遇到一诡异问题，记录下：  代码如下：   123456789&amp;lt;?php	function test($b) &amp;#123;        xdebug_debug_zval(&amp;apos;b&amp;apos;);    &amp;#125;    $a = 1;    xdebug_debug_zval(&amp;apos;a&amp;apos;);    test($a);">
+<meta name="twitter:description" content="最近在看xdebug_debug_zval，遇到一诡异问题，记录下：  代码如下：   123456789&amp;lt;?php	function test($b) &amp;#123;        xdebug_debug_zval(&apos;b&apos;);    &amp;#125;    $a = 1;    xdebug_debug_zval(&apos;a&apos;);    test($a); 结果如下： 12a: (refcount">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/6230204/38023149-13d0fcbc-32b4-11e8-9f3a-292bda530294.png">
 
 
@@ -454,9 +454,9 @@
 <li>代码如下：</li>
 </ol>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	function test($b) &#123;</span><br><span class="line">        xdebug_debug_zval(&apos;b&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $a = 1;</span><br><span class="line">    xdebug_debug_zval(&apos;a&apos;);</span><br><span class="line"></span><br><span class="line">    test($a);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">($b)</span> </span>&#123;</span><br><span class="line">        xdebug_debug_zval(<span class="string">'b'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $a = <span class="number">1</span>;</span><br><span class="line">    xdebug_debug_zval(<span class="string">'a'</span>);</span><br><span class="line"></span><br><span class="line">    test($a);</span><br></pre></td></tr></table></figure>
 <p>结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a: (refcount=1, is_ref=0)=1</span><br><span class="line">b: (refcount=3, is_ref=0)=1</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a: (refcount=<span class="number">1</span>, is_ref=<span class="number">0</span>)=<span class="number">1</span></span><br><span class="line">b: (refcount=<span class="number">3</span>, is_ref=<span class="number">0</span>)=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>问题就在这，当我们都以为内部b:(refcount=2)的时候突然变成了3，在经过一番查找，以及咨询大牛康神之后，最终给出了答案；</p>
 <ol start="2">
 <li>执行过程：<br>1.1 我们将1赋给变量$a;这个时候xdebug_debug_zval(‘a’);的输出是refcount=1，然后将$a变量传递给test()；</li>
