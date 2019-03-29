@@ -147,7 +147,7 @@
 <meta property="og:description" content="最近在看xdebug_debug_zval，遇到一诡异问题，记录下：   代码如下：  123456789&amp;lt;?phpfunction test($b) &amp;#123;    xdebug_debug_zval(&apos;b&apos;);&amp;#125;$a = 1;xdebug_debug_zval(&apos;a&apos;);test($a); 结果如下： 12a: (refcount=1, is_ref=0)=1b: (re">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-images.githubusercontent.com/6230204/38023149-13d0fcbc-32b4-11e8-9f3a-292bda530294.png">
-<meta property="og:updated_time" content="2019-03-29T04:45:11.712Z">
+<meta property="og:updated_time" content="2019-03-29T04:48:34.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之引用诡异xdebug_debug_zval输出">
 <meta name="twitter:description" content="最近在看xdebug_debug_zval，遇到一诡异问题，记录下：   代码如下：  123456789&amp;lt;?phpfunction test($b) &amp;#123;    xdebug_debug_zval(&apos;b&apos;);&amp;#125;$a = 1;xdebug_debug_zval(&apos;a&apos;);test($a); 结果如下： 12a: (refcount=1, is_ref=0)=1b: (re">
@@ -459,9 +459,8 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a: (refcount=<span class="number">1</span>, is_ref=<span class="number">0</span>)=<span class="number">1</span></span><br><span class="line">b: (refcount=<span class="number">3</span>, is_ref=<span class="number">0</span>)=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>问题就在这，当我们都以为内部b:(refcount=2)的时候突然变成了3，在经过一番查找，以及咨询大牛康神之后，最终给出了答案；</p>
 <ol start="2">
-<li>执行过程：<br>1.1 我们将1赋给变量$a;这个时候xdebug_debug_zval(‘a’);的输出是refcount=1，然后将$a变量传递给test()；</li>
+<li>执行过程：<br>1.1 我们将1赋给变量$a;这个时候xdebug_debug_zval(‘a’);的输出是refcount=1，然后将$a变量传递给test()；<br>1.2 当我们将$a传递给test()时，其实我们可以把test($b)看做是一个整体，只是$b存储在不同的符号表中(test函数符号表)，这个时候引用计数加2，并不是加1，原因是因为这个函数符号表（函数栈）也包含了这个变量容器的引用；</li>
 </ol>
-<p>1.2 当我们将$a传递给test()时，其实我们可以把test($b)看做是一个整体，只是$b存储在不同的符号表中(test函数符号表)，这个时候引用计数加2，并不是加1，原因是因为这个函数符号表（函数栈）也包含了这个变量容器的引用；</p>
 <p>待续<del>~</del></p>
 <p>附图一张：<br><img src="https://user-images.githubusercontent.com/6230204/38023149-13d0fcbc-32b4-11e8-9f3a-292bda530294.png" alt="default"></p>
 <p>参考链接：<a href="http://www.phppan.com/tag/refcount/" target="_blank" rel="noopener">http://www.phppan.com/tag/refcount/</a><br>英文原文地址：<a href="http://derickrethans.nl/files/phparch-php-variables-article.pdf" target="_blank" rel="noopener">http://derickrethans.nl/files/phparch-php-variables-article.pdf</a></p>
