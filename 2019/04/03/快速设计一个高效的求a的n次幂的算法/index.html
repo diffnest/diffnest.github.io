@@ -138,18 +138,18 @@
 
 
 
-  <meta name="description" content="以梦为马，明日天涯">
+  <meta name="description" content="题目设计一个高效的求a的n次幂的算法 思路 采用for循环，比如2的三次方（3^2）,循环3次，222 = 8，时间复杂度为O(n); O(n)往下就是O(log(n))了，对于增长到指定数类的题目，当基数呈指数级增长时（2,4,8,16,32,64,128），时间复杂度为O(log(n)),这里就是要让a的指数从1到n呈指数增长，而不是1,2,3…n这样子 所以考虑让a的指数翻倍增长，即(1,2">
 <meta name="keywords" content="PHP 算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速设计一个高效的求a的n次幂的算法">
 <meta property="og:url" content="http://diffnest.github.io/2019/04/03/快速设计一个高效的求a的n次幂的算法/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="以梦为马，明日天涯">
+<meta property="og:description" content="题目设计一个高效的求a的n次幂的算法 思路 采用for循环，比如2的三次方（3^2）,循环3次，222 = 8，时间复杂度为O(n); O(n)往下就是O(log(n))了，对于增长到指定数类的题目，当基数呈指数级增长时（2,4,8,16,32,64,128），时间复杂度为O(log(n)),这里就是要让a的指数从1到n呈指数增长，而不是1,2,3…n这样子 所以考虑让a的指数翻倍增长，即(1,2">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T08:09:08.671Z">
+<meta property="og:updated_time" content="2019-04-03T09:06:55.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速设计一个高效的求a的n次幂的算法">
-<meta name="twitter:description" content="以梦为马，明日天涯">
+<meta name="twitter:description" content="题目设计一个高效的求a的n次幂的算法 思路 采用for循环，比如2的三次方（3^2）,循环3次，222 = 8，时间复杂度为O(n); O(n)往下就是O(log(n))了，对于增长到指定数类的题目，当基数呈指数级增长时（2,4,8,16,32,64,128），时间复杂度为O(log(n)),这里就是要让a的指数从1到n呈指数增长，而不是1,2,3…n这样子 所以考虑让a的指数翻倍增长，即(1,2">
 
 
 
@@ -446,7 +446,14 @@
       
 
       
-        
+        <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>设计一个高效的求a的n次幂的算法</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>采用for循环，比如2的三次方（3^2）,循环3次，2<em>2</em>2 = 8，时间复杂度为O(n);</li>
+<li>O(n)往下就是O(log(n))了，对于增长到指定数类的题目，当基数呈指数级增长时（2,4,8,16,32,64,128），时间复杂度为O(log(n)),这里就是要让a的指数从1到n呈指数增长，而不是1,2,3…n这样子</li>
+<li>所以考虑让a的指数翻倍增长，即(1,2,4,8…n),即每次res=res<em>res (res初始为a) 而不是res=res</em>a ,这样的话res=2^k, 每次res 翻倍 k 可能会超过n，所以需要判断条件</li>
+</ul>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">求a的n次幂</span></span><br><span class="line"><span class="comment">时间复杂度为o(n)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pow1</span><span class="params">($a, $n)</span></span>&#123;</span><br><span class="line">    $res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $n; $i++) &#123;</span><br><span class="line">        $res *= $a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $res;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">求a的n次幂</span></span><br><span class="line"><span class="comment">时间复杂度为o(log(n))</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pow2</span><span class="params">($a, $n)</span> </span>&#123;</span><br><span class="line">    $res = $a;</span><br><span class="line">    $ex = <span class="number">1</span>;<span class="comment">//$res的指数,用于判断$res*$res后指数是否大于n </span></span><br><span class="line">    <span class="keyword">if</span> ($n == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//$res翻倍 </span></span><br><span class="line">    <span class="keyword">while</span> (($ex &lt;&lt; <span class="number">1</span>) &lt;= $n) &#123;<span class="comment">//左移一位即翻倍</span></span><br><span class="line">        $res = $res * $res;</span><br><span class="line">        $ex &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//$res不能翻倍</span></span><br><span class="line">    <span class="comment">//这里递归调用，将$a^(n-$ex)继续按照翻倍的方式进行增大，再乘以之前得到的$res即可得到结果 </span></span><br><span class="line">    <span class="comment">//n-ex即剩余的*$a的次数 ，比如5^2,经过前面2次的循环，仅剩下一次（5-4）</span></span><br><span class="line">    $n = $n - $ex;</span><br><span class="line">    <span class="comment">//递归调用，让剩余的*a次数继续从1按照指数的形式增长</span></span><br><span class="line">    <span class="keyword">return</span> $res * pow2($a, $n);<span class="comment">//16*2=32</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> pow2(<span class="number">2</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -573,8 +580,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -731,6 +747,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
