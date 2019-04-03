@@ -138,24 +138,25 @@
 
 
 
-  <meta name="description" content="|下午群里在讨论关于if-else的优化，在这整理下我常用的几招；  简单逻辑可以采用三目运算符    12$role = isset($info[&amp;apos;role&amp;apos;]) ? $info[&amp;apos;role&amp;apos;] : &amp;apos;INVESTOR&amp;apos;;&amp;lt;/br&amp;gt;简写：$role = isset($info[&amp;apos;role&amp;apos;]) ?: &amp;a">
+  <meta name="description" content="题目有个排序后的字符串数组，其中散布着一些空字符串，编写一个方法，找出给定字符串(肯定不是空字符串)的索引 思路 既然字符串有序，可以采用二分法； 字符串的大小比较可以采用（strcmp）； 选取mid中间值时，如果遇到空字符串，使其往下移动一位；  代码实现1234567891011121314151617181920212223242526function indexOf($arr, $tar">
+<meta name="keywords" content="PHP 算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用这几招，让你从此跟if else 拜拜">
-<meta property="og:url" content="http://diffnest.github.io/2019/01/08/我是这么优化if-else/index.html">
+<meta property="og:title" content="在有空字符串中的有序字符串数组中查找">
+<meta property="og:url" content="http://diffnest.github.io/2019/04/03/在有空字符串中的有序字符串数组中查找/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="|下午群里在讨论关于if-else的优化，在这整理下我常用的几招；  简单逻辑可以采用三目运算符    12$role = isset($info[&amp;apos;role&amp;apos;]) ? $info[&amp;apos;role&amp;apos;] : &amp;apos;INVESTOR&amp;apos;;&amp;lt;/br&amp;gt;简写：$role = isset($info[&amp;apos;role&amp;apos;]) ?: &amp;a">
+<meta property="og:description" content="题目有个排序后的字符串数组，其中散布着一些空字符串，编写一个方法，找出给定字符串(肯定不是空字符串)的索引 思路 既然字符串有序，可以采用二分法； 字符串的大小比较可以采用（strcmp）； 选取mid中间值时，如果遇到空字符串，使其往下移动一位；  代码实现1234567891011121314151617181920212223242526function indexOf($arr, $tar">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-29T04:40:38.318Z">
+<meta property="og:updated_time" content="2019-04-03T07:46:07.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用这几招，让你从此跟if else 拜拜">
-<meta name="twitter:description" content="|下午群里在讨论关于if-else的优化，在这整理下我常用的几招；  简单逻辑可以采用三目运算符    12$role = isset($info[&amp;apos;role&amp;apos;]) ? $info[&amp;apos;role&amp;apos;] : &amp;apos;INVESTOR&amp;apos;;&amp;lt;/br&amp;gt;简写：$role = isset($info[&amp;apos;role&amp;apos;]) ?: &amp;a">
+<meta name="twitter:title" content="在有空字符串中的有序字符串数组中查找">
+<meta name="twitter:description" content="题目有个排序后的字符串数组，其中散布着一些空字符串，编写一个方法，找出给定字符串(肯定不是空字符串)的索引 思路 既然字符串有序，可以采用二分法； 字符串的大小比较可以采用（strcmp）； 选取mid中间值时，如果遇到空字符串，使其往下移动一位；  代码实现1234567891011121314151617181920212223242526function indexOf($arr, $tar">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/2019/01/08/我是这么优化if-else/">
+  <link rel="canonical" href="http://diffnest.github.io/2019/04/03/在有空字符串中的有序字符串数组中查找/">
 
 
 
@@ -165,7 +166,7 @@
   };
 </script>
 
-  <title>使用这几招，让你从此跟if else 拜拜 | Writing more than life</title>
+  <title>在有空字符串中的有序字符串数组中查找 | Writing more than life</title>
   
 
 
@@ -361,7 +362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/01/08/我是这么优化if-else/">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/04/03/在有空字符串中的有序字符串数组中查找/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Echo">
@@ -378,7 +379,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用这几招，让你从此跟if else 拜拜</h1>
+          <h1 class="post-title" itemprop="name headline">在有空字符串中的有序字符串数组中查找</h1>
         
 
         <div class="post-meta">
@@ -390,7 +391,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-08T18:32:49+08:00">2019-01-08</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-03T14:30:04+08:00">2019-04-03</time>
             
 
             
@@ -399,6 +400,24 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -427,27 +446,13 @@
       
 
       
-        <p>|下午群里在讨论关于if-else的优化，在这整理下我常用的几招；</p>
-<ol>
-<li><p>简单逻辑可以采用三目运算符  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$role = isset($info[&apos;role&apos;]) ? $info[&apos;role&apos;] : &apos;INVESTOR&apos;;&lt;/br&gt;</span><br><span class="line">简写：$role = isset($info[&apos;role&apos;]) ?: &apos;INVESTOR&apos;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>提前给定初始值，避免使用else  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (1 == $status) &#123;</span><br><span class="line">	$role = &apos;INVESTOR&apos;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	$role = &apos;BORRWER&apos;;</span><br><span class="line">&#125;</span><br><span class="line">优化后：</span><br><span class="line">$role = &apos;INVESTOR&apos;;</span><br><span class="line">if (1 == $status) &#123;</span><br><span class="line">	$role = &apos;BORRWER&apos;;</span><br><span class="line">&#125;</span><br><span class="line">return $role;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用”&amp;&amp;”替换if  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(strlen($pwd) &lt; 6) &#123;</span><br><span class="line">	$msg = &apos;密码长度不够&apos;;</span><br><span class="line">&#125;</span><br><span class="line">优化后：</span><br><span class="line">strlen($pwd) &lt; 6 &amp;&amp; $msg = &apos;密码长度不够&apos;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>switch代替if else</p>
-<p> 注意细节：<br> 4.1 根据条件，来判断等级出现频率的高低，区分明显的放上面判断，区分不明显的放下面；<br> 4.2 根据出现的次数来综合判断（业务层）；</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//更新用户状态</span><br><span class="line">   $status = $data[&apos;status&apos;];</span><br><span class="line">   switch($status) &#123;</span><br><span class="line">       case &apos;PASSED&apos;:</span><br><span class="line">           $status = 1; //待激活(使用频率高)</span><br><span class="line">           break;</span><br><span class="line">       case &apos;AUDIT&apos;:</span><br><span class="line">           $status = 2;</span><br><span class="line">           break;</span><br><span class="line">       case &apos;BACK&apos;:</span><br><span class="line">           $status = 3;</span><br><span class="line">           break;</span><br><span class="line">       case &apos;REFUSED&apos;:</span><br><span class="line">           $status = 4;</span><br><span class="line">           break;</span><br><span class="line">       default:</span><br><span class="line">           $status = 0; //使用频率低</span><br><span class="line">   &#125;</span><br><span class="line">   $sql = sprintf(&quot;UPDATE %s SET status = %d WHERE cg_uid = %d&quot;, &apos;XXXX&apos;, $status, $XXXX);</span><br><span class="line">   return $this-&gt;mdb-&gt;query($sql) ? true : false;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>表驱动法（空间换时间）  </p>
-<p> 意义在于：逻辑和数据分离；<br> 5.1 数据的添加是非常简单，低成本和低风险的；<br> 5.2 而逻辑的添加是复杂，高成本和高风险的;</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">if ($role != &quot;INVESTOR&quot; ) &#123;</span><br><span class="line">	$this-&gt;_error(&apos;角色错误&apos;);</span><br><span class="line">      	return false;</span><br><span class="line">   &#125; else if ($role != &quot;BORROWERS&quot;) &#123;</span><br><span class="line">      	$this-&gt;_error(&apos;角色错误&apos;);</span><br><span class="line">      	return false;</span><br><span class="line">   &#125; else if ($role != &quot;INTERMEDIATOR&quot;) &#123;</span><br><span class="line">     	$this-&gt;_error(&apos;角色错误&apos;);</span><br><span class="line">      	return false;</span><br><span class="line">   &#125;</span><br><span class="line">   优化后：</span><br><span class="line">class CgtRole</span><br><span class="line">&#123;</span><br><span class="line">    static $VALID_ROLES = array(</span><br><span class="line">        self::INTERMEDIATOR,</span><br><span class="line">        self::INVESTOR,</span><br><span class="line">        self::BORROWERS,</span><br><span class="line">    );</span><br><span class="line">    static function valid($role)</span><br><span class="line">    &#123;</span><br><span class="line">        return in_array($role, self::$VALID_ROLES);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">if (!CgtRole::valid($info[&apos;role&apos;])) &#123;</span><br><span class="line">       $this-&gt;_error(&apos;角色错误&apos;);</span><br><span class="line">       return false;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
+        <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>有个排序后的字符串数组，其中散布着一些空字符串，编写一个方法，找出给定字符串(肯定不是空字符串)的索引</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>既然字符串有序，可以采用二分法；</li>
+<li>字符串的大小比较可以采用（strcmp）；</li>
+<li>选取mid中间值时，如果遇到空字符串，使其往下移动一位；</li>
+</ul>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOf</span><span class="params">($arr, $target)</span> </span>&#123;</span><br><span class="line">    $begin = <span class="number">0</span>;</span><br><span class="line">    $end = count($arr) - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> ($begin &lt;= $end) &#123;</span><br><span class="line">        $indexOfMid = $begin + (($end - $begin) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">while</span>($arr[$indexOfMid] == <span class="string">""</span>) &#123;</span><br><span class="line">            $indexOfMid++;</span><br><span class="line">            <span class="keyword">if</span> ($indexOfMid &gt; $end) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//strcmp: 按字节比较字符串</span></span><br><span class="line">        <span class="keyword">if</span> (strcmp($arr[$indexOfMid], $target) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            $end = $indexOfMid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(strcmp($arr[$indexOfMid], $target) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">            $begin = $indexOfMid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> $indexOfMid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$arr = [<span class="string">"a"</span>, <span class="string">""</span>, <span class="string">"ac"</span>, <span class="string">""</span>, <span class="string">"ad"</span>, <span class="string">"b"</span>, <span class="string">""</span>, <span class="string">"ba"</span>];</span><br><span class="line"><span class="keyword">echo</span> indexOf($arr, <span class="string">"ac"</span>);</span><br><span class="line">结果： <span class="number">2</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -502,6 +507,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/PHP-算法/" rel="tag"><i class="fa fa-tag"> PHP 算法</i></a>
+          
+        </div>
+      
 
       
       
@@ -511,8 +522,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/07/阿里云Centos7-更换yum源/" rel="next" title="阿里云Centos7更换yum源">
-                <i class="fa fa-chevron-left"></i> 阿里云Centos7更换yum源
+              <a href="/2019/04/03/旋转数组的最小数字-改造二分法/" rel="next" title="旋转数组的最小数字(改造二分法)">
+                <i class="fa fa-chevron-left"></i> 旋转数组的最小数字(改造二分法)
               </a>
             
           </div>
@@ -520,10 +531,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/09/搭建gin环境的一些报错/" rel="prev" title="搭建gin环境的一些报错">
-                搭建gin环境的一些报错 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -572,8 +579,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -730,6 +746,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
