@@ -146,7 +146,7 @@
 <meta property="og:site_name" content="Writing more than life">
 <meta property="og:description" content="小白正在上楼梯，楼梯有n阶台阶，小白一次一次可以上1阶，2阶或3阶，实现一个方法，计算小白有多少种走完楼梯的方式   思路： 设n阶台阶的走法数为f(n)。     如果只有1个台阶，走法有1种（一步上1个台阶），即f(1)=1； 如果有2个台阶，走法有2种（一种是上1阶，再上1阶，另一种是一步上2阶），即f(2)=2； 如果有3个台阶，走法有4种（一种每次1阶，共一种；另一种是2+1，共两种；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T03:46:48.908Z">
+<meta property="og:updated_time" content="2019-04-03T03:49:44.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小白上楼梯(递归设计)">
 <meta name="twitter:description" content="小白正在上楼梯，楼梯有n阶台阶，小白一次一次可以上1阶，2阶或3阶，实现一个方法，计算小白有多少种走完楼梯的方式   思路： 设n阶台阶的走法数为f(n)。     如果只有1个台阶，走法有1种（一步上1个台阶），即f(1)=1； 如果有2个台阶，走法有2种（一种是上1阶，再上1阶，另一种是一步上2阶），即f(2)=2； 如果有3个台阶，走法有4种（一种每次1阶，共一种；另一种是2+1，共两种；">
@@ -479,10 +479,13 @@
 <li>最后一步可能是从第n-1阶往上走1阶、从n-2阶往上走2阶，或从第n-3阶往上走3阶。因此，抵达最后一阶的走法，其实就是抵达这最后三阶的方式的总和。</li>
 </ul>
 <ol start="4">
-<li>代码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">($n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($n == <span class="number">0</span> || $n == <span class="number">1</span>) &#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ($n == <span class="number">2</span>) &#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f($n<span class="number">-1</span>) + f($n<span class="number">-2</span>) + f($n<span class="number">-3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> f(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<li><p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">($n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($n == <span class="number">0</span> || $n == <span class="number">1</span>) &#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ($n == <span class="number">2</span>) &#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f($n<span class="number">-1</span>) + f($n<span class="number">-2</span>) + f($n<span class="number">-3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> f(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结果</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
