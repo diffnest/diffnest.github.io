@@ -138,25 +138,25 @@
 
 
 
-  <meta name="description" content="如果你执行一段cli需要很长时间，你不可能一直等待，这时你可以使用如下方法：   demo 如下：  1234567891011121314151617[root@10_5_0_29 mul]# /usr/local/webserver/php/bin/php sleep.php^Z[1]+  Stopped                 /usr/local/webserver/php/bi">
-<meta name="keywords" content="bg fg">
+  <meta name="description" content="题目给定一个顺序存储的线性表，请设计一个算法查找该线性表中最长的连续递增子序列。例如，(1,3,5,4,7,9,11,6,54,76,55,56,57,59,60,61)中最长的递增子序列为(5,56,57,59,60,61)。 思路 循环整个数组，前后比较大小，如果前面的数大于后面的，则+1重新放到一个新数组里面； 从新数组中获取最大长度的数组，并取出；  代码实现123456789101112">
+<meta name="keywords" content="PHP 算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux前后台管理之bg跟fg">
-<meta property="og:url" content="http://diffnest.github.io/2018/12/06/linux前后台管理之bg跟fg/index.html">
+<meta property="og:title" content="找出最长连续递增子序列">
+<meta property="og:url" content="http://diffnest.github.io/2019/04/03/找出最长连续递增子序列/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="如果你执行一段cli需要很长时间，你不可能一直等待，这时你可以使用如下方法：   demo 如下：  1234567891011121314151617[root@10_5_0_29 mul]# /usr/local/webserver/php/bin/php sleep.php^Z[1]+  Stopped                 /usr/local/webserver/php/bi">
+<meta property="og:description" content="题目给定一个顺序存储的线性表，请设计一个算法查找该线性表中最长的连续递增子序列。例如，(1,3,5,4,7,9,11,6,54,76,55,56,57,59,60,61)中最长的递增子序列为(5,56,57,59,60,61)。 思路 循环整个数组，前后比较大小，如果前面的数大于后面的，则+1重新放到一个新数组里面； 从新数组中获取最大长度的数组，并取出；  代码实现123456789101112">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-06T08:13:50.040Z">
+<meta property="og:updated_time" content="2019-04-03T08:03:34.366Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux前后台管理之bg跟fg">
-<meta name="twitter:description" content="如果你执行一段cli需要很长时间，你不可能一直等待，这时你可以使用如下方法：   demo 如下：  1234567891011121314151617[root@10_5_0_29 mul]# /usr/local/webserver/php/bin/php sleep.php^Z[1]+  Stopped                 /usr/local/webserver/php/bi">
+<meta name="twitter:title" content="找出最长连续递增子序列">
+<meta name="twitter:description" content="题目给定一个顺序存储的线性表，请设计一个算法查找该线性表中最长的连续递增子序列。例如，(1,3,5,4,7,9,11,6,54,76,55,56,57,59,60,61)中最长的递增子序列为(5,56,57,59,60,61)。 思路 循环整个数组，前后比较大小，如果前面的数大于后面的，则+1重新放到一个新数组里面； 从新数组中获取最大长度的数组，并取出；  代码实现123456789101112">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/2018/12/06/linux前后台管理之bg跟fg/">
+  <link rel="canonical" href="http://diffnest.github.io/2019/04/03/找出最长连续递增子序列/">
 
 
 
@@ -166,7 +166,7 @@
   };
 </script>
 
-  <title>linux前后台管理之bg跟fg | Writing more than life</title>
+  <title>找出最长连续递增子序列 | Writing more than life</title>
   
 
 
@@ -362,7 +362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2018/12/06/linux前后台管理之bg跟fg/">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/04/03/找出最长连续递增子序列/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Echo">
@@ -379,7 +379,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux前后台管理之bg跟fg</h1>
+          <h1 class="post-title" itemprop="name headline">找出最长连续递增子序列</h1>
         
 
         <div class="post-meta">
@@ -391,7 +391,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-06T16:12:58+08:00">2018-12-06</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-03T15:49:13+08:00">2019-04-03</time>
             
 
             
@@ -412,7 +412,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
 
                 
                 
@@ -446,24 +446,13 @@
       
 
       
-        <blockquote>
-<p>如果你执行一段cli需要很长时间，你不可能一直等待，这时你可以使用如下方法：</p>
-</blockquote>
-<ol>
-<li>demo 如下：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@10_5_0_29 mul]# /usr/local/webserver/php/bin/php sleep.php</span><br><span class="line">^Z</span><br><span class="line">[1]+  Stopped                 /usr/local/webserver/php/bin/php sleep.php</span><br><span class="line">[root@10_5_0_29 mul]# bg 1</span><br><span class="line">[1]+ /usr/local/webserver/php/bin/php sleep.php &amp;</span><br><span class="line">[root@10_5_0_29 mul]# jobs</span><br><span class="line">[1]+  Running                 /usr/local/webserver/php/bin/php sleep.php &amp;</span><br><span class="line">[root@10_5_0_29 mul]# fg 1</span><br><span class="line">/usr/local/webserver/php/bin/php sleep.php</span><br><span class="line">60</span><br><span class="line"></span><br><span class="line">执行过程：</span><br><span class="line"> 1. 执行 /usr/local/webserver/php/bin/php sleep.php；</span><br><span class="line"> 2. ctrl+z 挂起程序（这时程序处于暂停状态）=》[1]+  Stopped /usr/local/webserver/php/bin/php sleep.php；</span><br><span class="line"> 3. bg 1 =》这时进程将在后台继续执行； </span><br><span class="line"> 4. 用jobs命令查看任务 =》 [1]+  Running  /usr/local/webserver/php/bin/php sleep.php</span><br><span class="line"> 5. fg 1 =》 把它调回到前台运行</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li><p>总结常用系统任务相关命令</p>
-<ul>
-<li>&amp; 最经常被用到（用在命令的最后，相当于后台执行）；</li>
-<li>ctrl + z 将一个正在前台执行的命令放到后台，并且暂停；</li>
-<li>jobs 查看有多少在后台执行的命令；</li>
-<li>fg 将后台执行的命令调回前台；</li>
-<li>bg 将一个在后台暂停的命令，变成继续执行；</li>
+        <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>给定一个顺序存储的线性表，请设计一个算法查找该线性表中最长的连续递增子序列。<br>例如，(1,3,5,4,7,9,11,6,54,76,55,56,57,59,60,61)中最长的递增子序列为(5,56,57,59,60,61)。</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>循环整个数组，前后比较大小，如果前面的数大于后面的，则+1重新放到一个新数组里面；</li>
+<li>从新数组中获取最大长度的数组，并取出；</li>
 </ul>
-</li>
-</ol>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">11</span>,<span class="number">6</span>,<span class="number">54</span>,<span class="number">76</span>,<span class="number">55</span>,<span class="number">56</span>,<span class="number">57</span>,<span class="number">59</span>,<span class="number">60</span>,<span class="number">61</span>];</span><br><span class="line"><span class="comment">//暴力破解=》归类</span></span><br><span class="line">$k = <span class="number">0</span>;</span><br><span class="line">$newArr = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $index =&gt; $value) &#123;</span><br><span class="line">    <span class="keyword">if</span> ($arr[$index+<span class="number">1</span>] &gt; $arr[$index]) &#123;</span><br><span class="line">        $newArr[$k][] = $value;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        $newArr[$k][] = $value;</span><br><span class="line">        $k++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//取值</span></span><br><span class="line">$key = <span class="number">0</span>;</span><br><span class="line">$maxlen = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">foreach</span> ($newArr <span class="keyword">as</span> $index =&gt; $value) &#123;</span><br><span class="line">    $maxlen = max($maxlen, count($newArr[$index]));</span><br><span class="line">    <span class="keyword">if</span> ($maxlen == count($newArr[$index])) &#123;</span><br><span class="line">        $key = $index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'索引为：'</span>. $key .<span class="string">'******元素个数为：'</span>. $maxlen;</span><br><span class="line">print_r($newArr);</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">索引为：<span class="number">3</span>******元素个数为:<span class="number">6</span></span><br><span class="line"><span class="keyword">Array</span>(</span><br><span class="line">    [<span class="number">0</span>] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [<span class="number">0</span>] =&gt; <span class="number">1</span></span><br><span class="line">            [<span class="number">1</span>] =&gt; <span class="number">3</span></span><br><span class="line">            [<span class="number">2</span>] =&gt; <span class="number">5</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    [<span class="number">1</span>] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [<span class="number">0</span>] =&gt; <span class="number">4</span></span><br><span class="line">            [<span class="number">1</span>] =&gt; <span class="number">7</span></span><br><span class="line">            [<span class="number">2</span>] =&gt; <span class="number">9</span></span><br><span class="line">            [<span class="number">3</span>] =&gt; <span class="number">11</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    [<span class="number">2</span>] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [<span class="number">0</span>] =&gt; <span class="number">6</span></span><br><span class="line">            [<span class="number">1</span>] =&gt; <span class="number">54</span></span><br><span class="line">            [<span class="number">2</span>] =&gt; <span class="number">76</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    [<span class="number">3</span>] =&gt; <span class="keyword">Array</span></span><br><span class="line">        (</span><br><span class="line">            [<span class="number">0</span>] =&gt; <span class="number">55</span></span><br><span class="line">            [<span class="number">1</span>] =&gt; <span class="number">56</span></span><br><span class="line">            [<span class="number">2</span>] =&gt; <span class="number">57</span></span><br><span class="line">            [<span class="number">3</span>] =&gt; <span class="number">59</span></span><br><span class="line">            [<span class="number">4</span>] =&gt; <span class="number">60</span></span><br><span class="line">            [<span class="number">5</span>] =&gt; <span class="number">61</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -521,7 +510,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/bg-fg/" rel="tag"><i class="fa fa-tag"> bg fg</i></a>
+            <a href="/tags/PHP-算法/" rel="tag"><i class="fa fa-tag"> PHP 算法</i></a>
           
         </div>
       
@@ -534,8 +523,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/06/linux-之xargs-命令使用/" rel="next" title="linux 之xargs 命令使用">
-                <i class="fa fa-chevron-left"></i> linux 之xargs 命令使用
+              <a href="/2019/04/03/在有空字符串中的有序字符串数组中查找/" rel="next" title="在有空字符串中的有序字符串数组中查找">
+                <i class="fa fa-chevron-left"></i> 在有空字符串中的有序字符串数组中查找
               </a>
             
           </div>
@@ -543,10 +532,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/06/怎么去掉linux下TXT文件-M/" rel="prev" title="怎么去掉linux下TXT文件^M???">
-                怎么去掉linux下TXT文件^M??? <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -595,8 +580,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -753,6 +747,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">4.</span> <span class="nav-text">结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
