@@ -146,10 +146,12 @@
 <meta property="og:site_name" content="Writing more than life">
 <meta property="og:description" content="小白正在上楼梯，楼梯有n阶台阶，小白一次一次可以上1阶，2阶或3阶，实现一个方法，计算小白有多少种走完楼梯的方式  思路 设n阶台阶的走法数为f(n)。  如果只有1个台阶，走法有1种（一步上1个台阶），即f(1)=1； 如果有2个台阶，走法有2种（一种是上1阶，再上1阶，另一种是一步上2阶），即f(2)=2； 如果有3个台阶，走法有4种（一种每次1阶，共一种；另一种是2+1，共两种；第三种是3">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T04:44:39.336Z">
+<meta property="og:image" content="http://diffnest.github.io/2019/04/02/小白上楼梯-递归设计/plt.png">
+<meta property="og:updated_time" content="2019-04-03T05:16:04.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小白上楼梯(递归设计)">
 <meta name="twitter:description" content="小白正在上楼梯，楼梯有n阶台阶，小白一次一次可以上1阶，2阶或3阶，实现一个方法，计算小白有多少种走完楼梯的方式  思路 设n阶台阶的走法数为f(n)。  如果只有1个台阶，走法有1种（一步上1个台阶），即f(1)=1； 如果有2个台阶，走法有2种（一种是上1阶，再上1阶，另一种是一步上2阶），即f(2)=2； 如果有3个台阶，走法有4种（一种每次1阶，共一种；另一种是2+1，共两种；第三种是3">
+<meta name="twitter:image" content="http://diffnest.github.io/2019/04/02/小白上楼梯-递归设计/plt.png">
 
 
 
@@ -463,12 +465,13 @@
 <li>最后是一步上1个台阶的话，之前上了n-1个台阶，走法为f(n-1)种，</li>
 <li>而最后是一步上2个台阶的话，之前上了n-2个台阶，走法为f(n-2)种，</li>
 <li>而最后是一步上3个台阶的话，之前上了n-3个台阶，走法为f(n-3)种故而f(n)=f(n-1)+f(n-2)+f(n-3)。</li>
-<li>列出的递归方程为：f(1)=1;f(2)=2;f(3)=4;</li>
+<li>列出的递归方程为：f(1)=1;f(2)=2;f(3)=4;<br>plt.png</li>
 </ul>
 </blockquote>
 <h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ul>
 <li>最后一步可能是从第n-1阶往上走1阶、从n-2阶往上走2阶，或从第n-3阶往上走3阶。因此，抵达最后一阶的走法，其实就是抵达这最后三阶的方式的总和。</li>
 </ul>
+<h5 id="关系图："><a href="#关系图：" class="headerlink" title="关系图："></a>关系图：</h5><p><img src="/2019/04/02/小白上楼梯-递归设计/plt.png" alt="小白上楼梯-递归设计"></p>
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">($n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($n == <span class="number">0</span> || $n == <span class="number">1</span>) &#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ($n == <span class="number">2</span>) &#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f($n<span class="number">-1</span>) + f($n<span class="number">-2</span>) + f($n<span class="number">-3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> f(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
 <h4 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
 
@@ -775,7 +778,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逆向推理"><span class="nav-number">2.</span> <span class="nav-text">逆向推理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">3.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果-1"><span class="nav-number">5.</span> <span class="nav-text">结果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逆向推理"><span class="nav-number">2.</span> <span class="nav-text">逆向推理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">3.</span> <span class="nav-text">结果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关系图："><span class="nav-number">3.1.</span> <span class="nav-text">关系图：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果-1"><span class="nav-number">5.</span> <span class="nav-text">结果</span></a></li></ol></div>
             
 
           </div>
