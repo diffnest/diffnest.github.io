@@ -138,28 +138,25 @@
 
 
 
-  <meta name="description" content="斐波那契数：1、1、2、3、5、8、13、21、······前后两个数之和被称为斐波那契数。  递归： 递归：函数自己调用自己 递归的”缺陷”：会发生”栈溢出”（可以用 ulimit -s 查看linux的默认栈空间大小） 递归的”时间复杂度”：递归总次数*每次递归的次数 递归的”空间复杂度”：递归的深度*每次递归空间的大小（注意：”每次递归空间的大小”是个常数，可以基本忽略不计）递归的”深度”">
+  <meta name="description" content="题目给定一个介于0和1之间的实数，(如0.625)，类型为double，打印它的二进制表示(0.101,因为小数点后的二进制分别表示0.5,0.25,0.125……)。如果该数字无法精确地用32位以内的二进制表示，则打印”ERROR” 思路将改浮点数*2，得到一个新的$num，再判断$num&amp;gt;=1,如果大于则在0.后面拼接上1，否则拼接0，最后循环至$num==0结束 代码实现1234567">
 <meta name="keywords" content="PHP 算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅析斐波那契数列时间、空间复杂度">
-<meta property="og:url" content="http://diffnest.github.io/2019/03/25/浅析斐波那契数列-递归-时间、空间复杂度/index.html">
+<meta property="og:title" content="乘2挪整:二进制表示浮点整数">
+<meta property="og:url" content="http://diffnest.github.io/2019/04/04/乘2挪整-二进制表示浮点整数/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="斐波那契数：1、1、2、3、5、8、13、21、······前后两个数之和被称为斐波那契数。  递归： 递归：函数自己调用自己 递归的”缺陷”：会发生”栈溢出”（可以用 ulimit -s 查看linux的默认栈空间大小） 递归的”时间复杂度”：递归总次数*每次递归的次数 递归的”空间复杂度”：递归的深度*每次递归空间的大小（注意：”每次递归空间的大小”是个常数，可以基本忽略不计）递归的”深度”">
+<meta property="og:description" content="题目给定一个介于0和1之间的实数，(如0.625)，类型为double，打印它的二进制表示(0.101,因为小数点后的二进制分别表示0.5,0.25,0.125……)。如果该数字无法精确地用32位以内的二进制表示，则打印”ERROR” 思路将改浮点数*2，得到一个新的$num，再判断$num&amp;gt;=1,如果大于则在0.后面拼接上1，否则拼接0，最后循环至$num==0结束 代码实现1234567">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://diffnest.github.io/2019/03/25/浅析斐波那契数列-递归-时间、空间复杂度/fib.png">
-<meta property="og:image" content="http://diffnest.github.io/2019/03/25/浅析斐波那契数列-递归-时间、空间复杂度/fabspcae.png">
-<meta property="og:updated_time" content="2019-03-29T05:50:12.858Z">
+<meta property="og:updated_time" content="2019-04-04T03:50:00.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅析斐波那契数列时间、空间复杂度">
-<meta name="twitter:description" content="斐波那契数：1、1、2、3、5、8、13、21、······前后两个数之和被称为斐波那契数。  递归： 递归：函数自己调用自己 递归的”缺陷”：会发生”栈溢出”（可以用 ulimit -s 查看linux的默认栈空间大小） 递归的”时间复杂度”：递归总次数*每次递归的次数 递归的”空间复杂度”：递归的深度*每次递归空间的大小（注意：”每次递归空间的大小”是个常数，可以基本忽略不计）递归的”深度”">
-<meta name="twitter:image" content="http://diffnest.github.io/2019/03/25/浅析斐波那契数列-递归-时间、空间复杂度/fib.png">
+<meta name="twitter:title" content="乘2挪整:二进制表示浮点整数">
+<meta name="twitter:description" content="题目给定一个介于0和1之间的实数，(如0.625)，类型为double，打印它的二进制表示(0.101,因为小数点后的二进制分别表示0.5,0.25,0.125……)。如果该数字无法精确地用32位以内的二进制表示，则打印”ERROR” 思路将改浮点数*2，得到一个新的$num，再判断$num&amp;gt;=1,如果大于则在0.后面拼接上1，否则拼接0，最后循环至$num==0结束 代码实现1234567">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/2019/03/25/浅析斐波那契数列-递归-时间、空间复杂度/">
+  <link rel="canonical" href="http://diffnest.github.io/2019/04/04/乘2挪整-二进制表示浮点整数/">
 
 
 
@@ -169,7 +166,7 @@
   };
 </script>
 
-  <title>浅析斐波那契数列时间、空间复杂度 | Writing more than life</title>
+  <title>乘2挪整:二进制表示浮点整数 | Writing more than life</title>
   
 
 
@@ -365,7 +362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/03/25/浅析斐波那契数列-递归-时间、空间复杂度/">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/04/04/乘2挪整-二进制表示浮点整数/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Echo">
@@ -382,7 +379,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅析斐波那契数列时间、空间复杂度</h1>
+          <h1 class="post-title" itemprop="name headline">乘2挪整:二进制表示浮点整数</h1>
         
 
         <div class="post-meta">
@@ -394,7 +391,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-25T18:57:05+08:00">2019-03-25</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-04T10:57:39+08:00">2019-04-04</time>
             
 
             
@@ -403,6 +400,24 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -431,36 +446,10 @@
       
 
       
-        <blockquote>
-<p>斐波那契数：1、1、2、3、5、8、13、21、······前后两个数之和被称为斐波那契数。</p>
-</blockquote>
-<h4 id="递归："><a href="#递归：" class="headerlink" title="递归："></a>递归：</h4><ul>
-<li>递归：函数自己调用自己</li>
-<li>递归的”缺陷”：会发生”栈溢出”（可以用 ulimit -s 查看linux的默认栈空间大小）</li>
-<li>递归的”时间复杂度”：递归总次数*每次递归的次数</li>
-<li>递归的”空间复杂度”：递归的深度*每次递归空间的大小（注意：”每次递归空间的大小”是个常数，可以基本忽略不计）递归的”深度”：树的高度（递归的过程是一个”二叉树”）;</li>
-</ul>
-<h4 id="时间复杂度-O-2-n"><a href="#时间复杂度-O-2-n" class="headerlink" title="时间复杂度 O(2^n)"></a>时间复杂度 O(2^n)</h4><h5 id="函数递归二叉树结构图："><a href="#函数递归二叉树结构图：" class="headerlink" title="函数递归二叉树结构图："></a>函数递归二叉树结构图：</h5><p><img src="/2019/03/25/浅析斐波那契数列-递归-时间、空间复杂度/fib.png" alt="浅析斐波那契数列-递归-时间、空间复杂度"></p>
-<ul>
-<li>二叉树层数：n-1 = 5-1 = 4[当n=5时，二叉树共有4层]</li>
-<li>二叉树第m层的个数：2^3 [前三层节点数= (2^3)-1=7=&gt; (2^3)-1+2 =9]</li>
-<li>二叉树总节点数：（2^(n-1)-1) 推出=&gt; 总节点数=斐波那契数的执行次数，当n=5时，时间复杂度=O(f(5)) = O(2^3)+1,所以斐波那契数的时间复杂度 T(n) = O(f(n))=O(2^(n-2))+1 = O(2^n);</li>
-</ul>
-<h4 id="空间复杂度-O-1"><a href="#空间复杂度-O-1" class="headerlink" title="空间复杂度 O(1)"></a>空间复杂度 O(1)</h4><h5 id="调用栈结构图："><a href="#调用栈结构图：" class="headerlink" title="调用栈结构图："></a>调用栈结构图：</h5><p><img src="/2019/03/25/浅析斐波那契数列-递归-时间、空间复杂度/fabspcae.png" alt="浅析斐波那契数列-递归-时间、空间复杂度"></p>
-<ul>
-<li><p>①-③ 调用顺序: Fib(5)-&gt;Fib(4)-&gt;Fib(3)-&gt;Fib(2)[返回值1]-&gt;Fib执行结束，栈空间销毁；<br>  此时Fib(5)，Fib(4)，Fib(3)，Fib(1)均未结束，程序共占有4个函数栈空间；</p>
-</li>
-<li><p>④-⑩ 调用顺序: Fib(1)创建一个栈空间，调用结束后返回1，空间销毁，<br>  此时Fib(3) = [左侧]Fib(2)+Fib(1) = 1+1 = 2，<br>  通过第⑦步返回Fib(3)的值，第⑧步同样创建空间再次调用Fib(2)，调用结束销毁空间，此时可得到Fib(4)=3，<br>  通过第⑩步返回Fib(4)的值，此过程占用4个函数栈帧空间。</p>
-</li>
-<li><p>⑪-⑯ 调用Fib(3)，将返回值传给Fib(5)，得到Fib(5)=5</p>
-</li>
-</ul>
-<blockquote>
-<p>整个程序执行过程中，最多占用4个函数栈帧空间的大小，设一个函数栈帧空间为C<br>因此可得知当n=5时，该程序空间复杂度为O(4C)=&gt;O(1)<br>当求第n个斐波那契数时，程序空间复杂度为O(n-1)C (n是常数)=&gt;O(1)</p>
-</blockquote>
-<h4 id="PHP代码实现：-lt-结合步骤2看栈调用过程-gt"><a href="#PHP代码实现：-lt-结合步骤2看栈调用过程-gt" class="headerlink" title="PHP代码实现：&lt;结合步骤2看栈调用过程&gt;"></a>PHP代码实现：&lt;结合步骤2看栈调用过程&gt;</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">line : &lt;<span class="number">121</span><span class="number">-134</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span><span class="params">($n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"-- n = $n ----------------------------"</span>.PHP_EOL;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> memory_get_usage().<span class="string">" 字节 \n"</span>;</span><br><span class="line">    debug_print_backtrace();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($n == <span class="number">1</span> || $n == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fibonacci($n<span class="number">-1</span>)+fibonacci($n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"初始内存: "</span>.memory_get_usage().<span class="string">" 字节 \n"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"结果为:"</span>. fibonacci(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> fibonacci(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">初始内存: <span class="number">355344</span> 字节 </span><br><span class="line">-- n = <span class="number">5</span> ----------------------------</span><br><span class="line"><span class="number">355376</span> 字节 </span><br><span class="line"><span class="comment">#0  fibonacci(5) called at [/Users/jiayuan/fab.php:134]</span></span><br><span class="line">-- n = <span class="number">4</span> ----------------------------</span><br><span class="line"><span class="number">355376</span> 字节 </span><br><span class="line"><span class="comment">#0  fibonacci(4) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#1  fibonacci(5) called at [/Users/jiayuan/fab.php:134]</span></span><br><span class="line">-- n = <span class="number">3</span> ----------------------------</span><br><span class="line"><span class="number">355376</span> 字节 </span><br><span class="line"><span class="comment">#0  fibonacci(3) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#1  fibonacci(4) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#2  fibonacci(5) called at [/Users/jiayuan/fab.php:134]</span></span><br><span class="line">-- n = <span class="number">2</span> ----------------------------</span><br><span class="line"><span class="number">355376</span> 字节 </span><br><span class="line"><span class="comment">#0  fibonacci(2) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#1  fibonacci(3) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#2  fibonacci(4) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#3  fibonacci(5) called at [/Users/jiayuan/fab.php:134]</span></span><br><span class="line">-- n = <span class="number">1</span> ----------------------------</span><br><span class="line"><span class="number">355376</span> 字节 </span><br><span class="line"><span class="comment">#0  fibonacci(1) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#1  fibonacci(3) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#2  fibonacci(4) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#3  fibonacci(5) called at [/Users/jiayuan/fab.php:134]</span></span><br><span class="line">-- n = <span class="number">2</span> ----------------------------</span><br><span class="line"><span class="number">355376</span> 字节 </span><br><span class="line"><span class="comment">#0  fibonacci(2) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#1  fibonacci(4) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#2  fibonacci(5) called at [/Users/jiayuan/fab.php:134]</span></span><br><span class="line">-- n = <span class="number">3</span> ----------------------------</span><br><span class="line"><span class="number">355376</span> 字节 </span><br><span class="line"><span class="comment">#0  fibonacci(3) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#1  fibonacci(5) called at [/Users/jiayuan/fab.php:134]</span></span><br><span class="line">-- n = <span class="number">2</span> ----------------------------</span><br><span class="line"><span class="number">355376</span> 字节 </span><br><span class="line"><span class="comment">#0  fibonacci(2) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#1  fibonacci(3) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#2  fibonacci(5) called at [/Users/jiayuan/fab.php:134]</span></span><br><span class="line">-- n = <span class="number">1</span> ----------------------------</span><br><span class="line"><span class="number">355376</span> 字节 </span><br><span class="line"><span class="comment">#0  fibonacci(1) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#1  fibonacci(3) called at [/Users/jiayuan/fab.php:130]</span></span><br><span class="line"><span class="comment">#2  fibonacci(5) called at [/Users/jiayuan/fab.php:134]</span></span><br><span class="line">结果为:<span class="number">5</span></span><br></pre></td></tr></table></figure>
+        <h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>给定一个介于0和1之间的实数，(如0.625)，类型为double，打印它的二进制表示(0.101,因为小数点后的二进制分别表示0.5,0.25,0.125……)。<br>如果该数字无法精确地用32位以内的二进制表示，则打印”ERROR”</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>将改浮点数*2，得到一个新的$num，再判断$num&gt;=1,如果大于则在0.后面拼接上1，否则拼接0，最后循环至$num==0结束</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binaryDouble</span><span class="params">($num)</span> </span>&#123;</span><br><span class="line">    $s = <span class="string">"0."</span>;</span><br><span class="line">    <span class="keyword">while</span> ($num != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $num. PHP_EOL;</span><br><span class="line">        $num *= <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> ($num &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">            $s .= <span class="number">1</span>;</span><br><span class="line">            $num -= <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $s .= <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (strlen($s) == <span class="number">34</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'ERROR'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> binaryDouble(<span class="number">0.625</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.625</span></span><br><span class="line"><span class="number">0.25</span></span><br><span class="line"><span class="number">0.5</span></span><br><span class="line"><span class="number">0.1011</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -531,8 +520,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/位运算-加减乘除/" rel="next" title="位运算_加减乘除">
-                <i class="fa fa-chevron-left"></i> 位运算_加减乘除
+              <a href="/2019/04/03/1/" rel="next" title="二分查找的递归与非递归实现">
+                <i class="fa fa-chevron-left"></i> 二分查找的递归与非递归实现
               </a>
             
           </div>
@@ -540,10 +529,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/28/php设计模式-模板模式/" rel="prev" title="php设计模式_模板模式">
-                php设计模式_模板模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -769,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归："><span class="nav-number">1.</span> <span class="nav-text">递归：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度-O-2-n"><span class="nav-number">2.</span> <span class="nav-text">时间复杂度 O(2^n)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#函数递归二叉树结构图："><span class="nav-number">2.1.</span> <span class="nav-text">函数递归二叉树结构图：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空间复杂度-O-1"><span class="nav-number">3.</span> <span class="nav-text">空间复杂度 O(1)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#调用栈结构图："><span class="nav-number">3.1.</span> <span class="nav-text">调用栈结构图：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP代码实现：-lt-结合步骤2看栈调用过程-gt"><span class="nav-number">4.</span> <span class="nav-text">PHP代码实现：&lt;结合步骤2看栈调用过程&gt;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">4.</span> <span class="nav-text">结果</span></a></li></ol></div>
             
 
           </div>
