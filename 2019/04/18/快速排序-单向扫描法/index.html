@@ -138,23 +138,29 @@
 
 
 
-  <meta name="description" content="以梦为马，明日天涯">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Writing more than life">
-<meta property="og:url" content="http://diffnest.github.io/tags/lftp/index.html">
+  <meta name="description" content="关键词： p: 主元 scan_pos: 扫描指针  bigger: 右侧指针  思路 用两个指针将数组划分为三个区间， 扫描指针(scan_pos)左边是确认小于等于主元的，扫描指针到某个指针(next_bigger_pos)中间为未知的，因此我们将第二个指针(next_bigger_pos)成为位未知区间末指针，末指针的右边区间为确认大于主元的元素。  结构图 边界分析  &amp;lt;= sp 右">
+<meta name="keywords" content="快速排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速排序_单向扫描法">
+<meta property="og:url" content="http://diffnest.github.io/2019/04/18/快速排序-单向扫描法/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="以梦为马，明日天涯">
+<meta property="og:description" content="关键词： p: 主元 scan_pos: 扫描指针  bigger: 右侧指针  思路 用两个指针将数组划分为三个区间， 扫描指针(scan_pos)左边是确认小于等于主元的，扫描指针到某个指针(next_bigger_pos)中间为未知的，因此我们将第二个指针(next_bigger_pos)成为位未知区间末指针，末指针的右边区间为确认大于主元的元素。  结构图 边界分析  &amp;lt;= sp 右">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://diffnest.github.io/2019/04/18/快速排序-单向扫描法/quick3.png">
+<meta property="og:image" content="http://diffnest.github.io/2019/04/18/快速排序-单向扫描法/quick1.png">
+<meta property="og:image" content="http://diffnest.github.io/2019/04/18/快速排序-单向扫描法/quick4.png">
+<meta property="og:updated_time" content="2019-04-18T10:11:03.887Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Writing more than life">
-<meta name="twitter:description" content="以梦为马，明日天涯">
+<meta name="twitter:title" content="快速排序_单向扫描法">
+<meta name="twitter:description" content="关键词： p: 主元 scan_pos: 扫描指针  bigger: 右侧指针  思路 用两个指针将数组划分为三个区间， 扫描指针(scan_pos)左边是确认小于等于主元的，扫描指针到某个指针(next_bigger_pos)中间为未知的，因此我们将第二个指针(next_bigger_pos)成为位未知区间末指针，末指针的右边区间为确认大于主元的元素。  结构图 边界分析  &amp;lt;= sp 右">
+<meta name="twitter:image" content="http://diffnest.github.io/2019/04/18/快速排序-单向扫描法/quick3.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/tags/lftp/">
+  <link rel="canonical" href="http://diffnest.github.io/2019/04/18/快速排序-单向扫描法/">
 
 
 
@@ -164,7 +170,7 @@
   };
 </script>
 
-  <title>Tag: lftp | Writing more than life</title>
+  <title>快速排序_单向扫描法 | Writing more than life</title>
   
 
 
@@ -211,7 +217,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -340,79 +346,239 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>lftp<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/04/18/快速排序-单向扫描法/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Echo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/tx.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Writing more than life">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/05/lftp-常用操作/" itemprop="url">
-              
-                <span itemprop="name">lftp 常用操作</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">快速排序_单向扫描法</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-05T20:15:33+08:00" content="2018-12-05">
-          12-05
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-18T16:47:57+08:00">2019-04-18</time>
+            
 
-    </header>
-  </article>
+            
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="关键词："><a href="#关键词：" class="headerlink" title="关键词："></a>关键词：</h4><ul>
+<li>p: 主元</li>
+<li>scan_pos: 扫描指针 </li>
+<li>bigger: 右侧指针</li>
+</ul>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>用两个指针将数组划分为三个区间，</li>
+<li>扫描指针(scan_pos)左边是确认小于等于主元的，扫描指针到某个指针(next_bigger_pos)中间为未知的，因此我们将第二个指针(next_bigger_pos)成为位未知区间末指针，末指针的右边区间为确认大于主元的元素。</li>
+</ul>
+<h5 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h5><p><img src="/2019/04/18/快速排序-单向扫描法/quick3.png" alt="快速排序_一遍单向扫描法"></p>
+<h4 id="边界分析"><a href="#边界分析" class="headerlink" title="边界分析"></a>边界分析</h4><p><img src="/2019/04/18/快速排序-单向扫描法/quick1.png" alt="快速排序_一遍单向扫描法"></p>
+<ul>
+<li>&lt;= sp 右移，&gt; 交换，bigger左移</li>
+<li>如果最后一个元素大于主元，bigger左移之后小于scanner</li>
+<li>如果最后一个扫描元素小于主元，scanner的右移导致，scanner大于bigger</li>
+</ul>
+<h4 id="PHP代码示例"><a href="#PHP代码示例" class="headerlink" title="PHP代码示例"></a>PHP代码示例</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">quickSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sort</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $arr = [<span class="number">4</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line">        <span class="keyword">$this</span>-&gt;qsort($arr, <span class="number">0</span>, count($arr) - <span class="number">1</span>);</span><br><span class="line">        print_r($arr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">qsort</span><span class="params">(&amp;$arr, $low, $right)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($low &lt; $right) &#123;</span><br><span class="line">            $q = <span class="keyword">$this</span>-&gt;partition($arr, $low, $right);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;qsort($arr, $low, $q<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">$this</span>-&gt;qsort($arr, $q+<span class="number">1</span>, $right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//单向扫描</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">partition</span><span class="params">(&amp;$arr, $low, $right)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $pivot = $arr[$low]; <span class="comment">//主元,默认数组第一个</span></span><br><span class="line">        $sp = $low + <span class="number">1</span>;      <span class="comment">//扫描指针</span></span><br><span class="line">        $bigger = $right;    <span class="comment">//右侧指针</span></span><br><span class="line">        <span class="keyword">while</span> ($sp &lt;= $bigger) &#123;</span><br><span class="line">            <span class="keyword">if</span> ($arr[$sp] &lt;= $pivot) &#123;</span><br><span class="line">                $sp++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;swap($arr, $sp, $bigger);</span><br><span class="line">                $bigger--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;swap($arr, $low, $bigger);<span class="comment">//高低位互换</span></span><br><span class="line">        <span class="keyword">return</span> $bigger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">swap</span><span class="params">(&amp;$arr, $i, $j)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $temp = $arr[$i];</span><br><span class="line">        $arr[$i] = $arr[$j];</span><br><span class="line">        $arr[$j] = $temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = <span class="keyword">new</span> quickSort();</span><br><span class="line">$obj-&gt;sort();</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [<span class="number">0</span>] =&gt; <span class="number">1</span></span><br><span class="line">    [<span class="number">1</span>] =&gt; <span class="number">2</span></span><br><span class="line">    [<span class="number">2</span>] =&gt; <span class="number">4</span></span><br><span class="line">    [<span class="number">3</span>] =&gt; <span class="number">5</span></span><br><span class="line">    [<span class="number">4</span>] =&gt; <span class="number">6</span></span><br><span class="line">    [<span class="number">5</span>] =&gt; <span class="number">7</span></span><br><span class="line">    [<span class="number">6</span>] =&gt; <span class="number">8</span></span><br><span class="line">    [<span class="number">7</span>] =&gt; <span class="number">9</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="流程分析"><a href="#流程分析" class="headerlink" title="流程分析"></a>流程分析</h4><ul>
+<li>主元 &gt;= sp，sp右移</li>
+<li>主元 &lt; sp，sp和bigger交换，bigger左移<br><img src="/2019/04/18/快速排序-单向扫描法/quick4.png" alt="快速排序_一遍单向扫描法"></li>
+</ul>
 
       
     </div>
 
+    
+    
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/wxpay.png" alt="Echo WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/快速排序/" rel="tag"><i class="fa fa-tag"> 快速排序</i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/快速排序-一遍单向扫描法/" rel="next" title="快速排序_一遍单向扫描法">
+                <i class="fa fa-chevron-left"></i> 快速排序_一遍单向扫描法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -433,8 +599,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -594,6 +769,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键词："><span class="nav-number">1.</span> <span class="nav-text">关键词：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#结构图"><span class="nav-number">2.1.</span> <span class="nav-text">结构图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边界分析"><span class="nav-number">3.</span> <span class="nav-text">边界分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP代码示例"><span class="nav-number">4.</span> <span class="nav-text">PHP代码示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">5.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程分析"><span class="nav-number">6.</span> <span class="nav-text">流程分析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -740,6 +931,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
 
   
 
