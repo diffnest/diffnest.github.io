@@ -138,18 +138,18 @@
 
 
 
-  <meta name="description" content="SVN update中断，clear up代码时，报个ERROR：  Description : The pristine text with checksum ‘1fd3XXXXXX’ was not foundSuggestion : The operation could not be completed. Technical InformationError : V4Error   Ex">
+  <meta name="description" content="SVN update中断，clear up代码时，报个ERROR：  1234567891011Description : The pristine text with checksum &amp;apos;1fd3XXXXXX&amp;apos; was not foundSuggestion : The operation could not be completed.Technical Informati">
 <meta name="keywords" content="SVN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The pristine text with checksum &#39;1fd3XXXXXX&#39; was not found">
 <meta property="og:url" content="http://diffnest.github.io/2019/05/09/The-pristine-text-with-checksum-1fd3XXXXXX-was-not-found/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="SVN update中断，clear up代码时，报个ERROR：  Description : The pristine text with checksum ‘1fd3XXXXXX’ was not foundSuggestion : The operation could not be completed. Technical InformationError : V4Error   Ex">
+<meta property="og:description" content="SVN update中断，clear up代码时，报个ERROR：  1234567891011Description : The pristine text with checksum &amp;apos;1fd3XXXXXX&amp;apos; was not foundSuggestion : The operation could not be completed.Technical Informati">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-09T02:37:08.870Z">
+<meta property="og:updated_time" content="2019-05-09T02:39:49.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The pristine text with checksum &#39;1fd3XXXXXX&#39; was not found">
-<meta name="twitter:description" content="SVN update中断，clear up代码时，报个ERROR：  Description : The pristine text with checksum ‘1fd3XXXXXX’ was not foundSuggestion : The operation could not be completed. Technical InformationError : V4Error   Ex">
+<meta name="twitter:description" content="SVN update中断，clear up代码时，报个ERROR：  1234567891011Description : The pristine text with checksum &amp;apos;1fd3XXXXXX&amp;apos; was not foundSuggestion : The operation could not be completed.Technical Informati">
 
 
 
@@ -449,10 +449,8 @@
         <blockquote>
 <p>SVN update中断，clear up代码时，报个ERROR：</p>
 </blockquote>
-<p>Description : The pristine text with checksum ‘1fd3XXXXXX’ was not found<br>Suggestion : The operation could not be completed.</p>
-<h1 id="Technical-Information"><a href="#Technical-Information" class="headerlink" title="Technical Information"></a>Technical Information</h1><pre><code>Error : V4Error
-</code></pre><p>  Exception : ZSVNException</p>
-<h1 id="Causal-Information"><a href="#Causal-Information" class="headerlink" title="Causal Information"></a>Causal Information</h1><p>将出错信息’1fd3XXXXXX’从SVN记录数据库wc.db中删除，重新update搞定。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Description : The pristine text with checksum &apos;1fd3XXXXXX&apos; was not found</span><br><span class="line">Suggestion : The operation could not be completed.</span><br><span class="line"></span><br><span class="line">Technical Information</span><br><span class="line">=====================</span><br><span class="line"></span><br><span class="line">      Error : V4Error</span><br><span class="line">  Exception : ZSVNException</span><br><span class="line"></span><br><span class="line">Causal Information</span><br><span class="line">==================</span><br></pre></td></tr></table></figure>
+<p>将出错信息’1fd3XXXXXX’从SVN记录数据库wc.db中删除，重新update搞定。 </p>
 <p>具体操作：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. 下载sqlite工具</span><br><span class="line">地址：https://www.sqlite.com/download.html</span><br><span class="line"></span><br><span class="line">2. 进入项目所在的根目录，找到.svn</span><br><span class="line"></span><br><span class="line">3. 用下载的sqlite3打开记录数据库</span><br><span class="line">sqlite3 .svn/wc.db</span><br><span class="line"></span><br><span class="line">4. 查找sha1报错code是否存在版本库中</span><br><span class="line">your missing pristine here = 1fd3XXXXXX（报错代码）</span><br><span class="line">sqlite&gt; select * from pristine where checksum=&quot;$sha1$your missing pristine here&quot;;</span><br><span class="line"></span><br><span class="line">5. 执行上面的命令后查询结果为空，那么继续下面的操作</span><br><span class="line">sqlite&gt; select * from nodes where checksum=&quot;$sha1$your missing pristine here&quot;;</span><br><span class="line"></span><br><span class="line">6. 查询有值，执行删除命令</span><br><span class="line">sqlite&gt; delete from nodes where checksum=&quot;$sha1$your missing pristine here&quot;;</span><br><span class="line"></span><br><span class="line">7. 如果删除没有报错，SVN可以执行update操作了</span><br></pre></td></tr></table></figure>
       
@@ -581,17 +579,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -754,22 +743,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Technical-Information"><span class="nav-number">1.</span> <span class="nav-text">Technical Information</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Causal-Information"><span class="nav-number">2.</span> <span class="nav-text">Causal Information</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
