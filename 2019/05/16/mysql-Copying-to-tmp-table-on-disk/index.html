@@ -146,7 +146,7 @@
 <meta property="og:description" content="call 存储过程，用processlist发现一进程ID一直处于QUERY状态，State：Copying to tmp table on disk，Info：CREATE TEMPORARY TABLE tmp_transact    Copying to tmp table on disk The temporary result set was larger than tmp_table">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://diffnest.github.io/2019/05/16/mysql-Copying-to-tmp-table-on-disk/pic.png">
-<meta property="og:updated_time" content="2019-05-16T12:00:05.199Z">
+<meta property="og:updated_time" content="2019-05-16T12:03:57.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql Copying to tmp table on disk">
 <meta name="twitter:description" content="call 存储过程，用processlist发现一进程ID一直处于QUERY状态，State：Copying to tmp table on disk，Info：CREATE TEMPORARY TABLE tmp_transact    Copying to tmp table on disk The temporary result set was larger than tmp_table">
@@ -436,7 +436,7 @@
 <ul>
 <li><p>Copying to tmp table on disk The temporary result set was larger than tmp_table_size and the thread is now changing the in memory-based temporary table to a disk based one to save memory.</p>
 </li>
-<li><p>经过查资料发现mysql可以通过变量tmp__table__size和max__heap__table__size来控制内存表大小上限，如果超过上限会将tmp__table数据写到磁盘上，然后返回给客户端，从而多了一次IO）</p>
+<li><p>经过查资料发现mysql可以通过变量tmp__table__size和max__heap__table__size来控制内存表大小上限，如果超过上限会将数据写到磁盘tmp__table上，然后返回给客户端，从而多了一次IO）</p>
 </li>
 </ul>
 <blockquote>
