@@ -147,7 +147,7 @@
 <meta property="og:description" content="在抓取异步消息接口时，使用postman工具调试，返回值正常，但使用curl调用时确返回了空串，原因如下；  DEMO：1234567891011121314function curlGet($url) &amp;#123;    $ch = curl_init();    curl_setopt($ch, CURLOPT_URL, $url);    curl_setopt($ch, CURLOPT_">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://diffnest.github.io/2019/06/03/curl抓取跳转页面CURLOPT-FOLLOWLOCATION的使用/302location.png">
-<meta property="og:updated_time" content="2019-06-03T09:43:57.592Z">
+<meta property="og:updated_time" content="2019-06-03T09:50:24.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="curl抓取跳转页面CURLOPT_FOLLOWLOCATION的使用">
 <meta name="twitter:description" content="在抓取异步消息接口时，使用postman工具调试，返回值正常，但使用curl调用时确返回了空串，原因如下；  DEMO：1234567891011121314function curlGet($url) &amp;#123;    $ch = curl_init();    curl_setopt($ch, CURLOPT_URL, $url);    curl_setopt($ch, CURLOPT_">
@@ -467,7 +467,7 @@
 <ul>
 <li>抓取头信息，并对header信息的状态码（301，302）进行判断；</li>
 <li>如果有location，则继续location下一个页面进行抓取；</li>
-<li>直至状态码为200状态时再抓取页面内容信息；</li>
+<li>直至状态码为200时再抓取页面信息；</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl_setopt($rch, CURLOPT_HEADER, <span class="keyword">TRUE</span>);</span><br><span class="line">curl_setopt($rch, CURLOPT_NOBODY, <span class="keyword">TRUE</span>);</span><br></pre></td></tr></table></figure>
 
