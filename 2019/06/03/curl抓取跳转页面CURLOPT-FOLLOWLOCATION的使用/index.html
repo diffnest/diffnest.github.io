@@ -138,25 +138,27 @@
 
 
 
-  <meta name="description" content="原文： https://blog.ircmaxell.com/2012/07/the-anatomy-of-equals-opcode-analysis.html  昨天有人通过电子邮件问我一个有趣的问题，问题相当简单，答案，不多……所以，与其用电子邮件回复，我想我应该写一篇关于它的文章。简单地说，问题是：当使用==将浮点数与整数进行比较时，在哪里进行转换？   那么，让我们开始:测试代码：在回答">
-<meta name="keywords" content="Equals opcode">
+  <meta name="description" content="在抓取异步消息接口时，使用postman工具调试，返回值正常，但使用curl调用时确返回了空串，原因如下；  DEMO：1234567891011121314function curlGet($url) &amp;#123;	$ch = curl_init();    curl_setopt($ch, CURLOPT_URL, $url);    curl_setopt($ch, CURLOPT_RET">
+<meta name="keywords" content="CURL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【译】Equals之opcode分析">
-<meta property="og:url" content="http://diffnest.github.io/2019/01/15/Equals之opcode分析/index.html">
+<meta property="og:title" content="curl抓取跳转页面CURLOPT_FOLLOWLOCATION的使用">
+<meta property="og:url" content="http://diffnest.github.io/2019/06/03/curl抓取跳转页面CURLOPT-FOLLOWLOCATION的使用/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="原文： https://blog.ircmaxell.com/2012/07/the-anatomy-of-equals-opcode-analysis.html  昨天有人通过电子邮件问我一个有趣的问题，问题相当简单，答案，不多……所以，与其用电子邮件回复，我想我应该写一篇关于它的文章。简单地说，问题是：当使用==将浮点数与整数进行比较时，在哪里进行转换？   那么，让我们开始:测试代码：在回答">
+<meta property="og:description" content="在抓取异步消息接口时，使用postman工具调试，返回值正常，但使用curl调用时确返回了空串，原因如下；  DEMO：1234567891011121314function curlGet($url) &amp;#123;	$ch = curl_init();    curl_setopt($ch, CURLOPT_URL, $url);    curl_setopt($ch, CURLOPT_RET">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-15T07:46:07.439Z">
+<meta property="og:image" content="http://diffnest.github.io/2019/06/03/curl抓取跳转页面CURLOPT-FOLLOWLOCATION的使用/302location.png">
+<meta property="og:updated_time" content="2019-06-03T09:39:05.159Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【译】Equals之opcode分析">
-<meta name="twitter:description" content="原文： https://blog.ircmaxell.com/2012/07/the-anatomy-of-equals-opcode-analysis.html  昨天有人通过电子邮件问我一个有趣的问题，问题相当简单，答案，不多……所以，与其用电子邮件回复，我想我应该写一篇关于它的文章。简单地说，问题是：当使用==将浮点数与整数进行比较时，在哪里进行转换？   那么，让我们开始:测试代码：在回答">
+<meta name="twitter:title" content="curl抓取跳转页面CURLOPT_FOLLOWLOCATION的使用">
+<meta name="twitter:description" content="在抓取异步消息接口时，使用postman工具调试，返回值正常，但使用curl调用时确返回了空串，原因如下；  DEMO：1234567891011121314function curlGet($url) &amp;#123;	$ch = curl_init();    curl_setopt($ch, CURLOPT_URL, $url);    curl_setopt($ch, CURLOPT_RET">
+<meta name="twitter:image" content="http://diffnest.github.io/2019/06/03/curl抓取跳转页面CURLOPT-FOLLOWLOCATION的使用/302location.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/2019/01/15/Equals之opcode分析/">
+  <link rel="canonical" href="http://diffnest.github.io/2019/06/03/curl抓取跳转页面CURLOPT-FOLLOWLOCATION的使用/">
 
 
 
@@ -166,7 +168,7 @@
   };
 </script>
 
-  <title>【译】Equals之opcode分析 | Writing more than life</title>
+  <title>curl抓取跳转页面CURLOPT_FOLLOWLOCATION的使用 | Writing more than life</title>
   
 
 
@@ -362,7 +364,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/01/15/Equals之opcode分析/">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/06/03/curl抓取跳转页面CURLOPT-FOLLOWLOCATION的使用/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Echo">
@@ -379,7 +381,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【译】Equals之opcode分析</h1>
+          <h1 class="post-title" itemprop="name headline">curl抓取跳转页面CURLOPT_FOLLOWLOCATION的使用</h1>
         
 
         <div class="post-meta">
@@ -391,7 +393,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-15T13:15:21+08:00">2019-01-15</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-03T16:08:15+08:00">2019-06-03</time>
             
 
             
@@ -446,49 +448,28 @@
       
 
       
-        <p>原文： <a href="https://blog.ircmaxell.com/2012/07/the-anatomy-of-equals-opcode-analysis.html" target="_blank" rel="noopener">https://blog.ircmaxell.com/2012/07/the-anatomy-of-equals-opcode-analysis.html</a></p>
-<blockquote>
-<p>昨天有人通过电子邮件问我一个有趣的问题，问题相当简单，答案，不多……所以，与其用电子邮件回复，我想我应该写一篇关于它的文章。简单地说，问题是：当使用==将浮点数与整数进行比较时，在哪里进行转换？ </p>
+        <blockquote>
+<p>在抓取异步消息接口时，使用postman工具调试，返回值正常，但使用curl调用时确返回了空串，原因如下；</p>
 </blockquote>
-<h3 id="那么，让我们开始"><a href="#那么，让我们开始" class="headerlink" title="那么，让我们开始:"></a>那么，让我们开始:</h3><h4 id="测试代码："><a href="#测试代码：" class="headerlink" title="测试代码："></a>测试代码：</h4><p>在回答问题之前，我们需要做的第一步是定义我们可以分析流程的最简单代码。因此，我们可以从以下代码开始：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php 1 == 1.0;</span><br></pre></td></tr></table></figure>
-<p>但这有点太简单了，我们想知道变量会发生什么，但是没有变量！！！！因此，让我们添加一些变量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$i = 1;</span><br><span class="line">$j = 1.0;</span><br><span class="line">echo $i == $j;</span><br></pre></td></tr></table></figure>
-<p>现在我们状态很好，所以，下一步就是搞清楚到底发生了什么。<br>最简单的方法是查看生成的操作码，我用了5.4.4版本的Vulcan逻辑分解器。</p>
-<hr>
-<h4 id="The-Opcodes"><a href="#The-Opcodes" class="headerlink" title="The Opcodes"></a>The Opcodes</h4><p>这4行PHP生成这8行操作码:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">line     # *  op           fetch  ext  return  operands</span><br><span class="line">--------------------------------------------------------</span><br><span class="line">   3     0  &gt;   EXT_STMT</span><br><span class="line">         1      ASSIGN                         !0, 1</span><br><span class="line">   4     2      EXT_STMT</span><br><span class="line">         3      ASSIGN                         !1, 1</span><br><span class="line">   5     4      EXT_STMT</span><br><span class="line">         5      IS_EQUAL               ~2      !0, !1</span><br><span class="line">         6      ECHO                           ~2</span><br><span class="line">   6     7    &gt; RETURN                         1</span><br></pre></td></tr></table></figure>
-<p>现在，为了我们的目的，我们对操作码第5行感兴趣，这是一个等价的调用。<br>但在深入研究之前，让我们先谈谈我们已经提供的输出。  </p>
-<p>第一点有趣的信息在“op”列中，这告诉我们将要执行的操作，然后，右边有一堆数字。<br>前缀（~和！这里）是变量，其他是原始数值。~和！是吗？他们是一个编译变量（普通的PHP变量），其中~表示一个临时变量（直接将值从一个操作码传递到另一个操作码时使用）。  </p>
-<p>所以，在操作码5之前，我们刚刚将这两个值赋给了这两个变量（值得注意的是！1-因此$J-是一个浮点数，这里不输出小数）。因此，当我们到达第5行时，我们已经得到了所有需要的信息，以确定“等于”是什么。</p>
-<hr>
-<h4 id="Opcode-Handlers"><a href="#Opcode-Handlers" class="headerlink" title="Opcode Handlers"></a>Opcode Handlers</h4><p>在我们深入研究is_equal之前，我们首先需要讨论操作码处理程序。当PHP生成它的VM（是的，它是生成的）时，它可以使用每个操作码的多个“版本”。对于is_equal，如果操作数是常量（1和1.0），而不是变量（变量处理代码需要不同），则可以想象获取参数所需的代码是不同的。</p>
-<p>因此，处理程序是在zend/zend_vm_execute.h中定义的。它们具有命名约定：ZEND_{$OPCODE}_SPEC_{$VAR1_TYPE}_{$VAR2_TYPE}_HANDLER 。因此，通过观察IS_EQUALS 的调用，我们可以知道它们都是编译变量。因此，我们寻找 ZEND_IS_EQUALS_SPEC_CV_CV_HANDLER 的定义。果然，在第34805行。代码如下： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">static int ZEND_FASTCALL  ZEND_IS_EQUAL_SPEC_CV_CV_HANDLER(ZEND_OPCODE_HANDLER_ARGS)</span><br><span class="line">&#123;</span><br><span class="line">    USE_OPLINE</span><br><span class="line"></span><br><span class="line">    zval *result = &amp;EX_T(opline-&gt;result.var).tmp_var;</span><br><span class="line"></span><br><span class="line">    SAVE_OPLINE();</span><br><span class="line">    ZVAL_BOOL(result, fast_equal_function(result,</span><br><span class="line">        _get_zval_ptr_cv_BP_VAR_R(EX_CVs(), opline-&gt;op1.var TSRMLS_CC),</span><br><span class="line">        _get_zval_ptr_cv_BP_VAR_R(EX_CVs(), opline-&gt;op2.var TSRMLS_CC) TSRMLS_CC));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    CHECK_EXCEPTION();</span><br><span class="line">    ZEND_VM_NEXT_OPCODE();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>让我们忽略所有代码， 只看fast_equal_function。这些论点是非常直截了当的，除了时髦的“get_zval_ptr_blah_blah”行。这些都是获取变量值（zval，记得吗？）从操作码数组。然后，我们只需要调用fast_equal_function（result，var1，var2）。 </p>
-<hr>
-<h4 id="Fast-Equal-Function"><a href="#Fast-Equal-Function" class="headerlink" title="Fast Equal Function"></a>Fast Equal Function</h4><p>继续，我们需要查看fast_equal_function的内部，看看发生了什么。值得注意的是，到目前为止我们还没有修改任何变量。所以！0（$i）和！1（$j）仍然分别是一个整数和一个浮点。那么让我们来看看相等函数吧。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">static zend_always_inline int fast_equal_function(zval *result, zval *op1, zval *op2 TSRMLS_DC)</span><br><span class="line">&#123;</span><br><span class="line">    if (EXPECTED(Z_TYPE_P(op1) == IS_LONG)) &#123;</span><br><span class="line">        if (EXPECTED(Z_TYPE_P(op2) == IS_LONG)) &#123;</span><br><span class="line">            return Z_LVAL_P(op1) == Z_LVAL_P(op2);</span><br><span class="line">        &#125; else if (EXPECTED(Z_TYPE_P(op2) == IS_DOUBLE)) &#123;</span><br><span class="line">            return ((double)Z_LVAL_P(op1)) == Z_DVAL_P(op2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else if (EXPECTED(Z_TYPE_P(op1) == IS_DOUBLE)) &#123;</span><br><span class="line">        if (EXPECTED(Z_TYPE_P(op2) == IS_DOUBLE)) &#123;</span><br><span class="line">            return Z_DVAL_P(op1) == Z_DVAL_P(op2);</span><br><span class="line">        &#125; else if (EXPECTED(Z_TYPE_P(op2) == IS_LONG)) &#123;</span><br><span class="line">            return Z_DVAL_P(op1) == ((double)Z_LVAL_P(op2));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    compare_function(result, op1, op2 TSRMLS_CC);</span><br><span class="line">    return Z_LVAL_P(result) == 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>看起来里面发生了很多事情，但实际上，这很简单。<br>值得注意的一点是，expected（）只是一个宏包装器，出于我们的目的，我们可以将它忽略。  </p>
-<blockquote>
-<p>所以，在函数里面，我们有3个分支。  </p>
-<blockquote>
-<ol>
-<li>第一个是如果第一个变量是整数。  </li>
-<li>第二个是如果第一个变量是一个浮点。（double也是浮点型）  </li>
-<li>如果第一个变量是其他变量，则会出现第三个分支和最后一个分支。</li>
+<h5 id="DEMO："><a href="#DEMO：" class="headerlink" title="DEMO："></a>DEMO：</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curlGet</span><span class="params">($url)</span> </span>&#123;</span><br><span class="line">	$ch = curl_init();</span><br><span class="line">    curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">    curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">    curl_setopt($ch, CURLOPT_TIMEOUT, <span class="number">15</span>);</span><br><span class="line">    $output = curl_exec($ch);</span><br><span class="line">    var_dump($output);</span><br><span class="line">    curl_close($ch);</span><br><span class="line">&#125;</span><br><span class="line">$url  = <span class="string">'https://api.ifcert.org.cn/balanceService/v15/batchMessage?apiKey=325bd8d948ff357e33e0824e65d9207ea82ce89aa7956aba793b817aded645ba&amp;batchNum=CERT20190418005_20190531_86_1559297723000&amp;dataType=1&amp;timestamp=1559548379000&amp;nonce=1daae568&amp;sourceCode=CERT20190418005&amp;version=1.5&amp;infType=86'</span>;</span><br><span class="line"></span><br><span class="line">   var_dump(curlGet($url));</span><br><span class="line">   <span class="comment">//结果返回空串了</span></span><br></pre></td></tr></table></figure>
+<p>通过在浏览器抓包,得知原地址已经被重定向；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Request URL: https://api.ifcert.org.cn/balanceService/v15/batchMessage?apiKey=325bd8d948ff357e33e0824e65d9207ea82ce89aa7956aba793b817aded645ba&amp;batchNum=CERT20190418005_20190531_86_1559297723000&amp;dataType=1&amp;timestamp=1559548379000&amp;nonce=1daae568&amp;sourceCode=CERT20190418005&amp;version=1.5&amp;infType=86</span><br><span class="line">Request Method: GET</span><br><span class="line">Status Code: 302 Found</span><br><span class="line">Remote Address: 202.108.211.130:443</span><br><span class="line">Referrer Policy: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
+<h5 id="如图所示："><a href="#如图所示：" class="headerlink" title="如图所示："></a>如图所示：</h5><p><img src="/2019/06/03/curl抓取跳转页面CURLOPT-FOLLOWLOCATION的使用/302location.png" alt="curl抓取跳转页面CURLOPT-FOLLOWLOCATION的使用"></p>
+<h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><ol>
+<li>设置CURLOPT_FOLLOWLOCATION属性(true表示自动进行递归跳转抓取);</li>
+<li>可选设置CURLOPT_MAXREDIRS数值(表示最多允许跳转多少次后，递归跳转抓取将终止);</li>
 </ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl_setopt($ch, CURLOPT_MAXREDIRS, <span class="number">20</span>);</span><br><span class="line">curl_setopt($ch, CURLOPT_FOLLOWLOCATION, ture);</span><br></pre></td></tr></table></figure>
+<h5 id="扩展注意："><a href="#扩展注意：" class="headerlink" title="扩展注意："></a>扩展注意：</h5><blockquote>
+<p>CURLOPT_FOLLOWLOCATION 需要在安全模式关闭和未设置open_basedir的情况下才能使用。<br>open_basedir是php.ini中的一项设置，功能是将用户可操作的文件限制在某目录下。</p>
 </blockquote>
-</blockquote>
-<p>在前两个分支中的每一个，都有另外两个分支检查第二个参数是整数还是浮点。<br>如果是这样，它将进行简单的数字比较,如果不是，则调用下面的通用比较函数compare_function。</p>
-<blockquote>
-<p>因此这就是我们的答案:</p>
-<blockquote>
-<p>$I==$J 根本没有ZVAL强制转换,它只执行简单的C变量数值转换（基于值，不需要额外的内存分配）。<br>所以两个源变量都保持不变,没有进行“转换”。</p>
-</blockquote>
-</blockquote>
-<hr>
-<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>如果你知道该去哪里看的话，阅读资料并不难。试一试。有关练习，请查看[compare_function（）]（<a href="http://lxr.php.net/xref/php_5_4/zend/zend_operators.c" target="_blank" rel="noopener">http://lxr.php.net/xref/php_5_4/zend/zend_operators.c</a> 1402），并了解如果一个参数是字符串“2abc”，另一个是整数2，会发生什么情况…</p>
+<p>如果开户了安全模式，或者设置了open_basedir抓取方法：</p>
+<ul>
+<li>抓取头信息，并对header信息的状态码（301，302）进行判断；</li>
+<li>如果有location，则继续location下一个页面进行抓取；</li>
+<li>直至状态码为200状态时再抓取页面内容信息；</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl_setopt($rch, CURLOPT_HEADER, <span class="keyword">TRUE</span>);</span><br><span class="line">curl_setopt($rch, CURLOPT_NOBODY, <span class="keyword">TRUE</span>);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -546,7 +527,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Equals-opcode/" rel="tag"><i class="fa fa-tag"> Equals opcode</i></a>
+            <a href="/tags/CURL/" rel="tag"><i class="fa fa-tag"> CURL</i></a>
           
         </div>
       
@@ -559,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/10/关于PHP大整数/" rel="next" title="源码看PHP大整数">
-                <i class="fa fa-chevron-left"></i> 源码看PHP大整数
+              <a href="/2019/05/16/mysql-Copying-to-tmp-table-on-disk/" rel="next" title="mysql Copying to tmp table on disk">
+                <i class="fa fa-chevron-left"></i> mysql Copying to tmp table on disk
               </a>
             
           </div>
@@ -568,10 +549,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/27/位运算-在其他数都出现k次的数组中找到只出现一次的数/" rel="prev" title="位运算_在其他数都出现k次的数组中找到只出现一次的数">
-                位运算_在其他数都出现k次的数组中找到只出现一次的数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -805,7 +782,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#那么，让我们开始"><span class="nav-number">1.</span> <span class="nav-text">那么，让我们开始:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试代码："><span class="nav-number">1.1.</span> <span class="nav-text">测试代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Opcodes"><span class="nav-number">1.2.</span> <span class="nav-text">The Opcodes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Opcode-Handlers"><span class="nav-number">1.3.</span> <span class="nav-text">Opcode Handlers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fast-Equal-Function"><span class="nav-number">1.4.</span> <span class="nav-text">Fast Equal Function</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#DEMO："><span class="nav-number">1.</span> <span class="nav-text">DEMO：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如图所示："><span class="nav-number">2.</span> <span class="nav-text">如图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解决方法："><span class="nav-number">3.</span> <span class="nav-text">解决方法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#扩展注意："><span class="nav-number">4.</span> <span class="nav-text">扩展注意：</span></a></li></ol></div>
             
 
           </div>
