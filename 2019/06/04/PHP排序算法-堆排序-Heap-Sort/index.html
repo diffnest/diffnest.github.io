@@ -149,7 +149,7 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/06/04/PHP排序算法-堆排序-Heap-Sort/heap.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/06/04/PHP排序算法-堆排序-Heap-Sort/insertHeap.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/06/04/PHP排序算法-堆排序-Heap-Sort/deleteHeap.png">
-<meta property="og:updated_time" content="2019-06-04T11:35:17.253Z">
+<meta property="og:updated_time" content="2019-06-04T11:36:29.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP排序算法-堆排序(Heap Sort)">
 <meta name="twitter:description" content="堆排序，英文名称 Heapsort，利用二叉树（堆）这种数据结构所设计的一种排序算法，是一种对直接选择排序的一种改建算法。在逻辑结构上是按照二叉树存储结构，正是这种结构优化了选择排序的性能，在物理存储上是连续的数组存储，它利用了数组的特点快速定位指定索引的元素。  什么是堆 结构性： 堆是一个完全二叉树，完全二叉树要求树的节点从左到右排列，除最后一层外，每层的节点个数都是满的。 堆序性： 堆中每">
@@ -455,7 +455,7 @@
 </blockquote>
 <h4 id="什么是堆"><a href="#什么是堆" class="headerlink" title="什么是堆"></a>什么是堆</h4><ul>
 <li>结构性： 堆是一个完全二叉树，完全二叉树要求树的节点从左到右排列，除最后一层外，每层的节点个数都是满的。</li>
-<li>堆序性： 堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值。对于每个节点大于等于子节点值的堆称为大顶堆；每个节点小于等于子节点值的堆称为小顶堆;</li>
+<li>堆序性： 堆中每一个节点的值都必须大于等于（或小于等于）其子树中每个节点的值，对于每个节点大于等于子节点值的堆称为大顶堆；每个节点小于等于子节点值的堆称为小顶堆;</li>
 </ul>
 <h4 id="堆的存储方式"><a href="#堆的存储方式" class="headerlink" title="堆的存储方式"></a>堆的存储方式</h4><blockquote>
 <p>完全二叉树比较适合用数组来存储，除根节点外，节点i的左子节点的下标为i<em>2，右子节点的下标为i</em>2+1，父节点的坐标为i/2，根节点没有父节点，下标为0的空间暂时用不到;</p>
