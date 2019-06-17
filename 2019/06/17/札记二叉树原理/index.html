@@ -151,7 +151,7 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/06/17/札记二叉树原理/binaryTree2.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/06/17/札记二叉树原理/binaryTree_bianli.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/06/17/札记二叉树原理/binaryTree_sort.png">
-<meta property="og:updated_time" content="2019-06-17T11:38:26.139Z">
+<meta property="og:updated_time" content="2019-06-17T11:40:32.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记二叉树原理">
 <meta name="twitter:description" content="什么是树： 树(Tree)是n(n≥0)个结点的有限集；  树的概念： 节点的深度：节点到叶子节点的最长路径（边数） 节点的高度：根节点到这个节点所经历的边的个数 节点的层数：节点的深度+1 树的高度：根节点的高度如图所示：  什么是二叉树（Binary Tree）： 二叉树与树不同之处在于，树的每一个结点（除终端结点外）允许有若干子树分支； 二叉树只允许有左右两个子树分支，即不存在度大于2的结点">
@@ -464,10 +464,8 @@
 <h4 id="什么是二叉树（Binary-Tree）："><a href="#什么是二叉树（Binary-Tree）：" class="headerlink" title="什么是二叉树（Binary Tree）："></a>什么是二叉树（Binary Tree）：</h4><ul>
 <li>二叉树与树不同之处在于，树的每一个结点（除终端结点外）允许有若干子树分支；</li>
 <li>二叉树只允许有左右两个子树分支，即不存在度大于2的结点。</li>
+<li>二叉树还是一棵有序树，它的各个结点从左到右是依次有序可循的，且不可交换；</li>
 </ul>
-<blockquote>
-<p>二叉树还是一棵有序树，它的各个结点从左到右是依次有序可循的，且不可交换；</p>
-</blockquote>
 <p>它具有以下五种形态：</p>
 <ul>
 <li>空树</li>
@@ -477,17 +475,17 @@
 <li>左右子树均非空</li>
 </ul>
 <h4 id="二叉树又分为满二叉树，完全二叉树；"><a href="#二叉树又分为满二叉树，完全二叉树；" class="headerlink" title="二叉树又分为满二叉树，完全二叉树；"></a>二叉树又分为满二叉树，完全二叉树；</h4><blockquote>
-<p>满二叉树：</p>
+<p>满二叉树：<br>如图所示：<br><img src="/2019/06/17/札记二叉树原理/binaryTree1.png" alt="札记二叉树原理"></p>
 <ul>
 <li>叶子节点全都在最底层，除了叶子节点之外，</li>
-<li>每个节点都有左右两个子节点，树的深度为 n，总结点数为 2n−1；<br>如图所示：<br><img src="/2019/06/17/札记二叉树原理/binaryTree1.png" alt="札记二叉树原理"></li>
+<li>每个节点都有左右两个子节点，树的深度为 n，总结点数为 2n−1；</li>
 </ul>
 </blockquote>
 <blockquote>
-<p>完全二叉树：</p>
+<p>完全二叉树：<br>如图所示：<br><img src="/2019/06/17/札记二叉树原理/binaryTree2.png" alt="札记二叉树原理"></p>
 <ul>
 <li>叶子节点都在最底下两层，最后一层的叶子节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大；</li>
-<li>深度为k的，有n个结点的二叉树，当且仅当其每一个结点都与深度为 k 的满二叉树中编号从 1 至 n 的结点一一对应；<br>如图所示：<br><img src="/2019/06/17/札记二叉树原理/binaryTree2.png" alt="札记二叉树原理"></li>
+<li>深度为k的，有n个结点的二叉树，当且仅当其每一个结点都与深度为 k 的满二叉树中编号从 1 至 n 的结点一一对应；</li>
 </ul>
 </blockquote>
 <h4 id="二叉树性质总结："><a href="#二叉树性质总结：" class="headerlink" title="二叉树性质总结："></a>二叉树性质总结：</h4><ul>
