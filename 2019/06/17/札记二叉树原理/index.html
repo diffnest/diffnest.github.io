@@ -152,7 +152,7 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/06/17/札记二叉树原理/binaryTree2.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/06/17/札记二叉树原理/binaryTree_bianli.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/06/17/札记二叉树原理/binaryTree_sort.png">
-<meta property="og:updated_time" content="2019-06-18T02:47:01.940Z">
+<meta property="og:updated_time" content="2019-06-18T02:57:04.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记二叉树原理">
 <meta name="twitter:description" content="什么是树： 树(Tree)是n(n≥0)个结点的有限集；  树的概念： 节点的深度：节点到叶子节点的最长路径（边数）； 节点的高度：根节点到这个节点所经历的边的个数； 节点的层数：节点的深度+1； 树的高度：根节点的高度；如图所示：  什么是二叉树（Binary Tree）： 二叉树是每个节点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right su">
@@ -486,9 +486,9 @@
 <li>叶子节点都在最底下两层，最后一层的叶子节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大；</li>
 </ul>
 </blockquote>
-<h4 id="二叉树性质总结：x-2"><a href="#二叉树性质总结：x-2" class="headerlink" title="二叉树性质总结：x^2"></a>二叉树性质总结：x^2</h4><ul>
-<li>二叉树的第i层上最多有 2i−1个结点；</li>
-<li>深度为n的二叉树，最多拥有2n−1个结点；</li>
+<h4 id="二叉树性质总结："><a href="#二叉树性质总结：" class="headerlink" title="二叉树性质总结："></a>二叉树性质总结：</h4><ul>
+<li>二叉树的第i层上最多有 $2^(i-1)个结点；</li>
+<li>深度为n的二叉树，最多拥有2^(n-1)个结点；</li>
 <li>设满二叉树深度为 n，叶子结点数必为 2n−1；</li>
 </ul>
 <h4 id="二叉树的遍历："><a href="#二叉树的遍历：" class="headerlink" title="二叉树的遍历："></a>二叉树的遍历：</h4><ul>
@@ -823,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是树："><span class="nav-number">1.</span> <span class="nav-text">什么是树：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#树的概念："><span class="nav-number">2.</span> <span class="nav-text">树的概念：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是二叉树（Binary-Tree）："><span class="nav-number">3.</span> <span class="nav-text">什么是二叉树（Binary Tree）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树又分为满二叉树，完全二叉树；"><span class="nav-number">4.</span> <span class="nav-text">二叉树又分为满二叉树，完全二叉树；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树性质总结：x-2"><span class="nav-number">5.</span> <span class="nav-text">二叉树性质总结：x^2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树的遍历："><span class="nav-number">6.</span> <span class="nav-text">二叉树的遍历：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料："><span class="nav-number">6.1.</span> <span class="nav-text">参考资料：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#数据结构与算法之美：-https-time-geekbang-org-column-article-67856"><span class="nav-number">6.1.1.</span> <span class="nav-text">数据结构与算法之美：[https://time.geekbang.org/column/article/67856]</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是树："><span class="nav-number">1.</span> <span class="nav-text">什么是树：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#树的概念："><span class="nav-number">2.</span> <span class="nav-text">树的概念：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是二叉树（Binary-Tree）："><span class="nav-number">3.</span> <span class="nav-text">什么是二叉树（Binary Tree）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树又分为满二叉树，完全二叉树；"><span class="nav-number">4.</span> <span class="nav-text">二叉树又分为满二叉树，完全二叉树；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树性质总结："><span class="nav-number">5.</span> <span class="nav-text">二叉树性质总结：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树的遍历："><span class="nav-number">6.</span> <span class="nav-text">二叉树的遍历：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料："><span class="nav-number">6.1.</span> <span class="nav-text">参考资料：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#数据结构与算法之美：-https-time-geekbang-org-column-article-67856"><span class="nav-number">6.1.1.</span> <span class="nav-text">数据结构与算法之美：[https://time.geekbang.org/column/article/67856]</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
