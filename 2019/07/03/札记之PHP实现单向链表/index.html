@@ -152,7 +152,7 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/07/03/札记之PHP实现单向链表/deletefirst.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/07/03/札记之PHP实现单向链表/deleteafter.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/07/03/札记之PHP实现单向链表/deletemid.png">
-<meta property="og:updated_time" content="2019-07-05T07:18:56.396Z">
+<meta property="og:updated_time" content="2019-07-05T07:52:41.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现单向链表">
 <meta name="twitter:description" content="单链表是一种链式存取的数据结构，用一组地址任意的存储单元存放线性表中的数据元素。链表中的数据是以结点来表示的，每个结点的构成：元素(数据元素的映象) + 指针(指示后继元素存储位置)，元素就是存储数据的存储单元，指针就是连接每个结点的地址数据。  单向链表的类型声明123456789class ListNode&amp;#123;    private $data = NULL;    private">
@@ -473,7 +473,7 @@
 </ul>
 </blockquote>
 <h5 id="表中间插入节点"><a href="#表中间插入节点" class="headerlink" title="表中间插入节点"></a>表中间插入节点</h5><ul>
-<li>找到位置节点，再讲新节点的next指向位置节点的下一个节点；</li>
+<li>找到位置节点，再将新节点的next指向位置节点的下一个节点；</li>
 <li>位置节点的next指针指向新节点；<br><img src="/2019/07/03/札记之PHP实现单向链表/insertmid.png" alt="札记之PHP实现单向链表"></li>
 </ul>
 <h4 id="链表的删除"><a href="#链表的删除" class="headerlink" title="链表的删除"></a>链表的删除</h4><h5 id="删除链表的表头"><a href="#删除链表的表头" class="headerlink" title="删除链表的表头"></a>删除链表的表头</h5><ul>
