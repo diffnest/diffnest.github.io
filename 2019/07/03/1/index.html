@@ -150,9 +150,9 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/07/03/1/insertafter.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/07/03/1/insertmid.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/07/03/1/deletefirst.png">
-<meta property="og:image" content="http://diffnest.github.io/2019/07/03/1/deletelast.png">
+<meta property="og:image" content="http://diffnest.github.io/2019/07/03/1/deleteafter.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/07/03/1/deletemid.png">
-<meta property="og:updated_time" content="2019-07-05T05:46:05.840Z">
+<meta property="og:updated_time" content="2019-07-05T06:03:58.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现单向链表">
 <meta name="twitter:description" content="单链表是一种链式存取的数据结构，用一组地址任意的存储单元存放线性表中的数据元素。链表中的数据是以结点来表示的，每个结点的构成：元素(数据元素的映象) + 指针(指示后继元素存储位置)，元素就是存储数据的存储单元，指针就是连接每个结点的地址数据。  单向链表的类型声明1234567891011class Node &amp;#123;	public $data = NULL;	public $next =">
@@ -483,7 +483,7 @@
 <h5 id="删除链表的表尾"><a href="#删除链表的表尾" class="headerlink" title="删除链表的表尾"></a>删除链表的表尾</h5><ul>
 <li>遍历链表，在遍历时保存前驱结点的地址，当遍历到链表的表尾时，将有两个指针，分别是表尾结点的指针和指向表尾结点的前驱结点的指针;</li>
 <li>将表尾的前驱结点的next指针更新为NULL;</li>
-<li>移除表尾结点;<br><img src="/2019/07/03/1/deletelast.png" alt="札记之PHP实现单向链表"></li>
+<li>移除表尾结点;<br><img src="/2019/07/03/1/deleteafter.png" alt="札记之PHP实现单向链表"></li>
 </ul>
 <h5 id="删除链表中间的节点"><a href="#删除链表中间的节点" class="headerlink" title="删除链表中间的节点"></a>删除链表中间的节点</h5><ul>
 <li>遍历链表，在遍历时保存前驱结点的地址，找到被删除的结点，将前驱结点的next指针的值更新为被删除的结点的next指针的值</li>
