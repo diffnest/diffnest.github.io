@@ -138,24 +138,24 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="示例 1：输入：[1,2,3,4,5]返回的结点值为 [5,4,3,2,1]   代码实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://diffnest.github.io/2018/12/03/hello-world/index.html">
+<meta property="og:title" content="札记之PHP实现链表反转">
+<meta property="og:url" content="http://diffnest.github.io/2019/07/16/1/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="示例 1：输入：[1,2,3,4,5]返回的结点值为 [5,4,3,2,1]   代码实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T11:12:07.032Z">
+<meta property="og:updated_time" content="2019-07-16T07:14:17.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="札记之PHP实现链表反转">
+<meta name="twitter:description" content="示例 1：输入：[1,2,3,4,5]返回的结点值为 [5,4,3,2,1]   代码实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/2018/12/03/hello-world/">
+  <link rel="canonical" href="http://diffnest.github.io/2019/07/16/1/">
 
 
 
@@ -165,7 +165,7 @@
   };
 </script>
 
-  <title>Hello World | Writing more than life</title>
+  <title>札记之PHP实现链表反转 | Writing more than life</title>
   
 
 
@@ -361,7 +361,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2018/12/03/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/07/16/1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Echo">
@@ -378,7 +378,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">札记之PHP实现链表反转</h1>
         
 
         <div class="post-meta">
@@ -390,7 +390,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-03T19:12:07+08:00">2018-12-03</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-16T15:06:02+08:00">2019-07-16</time>
             
 
             
@@ -427,16 +427,18 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <blockquote>
+<p>示例 1：<br>输入：[1,2,3,4,5]<br>返回的结点值为 [5,4,3,2,1] </p>
+</blockquote>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $data;</span><br><span class="line">    <span class="keyword">private</span> $next;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(string $data)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;data = $data;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span><span class="params">($var)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;$var;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__set</span><span class="params">($var, $val)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;$var = $val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $head = <span class="keyword">NULL</span>;</span><br><span class="line">    <span class="keyword">private</span> $length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> $currentNode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">insert</span><span class="params">(string $data = NULL)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $newNode = <span class="keyword">new</span> ListNode($data);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;head === <span class="keyword">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;head = &amp;$newNode;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $currentNode = <span class="keyword">$this</span>-&gt;head;</span><br><span class="line">            <span class="keyword">while</span> ($currentNode-&gt;next !== <span class="keyword">NULL</span>) &#123;</span><br><span class="line">                $currentNode = $currentNode-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            $currentNode-&gt;next = $newNode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;length++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getList</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setList</span><span class="params">($head)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;head = $head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">reverse</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;head == <span class="keyword">null</span> || <span class="keyword">$this</span>-&gt;head-&gt;next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $reverseList = <span class="keyword">NULL</span>;</span><br><span class="line">        $next = <span class="keyword">NULL</span>;</span><br><span class="line">        $currentNode = <span class="keyword">$this</span>-&gt;head;</span><br><span class="line">        <span class="keyword">while</span> ($currentNode !== <span class="keyword">NULL</span>) &#123;</span><br><span class="line">            $next = $currentNode-&gt;next;<span class="comment">//保存后面链表数据</span></span><br><span class="line"></span><br><span class="line">            $currentNode-&gt;next = $reverseList;<span class="comment">//将当前节点的下一节点置为前节点  </span></span><br><span class="line">            $reverseList = $currentNode;<span class="comment">//将当前节点保存为前一节点</span></span><br><span class="line"></span><br><span class="line">            $currentNode = $next;<span class="comment">//将当前节点置为下一节点</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;head = $reverseList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//递归</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reverseList</span><span class="params">($head = null)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($head == <span class="keyword">null</span> || $head-&gt;next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> $head;</span><br><span class="line">        &#125;</span><br><span class="line">        $res = <span class="keyword">$this</span>-&gt;reverseList($head-&gt;next);</span><br><span class="line">        $head-&gt;next-&gt;next = $head;</span><br><span class="line">        $head-&gt;next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> $res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">display</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'LinkList length: '</span> . <span class="keyword">$this</span>-&gt;length . PHP_EOL;</span><br><span class="line">        $currentNode = <span class="keyword">$this</span>-&gt;head;</span><br><span class="line">        <span class="keyword">while</span> ($currentNode !== <span class="keyword">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> $currentNode-&gt;data . PHP_EOL;</span><br><span class="line">            $currentNode = $currentNode-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$linkedObj = <span class="keyword">new</span> LinkedList();</span><br><span class="line"></span><br><span class="line">$linkedObj-&gt;insert(<span class="number">1</span>);</span><br><span class="line">$linkedObj-&gt;insert(<span class="number">2</span>);</span><br><span class="line">$linkedObj-&gt;insert(<span class="number">3</span>);</span><br><span class="line">$linkedObj-&gt;insert(<span class="number">4</span>);</span><br><span class="line">$linkedObj-&gt;insert(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">$head = $linkedObj-&gt;getList();</span><br><span class="line">$newHead = $linkedObj-&gt;reverseList($head);</span><br><span class="line">$linkedObj-&gt;setList($newHead);</span><br><span class="line">$linkedObj-&gt;display();</span><br></pre></td></tr></table></figure>
+<h4 id="递推"><a href="#递推" class="headerlink" title="递推"></a>递推</h4><blockquote>
+<p>1 2 3 4 5<br>$next = [2, 3, 4, 5];<br>$currentNode-&gt;next = null;<br>$reverseList = 1;<br>$currentNode = $next = [2, 3, 4, 5]</p>
+</blockquote>
+<p>$next = [3, 4, 5];<br>$currentNode-&gt;next = [1];<br>$reverseList = [2, 1]<br>$currentNode = $next = [3, 4, 5]</p>
+<p>$next = [4, 5];<br>$currentNode-&gt;next = [2, 1];<br>$reverseList = [3, 2, 1]<br>$currentNode = $next = [4, 5]</p>
+<p>$next = [5];<br>$currentNode-&gt;next = [3, 2, 1];<br>$reverseList = [4, 3, 2, 1]<br>$currentNode = $next = [5]</p>
+<p>$reverseList = [5, 4, 3, 2, 1]</p>
+<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">4</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -500,15 +502,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/07/15/札记之PHP实现找出链表的中间结点/" rel="next" title="札记之PHP实现找出链表的中间结点">
+                <i class="fa fa-chevron-left"></i> 札记之PHP实现找出链表的中间结点
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/05/rsa/" rel="prev" title="php 使用openssl进行RSA2加解密以及签名算法">
-                php 使用openssl进行RSA2加解密以及签名算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -756,7 +758,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">1.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#递推"><span class="nav-number">2.</span> <span class="nav-text">递推</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">3.</span> <span class="nav-text">运行结果</span></a></li></ol></div>
             
 
           </div>
