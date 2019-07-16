@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="Writing more than life">
 <meta property="og:description" content="示例 1：输入：[1,2,3,4,5]返回的结点值为 [5,4,3,2,1]   代码实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-16T07:14:17.252Z">
+<meta property="og:updated_time" content="2019-07-16T07:16:38.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现链表反转">
 <meta name="twitter:description" content="示例 1：输入：[1,2,3,4,5]返回的结点值为 [5,4,3,2,1]   代码实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818">
@@ -434,10 +434,18 @@
 <h4 id="递推"><a href="#递推" class="headerlink" title="递推"></a>递推</h4><blockquote>
 <p>1 2 3 4 5<br>$next = [2, 3, 4, 5];<br>$currentNode-&gt;next = null;<br>$reverseList = 1;<br>$currentNode = $next = [2, 3, 4, 5]</p>
 </blockquote>
+<blockquote>
 <p>$next = [3, 4, 5];<br>$currentNode-&gt;next = [1];<br>$reverseList = [2, 1]<br>$currentNode = $next = [3, 4, 5]</p>
+</blockquote>
+<blockquote>
 <p>$next = [4, 5];<br>$currentNode-&gt;next = [2, 1];<br>$reverseList = [3, 2, 1]<br>$currentNode = $next = [4, 5]</p>
+</blockquote>
+<blockquote>
 <p>$next = [5];<br>$currentNode-&gt;next = [3, 2, 1];<br>$reverseList = [4, 3, 2, 1]<br>$currentNode = $next = [5]</p>
+</blockquote>
+<blockquote>
 <p>$reverseList = [5, 4, 3, 2, 1]</p>
+</blockquote>
 <h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">4</span><br><span class="line">3</span><br><span class="line">2</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
       
     </div>
