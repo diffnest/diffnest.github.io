@@ -147,7 +147,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://diffnest.github.io/2019/07/19/札记之PHP实现LRU算法/lru.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/07/19/札记之PHP实现LRU算法/lruprocess.png">
-<meta property="og:updated_time" content="2019-07-19T05:20:56.093Z">
+<meta property="og:updated_time" content="2019-07-19T05:24:57.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现LRU算法">
 <meta name="twitter:description" content="LRU(least recently used, 最近最少使用),LRU算法的设计原则是：   当数据在最近一段时间经常被访问，那么它在以后也会经常被访问。这就意味着，如果经常访问的数据，我们需要让其能够快速命中，而不常访问的数据，我们在容量超出限制内，要将其淘汰。  LRU的实现：链表 数组 数组：查询比较快，插入，删除的时间复杂度O(n) 链表：查询比较慢，但是对于增删来说十分方便，时间复杂">
@@ -446,7 +446,7 @@
 </blockquote>
 <p><img src="/2019/07/19/札记之PHP实现LRU算法/lru.png" alt="札记之PHP实现LRU算法"></p>
 <h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><ul>
-<li>访问的数据命中缓存试，遍历得到这个数据对应的结点,并将其从原来的位置删除，然后再插入到链表的头部；(修改链表指针O(1)) </li>
+<li>当访问的数据命中缓存，遍历得到这个数据对应的结点,并将其从原来的位置删除，然后再插入到链表的头部；(修改链表指针O(1)) </li>
 <li>如果此数据没有在缓存链表中,分为两种情况：</li>
 <li>如果此时缓存未满，则将此结点直接插入到链表的头部；</li>
 <li>如果此时缓存已满，则遍历至链表尾结点将其删除，将新的数据结点插入链表的头部。</li>
