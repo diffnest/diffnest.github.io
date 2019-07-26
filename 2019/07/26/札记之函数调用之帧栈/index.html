@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|18:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.6',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="什么是栈帧 :   栈帧就是一个函数执行的环境：函数调用框架、函数参数、函数的局部变量、函数执行完后返回到哪里等等，栈是从高地址向低地址延伸的。 每个函数的每次调用，都有它自己独立的一个栈帧，这个栈帧中维持着所需要的各种信息。 寄存器ebp指向当前的栈帧的底部（高地址），寄存器esp指向当前的栈帧的顶部（低地址）  名词解释：寄存器和一些汇编指令   名称 参数说明     EAX 累加(Acc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="札记之函数调用之帧栈">
+<meta property="og:url" content="http://diffnest.github.io/2019/07/26/札记之函数调用之帧栈/index.html">
+<meta property="og:site_name" content="Writing more than life">
+<meta property="og:description" content="什么是栈帧 :   栈帧就是一个函数执行的环境：函数调用框架、函数参数、函数的局部变量、函数执行完后返回到哪里等等，栈是从高地址向低地址延伸的。 每个函数的每次调用，都有它自己独立的一个栈帧，这个栈帧中维持着所需要的各种信息。 寄存器ebp指向当前的栈帧的底部（高地址），寄存器esp指向当前的栈帧的顶部（低地址）  名词解释：寄存器和一些汇编指令   名称 参数说明     EAX 累加(Acc">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://diffnest.github.io/2019/07/26/札记之函数调用之帧栈/stack1.png">
+<meta property="og:image" content="http://diffnest.github.io/2019/07/26/札记之函数调用之帧栈/stack2.png">
+<meta property="og:image" content="http://diffnest.github.io/2019/07/26/札记之函数调用之帧栈/stack3.png">
+<meta property="og:image" content="http://diffnest.github.io/2019/07/26/札记之函数调用之帧栈/stack4.png">
+<meta property="og:updated_time" content="2019-07-26T06:47:11.700Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="札记之函数调用之帧栈">
+<meta name="twitter:description" content="什么是栈帧 :   栈帧就是一个函数执行的环境：函数调用框架、函数参数、函数的局部变量、函数执行完后返回到哪里等等，栈是从高地址向低地址延伸的。 每个函数的每次调用，都有它自己独立的一个栈帧，这个栈帧中维持着所需要的各种信息。 寄存器ebp指向当前的栈帧的底部（高地址），寄存器esp指向当前的栈帧的顶部（低地址）  名词解释：寄存器和一些汇编指令   名称 参数说明     EAX 累加(Acc">
+<meta name="twitter:image" content="http://diffnest.github.io/2019/07/26/札记之函数调用之帧栈/stack1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://diffnest.github.io/2019/07/26/札记之函数调用之帧栈/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>札记之函数调用之帧栈 | Writing more than life</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Writing more than life</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">曾梦想仗剑走天涯 看一看世界的繁华</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+</li>
+
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/07/26/札记之函数调用之帧栈/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Echo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/tx.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Writing more than life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">札记之函数调用之帧栈</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-26T13:56:44+08:00">2019-07-26</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>什么是栈帧 :</p>
+</blockquote>
+<ul>
+<li>栈帧就是一个函数执行的环境：函数调用框架、函数参数、函数的局部变量、函数执行完后返回到哪里等等，栈是从高地址向低地址延伸的。</li>
+<li>每个函数的每次调用，都有它自己独立的一个栈帧，这个栈帧中维持着所需要的各种信息。</li>
+<li>寄存器ebp指向当前的栈帧的底部（高地址），寄存器esp指向当前的栈帧的顶部（低地址）</li>
+</ul>
+<h4 id="名词解释："><a href="#名词解释：" class="headerlink" title="名词解释："></a>名词解释：</h4><h5 id="寄存器和一些汇编指令"><a href="#寄存器和一些汇编指令" class="headerlink" title="寄存器和一些汇编指令"></a>寄存器和一些汇编指令</h5><table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">EAX</td>
+<td style="text-align:center">累加(Accumulator)寄存器，常用于函数返回值</td>
+</tr>
+<tr>
+<td style="text-align:center">EBX</td>
+<td style="text-align:center">基址(Base)寄存器，以它为基址访问内存</td>
+</tr>
+<tr>
+<td style="text-align:center">ECX</td>
+<td style="text-align:center">计数器(Counter)寄存器，常用作字符串和循环操作中的计数器</td>
+</tr>
+<tr>
+<td style="text-align:center">EDX</td>
+<td style="text-align:center">数据(Data)寄存器，常用于乘除法和I/O指针</td>
+</tr>
+<tr>
+<td style="text-align:center">ESI</td>
+<td style="text-align:center">源变址寄存器</td>
+</tr>
+<tr>
+<td style="text-align:center">DSI</td>
+<td style="text-align:center">目的变址寄存器</td>
+</tr>
+<tr>
+<td style="text-align:center">ESP</td>
+<td style="text-align:center">堆栈(Stack)指针寄存器，指向堆栈顶部</td>
+</tr>
+<tr>
+<td style="text-align:center">EBP</td>
+<td style="text-align:center">基址指针寄存器，指向当前堆栈底部</td>
+</tr>
+<tr>
+<td style="text-align:center">EIP</td>
+<td style="text-align:center">指令寄存器，指向下一条指令的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">call</td>
+<td style="text-align:center">1将当前指令的下一条指令保存，保存的目的是为了恢复（入栈保存；2跳转至目标函数的地址处；</td>
+</tr>
+<tr>
+<td style="text-align:center">ret</td>
+<td style="text-align:center">1将当前栈顶的内容出栈；2用该内容修改eip</td>
+</tr>
+</tbody>
+</table>
+<h5 id="入栈push和出栈pop"><a href="#入栈push和出栈pop" class="headerlink" title="入栈push和出栈pop"></a>入栈push和出栈pop</h5><ul>
+<li>push ebp就等于将ebp的值保存到栈中，并且将当前esp下移</li>
+<li>pop ebp就等于将ebp的值从栈中取出来，将ebp指向这个值</li>
+</ul>
+<h4 id="通过一段代码观看函数调用过程"><a href="#通过一段代码观看函数调用过程" class="headerlink" title="通过一段代码观看函数调用过程"></a>通过一段代码观看函数调用过程</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="number">2</span> <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">3 </span>&#123;</span><br><span class="line"><span class="number">4</span>    <span class="keyword">return</span> x+y;</span><br><span class="line"><span class="number">5</span> &#125;</span><br><span class="line"><span class="number">6</span> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">7 </span>&#123;</span><br><span class="line"><span class="number">8</span>     <span class="keyword">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="number">9</span>     <span class="keyword">int</span> y = <span class="number">20</span>;</span><br><span class="line"><span class="number">10</span>    <span class="keyword">int</span> num = add(x, y);</span><br><span class="line"><span class="number">11</span>    <span class="built_in">printf</span>(<span class="string">"num %d \n"</span>, num);</span><br><span class="line"><span class="number">12</span> &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="GDB调试结果"><a href="#GDB调试结果" class="headerlink" title="GDB调试结果"></a>GDB调试结果</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对应源码第3行</span></span><br><span class="line">&#123; </span><br><span class="line"><span class="comment">//push就是压栈，把ebp 的地址压入栈中(每次压栈后，esp都指向最新的栈顶位置)</span></span><br><span class="line"><span class="number">0x0000000000400531</span> &lt;main+<span class="number">0</span>&gt;:  <span class="number">55</span>              push   %rbp </span><br><span class="line"><span class="comment">//使rbp=rsp，即rbp也指向栈顶位置 </span></span><br><span class="line"><span class="number">0x0000000000400532</span> &lt;main+<span class="number">1</span>&gt;:  <span class="number">48</span> <span class="number">89</span> e5        mov    %rsp,%rbp</span><br><span class="line"><span class="comment">//rsp偏移10，开辟一个main空间</span></span><br><span class="line"><span class="number">0x0000000000400535</span> &lt;main+<span class="number">4</span>&gt;:  <span class="number">48</span> <span class="number">83</span> ec <span class="number">10</span>     sub    $<span class="number">0x10</span>,%rsp</span><br></pre></td></tr></table></figure>
+<h5 id="如图所示："><a href="#如图所示：" class="headerlink" title="如图所示："></a>如图所示：</h5><p><img src="/2019/07/26/札记之函数调用之帧栈/stack1.png" alt="札记之函数调用之帧栈"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对应源码第8行</span></span><br><span class="line"><span class="comment">//x值给到rbp偏移-4的位置</span></span><br><span class="line"><span class="keyword">int</span> x = <span class="number">10</span>;      </span><br><span class="line"><span class="number">0x0000000000400539</span> &lt;main+<span class="number">8</span>&gt;:  c7 <span class="number">45</span> fc <span class="number">0</span>a <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>    movl   $<span class="number">0xa</span>,<span class="number">-0x4</span>(%rbp)</span><br><span class="line"></span><br><span class="line"><span class="comment">//对应源码第9行</span></span><br><span class="line">y值给到rbp偏移<span class="number">-8</span>的位置</span><br><span class="line"><span class="keyword">int</span> y = <span class="number">20</span>;</span><br><span class="line"><span class="number">0x0000000000400540</span> &lt;main+<span class="number">15</span>&gt;: c7 <span class="number">45</span> f8 <span class="number">14</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>    movl   $<span class="number">0x14</span>,<span class="number">-0x8</span>(%rbp)</span><br><span class="line"></span><br><span class="line"><span class="comment">//对应源码第10行</span></span><br><span class="line"><span class="keyword">int</span> num = add(x, y);</span><br><span class="line"><span class="comment">//10 =》edx</span></span><br><span class="line"><span class="number">0x0000000000400547</span> &lt;main+<span class="number">22</span>&gt;: <span class="number">8b</span> <span class="number">55</span> f8        mov    <span class="number">-0x8</span>(%rbp),%edx</span><br><span class="line"><span class="comment">//20 =》eax</span></span><br><span class="line"><span class="number">0x000000000040054a</span> &lt;main+<span class="number">25</span>&gt;: <span class="number">8b</span> <span class="number">45</span> fc        mov    <span class="number">-0x4</span>(%rbp),%eax </span><br><span class="line"><span class="comment">//10 =》esi</span></span><br><span class="line"><span class="number">0x000000000040054d</span> &lt;main+<span class="number">28</span>&gt;: <span class="number">89</span> d6           mov    %edx,%esi <span class="number">0x000000000040054f</span> &lt;main+<span class="number">30</span>&gt;: <span class="number">89</span> c7           mov    %eax,%edi</span><br><span class="line"><span class="comment">//20 =》edi</span></span><br><span class="line"><span class="number">0x0000000000400551</span> &lt;main+<span class="number">32</span>&gt;: e8 c7 ff ff ff  callq  <span class="number">0x40051d</span></span><br></pre></td></tr></table></figure>
+<h5 id="如图所示：-1"><a href="#如图所示：-1" class="headerlink" title="如图所示："></a>如图所示：</h5><p><img src="/2019/07/26/札记之函数调用之帧栈/stack2.png" alt="札记之函数调用之帧栈"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">##### 对应源码第<span class="number">3</span>行</span><br><span class="line"><span class="comment">//1、将当前指令的下一条指令的地址压入栈中；</span></span><br><span class="line"><span class="comment">//2、跳转至目标函数的地址开始过程调用。</span></span><br><span class="line">当执行到callq =》add (x=<span class="number">0</span>, y=<span class="number">0</span>) at tst.c:<span class="number">4</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//压栈rbp</span></span><br><span class="line"><span class="number">0x000000000040051d</span> &lt;add+<span class="number">0</span>&gt;:  <span class="number">55</span>              push   %rbp </span><br><span class="line"><span class="comment">//栈顶=栈底</span></span><br><span class="line"><span class="number">0x000000000040051e</span> &lt;add+<span class="number">1</span>&gt;:  <span class="number">48</span> <span class="number">89</span> e5        mov    %rsp,%rbp</span><br><span class="line"><span class="comment">//把edi的值赋给rbp寄存器偏移8位的地址</span></span><br><span class="line"><span class="number">0x0000000000400521</span> &lt;add+<span class="number">4</span>&gt;:  <span class="number">89</span> <span class="number">7</span>d fc        mov    %edi,<span class="number">-0x4</span>(%rbp)</span><br><span class="line"><span class="comment">//把esi的值赋给rbp寄存器偏移8位的地址,此时rsp地址减小</span></span><br><span class="line"><span class="number">0x0000000000400524</span> &lt;add+<span class="number">7</span>&gt;:  <span class="number">89</span> <span class="number">75</span> f8        mov    %esi,<span class="number">-0x8</span>(%rbp)</span><br><span class="line"></span><br><span class="line">##### 对应源码第<span class="number">4</span>行</span><br><span class="line"><span class="keyword">return</span> x+y;</span><br><span class="line"><span class="comment">//值10赋给寄存器eax</span></span><br><span class="line"><span class="number">0x0000000000400527</span> &lt;add+<span class="number">10</span>&gt;: <span class="number">8b</span> <span class="number">45</span> f8        mov    <span class="number">-0x8</span>(%rbp),%eax</span><br><span class="line"><span class="comment">//值20赋给寄存器edx</span></span><br><span class="line"><span class="number">0x000000000040052a</span> &lt;add+<span class="number">13</span>&gt;: <span class="number">8b</span> <span class="number">55</span> fc        mov    <span class="number">-0x4</span>(%rbp),%edx</span><br><span class="line"><span class="comment">//eax = edx+eax</span></span><br><span class="line"><span class="number">0x000000000040052d</span> &lt;add+<span class="number">16</span>&gt;: <span class="number">01</span> d0           add    %edx,%eax</span><br><span class="line"></span><br><span class="line">##### 对应源码第<span class="number">5</span>行</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//#弹出父函数的rbp，并把rsp往下移动，(此时rsp在值和在未调用test之前的一致的)</span></span><br><span class="line"><span class="number">0x000000000040052f</span> &lt;add+<span class="number">18</span>&gt;: <span class="number">5</span>d              pop    %rbp <span class="comment">//从栈中pop出一条指令</span></span><br><span class="line"><span class="number">0x0000000000400530</span> &lt;add+<span class="number">19</span>&gt;: c3              retq   <span class="comment">//根据这条指令退栈到main的寄存器rbp地址处</span></span><br></pre></td></tr></table></figure>
+<h5 id="如图所示：-2"><a href="#如图所示：-2" class="headerlink" title="如图所示："></a>如图所示：</h5><p><img src="/2019/07/26/札记之函数调用之帧栈/stack3.png" alt="札记之函数调用之帧栈"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">0x0000000000400556 in main () at tst.c:12</span><br><span class="line"><span class="number">0x0000000000400556</span> &lt;main+<span class="number">37</span>&gt;: <span class="number">89</span> <span class="number">45</span> f4        mov    %eax,<span class="number">-0xc</span>(%rbp)  <span class="comment">//add的值给到rbp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对应源码第11行</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"num %d \n"</span>, num);</span><br><span class="line"><span class="number">0x0000000000400559</span> &lt;main+<span class="number">40</span>&gt;: <span class="number">8b</span> <span class="number">45</span> f4        mov    <span class="number">-0xc</span>(%rbp),%eax <span class="comment">//赋值给eax</span></span><br><span class="line"><span class="number">0x000000000040055c</span> &lt;main+<span class="number">43</span>&gt;: <span class="number">89</span> c6           mov    %eax,%esi <span class="comment">//eax 值赋给esi</span></span><br><span class="line"><span class="number">0x000000000040055e</span> &lt;main+<span class="number">45</span>&gt;: bf <span class="number">00</span> <span class="number">06</span> <span class="number">40</span> <span class="number">00</span>  mov    $<span class="number">0x400600</span>,%edi <span class="comment">//置空edi</span></span><br><span class="line"><span class="number">0x0000000000400563</span> &lt;main+<span class="number">50</span>&gt;: b8 <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>  mov    $<span class="number">0x0</span>,%eax  <span class="comment">//置空eax</span></span><br><span class="line"><span class="number">0x0000000000400568</span> &lt;main+<span class="number">55</span>&gt;: e8 <span class="number">93</span> fe ff ff  callq  <span class="number">0x400400</span> &lt;<span class="built_in">printf</span>@plt&gt;</span><br><span class="line"></span><br><span class="line">执行到callq</span><br><span class="line"><span class="number">0x0000000000400400</span> in <span class="built_in">printf</span>@plt ()</span><br><span class="line"><span class="number">0x0000000000400400</span> &lt;<span class="built_in">printf</span>@plt+<span class="number">0</span>&gt;:   ff <span class="number">25</span> <span class="number">12</span> <span class="number">0</span>c <span class="number">20</span> <span class="number">00</span>       jmpq   *<span class="number">0x200c12</span>(%rip)        # <span class="number">0x601018</span></span><br><span class="line"></span><br><span class="line"><span class="number">0x0000000000400406</span> in <span class="built_in">printf</span>@plt ()</span><br><span class="line"><span class="number">0x0000000000400406</span> &lt;<span class="built_in">printf</span>@plt+<span class="number">6</span>&gt;:   <span class="number">68</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>  pushq  $<span class="number">0x0</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">num <span class="number">30</span></span><br><span class="line"><span class="comment">//leaveq相当于：1: movq %rbp, %rsp, 2: popq %rbp</span></span><br><span class="line"><span class="comment">//清栈，退出</span></span><br><span class="line"><span class="number">0x000000000040056d</span> &lt;main+<span class="number">60</span>&gt;:        c9      leaveq</span><br><span class="line"><span class="number">0x000000000040056e</span> &lt;main+<span class="number">61</span>&gt;:        c3      retq</span><br></pre></td></tr></table></figure>
+<h5 id="如图所示：-3"><a href="#如图所示：-3" class="headerlink" title="如图所示："></a>如图所示：</h5><p><img src="/2019/07/26/札记之函数调用之帧栈/stack4.png" alt="札记之函数调用之帧栈"></p>
+
+      
+    </div>
+
+    
+    
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/wxpay.png" alt="Echo WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/19/札记之PHP实现LRU算法/" rel="next" title="札记之PHP实现LRU算法">
+                <i class="fa fa-chevron-left"></i> 札记之PHP实现LRU算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/tx.png" alt="Echo">
+            
+              <p class="site-author-name" itemprop="name">Echo</p>
+              <p class="site-description motion-element" itemprop="description">以梦为马，明日天涯</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://diffnest.github.io/myblog" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:327985860@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#名词解释："><span class="nav-number">1.</span> <span class="nav-text">名词解释：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#寄存器和一些汇编指令"><span class="nav-number">1.1.</span> <span class="nav-text">寄存器和一些汇编指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#入栈push和出栈pop"><span class="nav-number">1.2.</span> <span class="nav-text">入栈push和出栈pop</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过一段代码观看函数调用过程"><span class="nav-number">2.</span> <span class="nav-text">通过一段代码观看函数调用过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GDB调试结果"><span class="nav-number">2.1.</span> <span class="nav-text">GDB调试结果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如图所示："><span class="nav-number">2.2.</span> <span class="nav-text">如图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如图所示：-1"><span class="nav-number">2.3.</span> <span class="nav-text">如图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如图所示：-2"><span class="nav-number">2.4.</span> <span class="nav-text">如图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如图所示：-3"><span class="nav-number">2.5.</span> <span class="nav-text">如图所示：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Echo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.6</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.6"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
