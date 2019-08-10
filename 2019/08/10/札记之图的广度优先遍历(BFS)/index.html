@@ -138,20 +138,20 @@
 
 
 
-  <meta name="description" content="基本思想 从图中的某个顶点V出发访问并记录； 依次访问顶点V的邻接顶点w1、w2……wk； 分别从这些邻接点出发，依次访问它们的未被访问过的邻接点，直到图中所有已被访问过的顶点的邻接点都被访问到。 重复第3步，直到图中所有顶点都被访问完为止。  存储结构/matrix_undirection.png) 实现方式邻接表非递归实现  广度优先算法：采用队列（先进先出FIFO）的思想，遍历节点时，被遍历">
+  <meta name="description" content="基本思想 从图中的某个顶点V出发访问并记录； 依次访问顶点V的邻接顶点w1、w2……wk； 分别从这些邻接点出发，依次访问它们的未被访问过的邻接点，直到图中所有已被访问过的顶点的邻接点都被访问到； 重复第3步，直到图中所有顶点都被访问完为止。  存储结构/matrix_undirection.png) 实现方式邻接表非递归实现  广度优先算法：采用队列（先进先出FIFO）的思想，遍历节点时，被遍历">
 <meta name="keywords" content="广度优先遍历">
 <meta property="og:type" content="article">
 <meta property="og:title" content="札记之图的广度优先遍历(BFS)">
 <meta property="og:url" content="http://diffnest.github.io/2019/08/10/札记之图的广度优先遍历(BFS)/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="基本思想 从图中的某个顶点V出发访问并记录； 依次访问顶点V的邻接顶点w1、w2……wk； 分别从这些邻接点出发，依次访问它们的未被访问过的邻接点，直到图中所有已被访问过的顶点的邻接点都被访问到。 重复第3步，直到图中所有顶点都被访问完为止。  存储结构/matrix_undirection.png) 实现方式邻接表非递归实现  广度优先算法：采用队列（先进先出FIFO）的思想，遍历节点时，被遍历">
+<meta property="og:description" content="基本思想 从图中的某个顶点V出发访问并记录； 依次访问顶点V的邻接顶点w1、w2……wk； 分别从这些邻接点出发，依次访问它们的未被访问过的邻接点，直到图中所有已被访问过的顶点的邻接点都被访问到； 重复第3步，直到图中所有顶点都被访问完为止。  存储结构/matrix_undirection.png) 实现方式邻接表非递归实现  广度优先算法：采用队列（先进先出FIFO）的思想，遍历节点时，被遍历">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://diffnest.github.io/2019/08/10/札记之图的广度优先遍历(BFS)/札记之图的广度优先遍历(BFS">
 <meta property="og:image" content="http://diffnest.github.io/2019/08/10/札记之图的广度优先遍历(BFS)/札记之图的广度优先遍历(BFS">
-<meta property="og:updated_time" content="2019-08-10T02:28:43.426Z">
+<meta property="og:updated_time" content="2019-08-10T02:30:52.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之图的广度优先遍历(BFS)">
-<meta name="twitter:description" content="基本思想 从图中的某个顶点V出发访问并记录； 依次访问顶点V的邻接顶点w1、w2……wk； 分别从这些邻接点出发，依次访问它们的未被访问过的邻接点，直到图中所有已被访问过的顶点的邻接点都被访问到。 重复第3步，直到图中所有顶点都被访问完为止。  存储结构/matrix_undirection.png) 实现方式邻接表非递归实现  广度优先算法：采用队列（先进先出FIFO）的思想，遍历节点时，被遍历">
+<meta name="twitter:description" content="基本思想 从图中的某个顶点V出发访问并记录； 依次访问顶点V的邻接顶点w1、w2……wk； 分别从这些邻接点出发，依次访问它们的未被访问过的邻接点，直到图中所有已被访问过的顶点的邻接点都被访问到； 重复第3步，直到图中所有顶点都被访问完为止。  存储结构/matrix_undirection.png) 实现方式邻接表非递归实现  广度优先算法：采用队列（先进先出FIFO）的思想，遍历节点时，被遍历">
 <meta name="twitter:image" content="http://diffnest.github.io/2019/08/10/札记之图的广度优先遍历(BFS)/札记之图的广度优先遍历(BFS">
 
 
@@ -452,7 +452,7 @@
         <h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
 <li>从图中的某个顶点V出发访问并记录；</li>
 <li>依次访问顶点V的邻接顶点w1、w2……wk；</li>
-<li>分别从这些邻接点出发，依次访问它们的未被访问过的邻接点，直到图中所有已被访问过的顶点的邻接点都被访问到。</li>
+<li>分别从这些邻接点出发，依次访问它们的未被访问过的邻接点，直到图中所有已被访问过的顶点的邻接点都被访问到；</li>
 <li>重复第3步，直到图中所有顶点都被访问完为止。</li>
 </ul>
 <h4 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h4><p><img src="/2019/08/10/札记之图的广度优先遍历(BFS)/札记之图的广度优先遍历(BFS" alt="札记之图的广度优先遍历(BFS)">/matrix_undirection.png)</p>
