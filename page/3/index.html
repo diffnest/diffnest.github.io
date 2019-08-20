@@ -361,6 +361,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/07/01/PHP小顶堆实现TopK/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Echo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/tx.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Writing more than life">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/01/PHP小顶堆实现TopK/" itemprop="url">PHP小顶堆实现TopK</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-01T16:32:07+08:00">2019-07-01</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构，算法/" itemprop="url" rel="index"><span itemprop="name">数据结构，算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+从arr[1, n]数组中，找出最大的k个数；
+
+思路
+时间复杂度：O(n*lg(k))
+
+先根据k个元素生成小顶堆，这个小顶堆用来存储当前topk个元素;
+再从k+1个元素开始扫描，和堆顶最小值比较，如果新增元素大于堆顶，则替换堆顶元素，并重新调整堆顶，以保证堆内k个元素是最大的元素;
+直到扫描
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/01/PHP小顶堆实现TopK/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    <div>
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/06/19/札记之PHP实现二叉搜索树/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1746,159 +1906,6 @@ bigger: 右侧指针
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/04/04/乘2挪整-二进制表示浮点整数/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Echo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/tx.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Writing more than life">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/04/乘2挪整-二进制表示浮点整数/" itemprop="url">乘2挪整:二进制表示浮点整数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-04T10:57:39+08:00">2019-04-04</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构，算法/" itemprop="url" rel="index"><span itemprop="name">数据结构，算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          题目给定一个介于0和1之间的实数，(如0.625)，类型为double，打印它的二进制表示(0.101,因为小数点后的二进制分别表示0.5,0.25,0.125……)。如果该数字无法精确地用32位以内的二进制表示，则打印”ERROR”
-思路将改浮点数*2，得到一个新的$num，再判断$num&gt;
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/04/乘2挪整-二进制表示浮点整数/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    <div>
-      
-    </div>
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1948,7 +1955,7 @@ bigger: 右侧指针
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">72</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2086,7 +2093,9 @@ bigger: 右侧指针
                     
                       
                     
-                    <span class="site-state-item-count">44</span>
+                      
+                    
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
