@@ -164,7 +164,7 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_44.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_55.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_66.png">
-<meta property="og:updated_time" content="2019-09-17T06:47:49.083Z">
+<meta property="og:updated_time" content="2019-09-17T06:53:46.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现KMP算法">
 <meta name="twitter:description" content="定义KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特——莫里斯——普拉特操作（简称KMP算法）。  部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度  图例 有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断里">
@@ -556,10 +556,10 @@
 <p>根据 KMP 算法，在失配位会调用该位的next数组的值，下面我将详细道出next数组的来龙去脉。</p>
 <h5 id="根据-KMP-算法，在失配位会调用该位的-next-数组的值，下面我将详细道出next数组的来龙去脉。"><a href="#根据-KMP-算法，在失配位会调用该位的-next-数组的值，下面我将详细道出next数组的来龙去脉。" class="headerlink" title="根据 KMP 算法，在失配位会调用该位的 next 数组的值，下面我将详细道出next数组的来龙去脉。"></a>根据 KMP 算法，在失配位会调用该位的 next 数组的值，下面我将详细道出next数组的来龙去脉。</h5><blockquote>
 <p>next[i]表示在失配位i之前的最长公共前后缀的长度</p>
-<blockquote>
-<p>红色部分表示主串跟模式串已匹配部分<br><img src="/2019/09/17/札记之PHP实现KMP算法/kmp_22.png" alt="札记之PHP实现KMP算法"></p>
 </blockquote>
-</blockquote>
+<ul>
+<li>红色部分表示主串跟模式串已匹配部分<br><img src="/2019/09/17/札记之PHP实现KMP算法/kmp_22.png" alt="札记之PHP实现KMP算法"></li>
+</ul>
 <h5 id="我们在上面说到“最长公共前后缀”，体现到下图所示的样子。"><a href="#我们在上面说到“最长公共前后缀”，体现到下图所示的样子。" class="headerlink" title="我们在上面说到“最长公共前后缀”，体现到下图所示的样子。"></a>我们在上面说到“最长公共前后缀”，体现到下图所示的样子。</h5><blockquote>
 <p>蓝色部分为最长公共前后缀的部分<br><img src="/2019/09/17/札记之PHP实现KMP算法/kmp_77.png" alt="札记之PHP实现KMP算法"></p>
 </blockquote>
