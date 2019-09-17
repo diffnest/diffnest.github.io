@@ -138,13 +138,13 @@
 
 
 
-  <meta name="description" content="定义KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特——莫里斯——普拉特操作（简称KMP算法）。  部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度  图例 有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断，">
+  <meta name="description" content="定义KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特——莫里斯——普拉特操作（简称KMP算法）。  部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度  图例 有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断里">
 <meta name="keywords" content="KMP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="札记之PHP实现KMP算法">
 <meta property="og:url" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="定义KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特——莫里斯——普拉特操作（简称KMP算法）。  部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度  图例 有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断，">
+<meta property="og:description" content="定义KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特——莫里斯——普拉特操作（简称KMP算法）。  部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度  图例 有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断里">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_1.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_2.png">
@@ -164,10 +164,10 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_44.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_55.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_66.png">
-<meta property="og:updated_time" content="2019-09-17T06:42:57.001Z">
+<meta property="og:updated_time" content="2019-09-17T06:47:49.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现KMP算法">
-<meta name="twitter:description" content="定义KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特——莫里斯——普拉特操作（简称KMP算法）。  部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度  图例 有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断，">
+<meta name="twitter:description" content="定义KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特——莫里斯——普拉特操作（简称KMP算法）。  部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度  图例 有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断里">
 <meta name="twitter:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_1.png">
 
 
@@ -470,7 +470,7 @@
 <p>部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]<br>令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度</p>
 </blockquote>
 <h4 id="图例"><a href="#图例" class="headerlink" title="图例"></a>图例</h4><blockquote>
-<p>有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断，里面是否包含另一个字符串 Str2 = “ABCDABD”?</p>
+<p>有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断里面是否包含另一个字符串 Str2 = “ABCDABD”?</p>
 </blockquote>
 <ol>
 <li><p>首先，字符串”BBC ABCDAB ABCDABCDABDE”的第一个字符与搜索词”ABCDABD”的第一个字符，进行比较,因为B与A不匹配，所以搜索词后移一位.<br><img src="/2019/09/17/札记之PHP实现KMP算法/kmp_1.png" alt="札记之PHP实现KMP算法"></p>
