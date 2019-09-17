@@ -164,7 +164,7 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_44.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_55.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_66.png">
-<meta property="og:updated_time" content="2019-09-17T06:00:34.909Z">
+<meta property="og:updated_time" content="2019-09-17T06:13:39.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现KMP算法">
 <meta name="twitter:description" content="定义KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特——莫里斯——普拉特操作（简称KMP算法）。  部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度  图例 有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断，">
@@ -501,9 +501,11 @@
 <h4 id="部分匹配表"><a href="#部分匹配表" class="headerlink" title="部分匹配表"></a>部分匹配表</h4><h5 id="如何给字符串生成一个匹配表？"><a href="#如何给字符串生成一个匹配表？" class="headerlink" title="如何给字符串生成一个匹配表？"></a>如何给字符串生成一个匹配表？</h5><blockquote>
 <p>“部分匹配值”就是”前缀”和”后缀”的最长的共有元素的长度。<br><img src="/2019/09/17/札记之PHP实现KMP算法/kmp_12.png" alt="札记之PHP实现KMP算法"></p>
 </blockquote>
-<h5 id="如何寻找前后缀？"><a href="#如何寻找前后缀？" class="headerlink" title="如何寻找前后缀？"></a>如何寻找前后缀？</h5><pre><code>* 找前缀时，要找除了最后一个字符的所有子串。
-* 找后缀时，要找除了第一个字符的所有子串。
-</code></pre><blockquote>
+<h5 id="如何寻找前后缀？"><a href="#如何寻找前后缀？" class="headerlink" title="如何寻找前后缀？"></a>如何寻找前后缀？</h5><ul>
+<li>找前缀时，要找除了最后一个字符的所有子串。</li>
+<li>找后缀时，要找除了第一个字符的所有子串。</li>
+</ul>
+<blockquote>
 <p>以”ABCDABD”为例，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">－　&quot;A&quot;的前缀和后缀都为空集，共有元素的长度为0；</span><br><span class="line">－　&quot;AB&quot;的前缀为[A]，后缀为[B]，共有元素的长度为0；</span><br><span class="line">－　&quot;ABC&quot;的前缀为[A, AB]，后缀为[BC, C]，共有元素的长度0；</span><br><span class="line">－　&quot;ABCD&quot;的前缀为[A, AB, ABC]，后缀为[BCD, CD, D]，共有元素的长度为0；</span><br><span class="line">－　&quot;ABCDA&quot;的前缀为[A, AB, ABC, ABCD]，后缀为[BCDA, CDA, DA, A]，共有元素为&quot;A&quot;，长度为1；</span><br><span class="line">－　&quot;ABCDAB&quot;的前缀为[A, AB, ABC, ABCD, ABCDA]，后缀为[BCDAB, CDAB, DAB, AB, B]，共有元素为&quot;AB&quot;，长度为2；</span><br><span class="line">－　&quot;ABCDABD&quot;的前缀为[A, AB, ABC, ABCD, ABCDA, ABCDAB]，后缀为[BCDABD, CDABD, DABD, ABD, BD, D]，共有元素的长度为0。</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
