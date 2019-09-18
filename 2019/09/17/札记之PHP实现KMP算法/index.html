@@ -164,7 +164,7 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_44.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_55.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/17/札记之PHP实现KMP算法/kmp_66.png">
-<meta property="og:updated_time" content="2019-09-17T07:06:25.389Z">
+<meta property="og:updated_time" content="2019-09-18T02:35:06.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现KMP算法">
 <meta name="twitter:description" content="定义KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特——莫里斯——普拉特操作（简称KMP算法）。  部分算法比较 [克努斯-莫里斯-普拉特算法即KMP算法]令 m 为模式的长度， n 为要搜索的字符串长度， k为字母表长度  图例 有一个字符串 Str1 = “BBC ABCDAB ABCDABCDABDE”，判断里">
@@ -550,11 +550,11 @@
 <blockquote>
 <p>“部分匹配值”的实质是，字符串头部和尾部会有重复。比如，”ABCDAB”之中有两个”AB”，那么它的”部分匹配值”就是2（”AB”的长度）。模式串移动的时候，第一个”AB”向后移动4位（字符串长度-部分匹配值），就可以来到第二个”AB”的位置。</p>
 </blockquote>
-<h4 id="next数组"><a href="#next数组" class="headerlink" title="next数组"></a>next数组</h4><blockquote>
-<p>红色部分表示已匹配成功<br><img src="/2019/09/17/札记之PHP实现KMP算法/kmp_111.png" alt="札记之PHP实现KMP算法"></p>
-</blockquote>
-<h5 id="根据-KMP-算法，在失配位会调用该位的-next-数组的值，下面我将详细道出next数组的来龙去脉。"><a href="#根据-KMP-算法，在失配位会调用该位的-next-数组的值，下面我将详细道出next数组的来龙去脉。" class="headerlink" title="根据 KMP 算法，在失配位会调用该位的 next 数组的值，下面我将详细道出next数组的来龙去脉。"></a>根据 KMP 算法，在失配位会调用该位的 next 数组的值，下面我将详细道出next数组的来龙去脉。</h5><blockquote>
+<h4 id="next数组"><a href="#next数组" class="headerlink" title="next数组"></a>next数组</h4><h5 id="根据-KMP-算法，在失配位会调用该位的-next-数组的值，下面我将详细道出next数组的来龙去脉。"><a href="#根据-KMP-算法，在失配位会调用该位的-next-数组的值，下面我将详细道出next数组的来龙去脉。" class="headerlink" title="根据 KMP 算法，在失配位会调用该位的 next 数组的值，下面我将详细道出next数组的来龙去脉。"></a>根据 KMP 算法，在失配位会调用该位的 next 数组的值，下面我将详细道出next数组的来龙去脉。</h5><blockquote>
 <p>next[i]表示在失配位i之前的最长公共前后缀的长度</p>
+</blockquote>
+<blockquote>
+<p>红色部分表示已匹配成功<br><img src="/2019/09/17/札记之PHP实现KMP算法/kmp_111.png" alt="札记之PHP实现KMP算法"></p>
 </blockquote>
 <ul>
 <li>红色部分表示主串跟模式串已匹配部分<br><img src="/2019/09/17/札记之PHP实现KMP算法/kmp_22.png" alt="札记之PHP实现KMP算法"></li>
