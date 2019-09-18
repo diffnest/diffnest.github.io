@@ -138,23 +138,25 @@
 
 
 
-  <meta name="description" content="以梦为马，明日天涯">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Writing more than life">
-<meta property="og:url" content="http://diffnest.github.io/tags/xdebug-debug-zval/index.html">
+  <meta name="description" content="暴力匹配（BF）算法是普通的模式匹配算法，BF算法的思想就是将目标串S的第一个字符与模式串T的第一个字符进行匹配，若相等，则继续比较S的第二个字符和T的第二个字符；若不相等，则比较S的第二个字符和T的第一个字符，依次比较，直到得出最后的匹配结果。  问题：有两个字符串，S1是母串，S2是子串，要在母串中找子串出现的位置。 S1：WANGDENGKES2：KE  思路 用s1[i]和s2[j]去匹">
+<meta name="keywords" content="KMP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="札记之PHP实现BM算法">
+<meta property="og:url" content="http://diffnest.github.io/2019/09/16/札记之PHP实现BM算法/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="以梦为马，明日天涯">
+<meta property="og:description" content="暴力匹配（BF）算法是普通的模式匹配算法，BF算法的思想就是将目标串S的第一个字符与模式串T的第一个字符进行匹配，若相等，则继续比较S的第二个字符和T的第二个字符；若不相等，则比较S的第二个字符和T的第一个字符，依次比较，直到得出最后的匹配结果。  问题：有两个字符串，S1是母串，S2是子串，要在母串中找子串出现的位置。 S1：WANGDENGKES2：KE  思路 用s1[i]和s2[j]去匹">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-18T06:43:01.062Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Writing more than life">
-<meta name="twitter:description" content="以梦为马，明日天涯">
+<meta name="twitter:title" content="札记之PHP实现BM算法">
+<meta name="twitter:description" content="暴力匹配（BF）算法是普通的模式匹配算法，BF算法的思想就是将目标串S的第一个字符与模式串T的第一个字符进行匹配，若相等，则继续比较S的第二个字符和T的第二个字符；若不相等，则比较S的第二个字符和T的第一个字符，依次比较，直到得出最后的匹配结果。  问题：有两个字符串，S1是母串，S2是子串，要在母串中找子串出现的位置。 S1：WANGDENGKES2：KE  思路 用s1[i]和s2[j]去匹">
 
 
 
 
 
 
-  <link rel="canonical" href="http://diffnest.github.io/tags/xdebug-debug-zval/">
+  <link rel="canonical" href="http://diffnest.github.io/2019/09/16/札记之PHP实现BM算法/">
 
 
 
@@ -164,7 +166,7 @@
   };
 </script>
 
-  <title>Tag: xdebug_debug_zval | Writing more than life</title>
+  <title>札记之PHP实现BM算法 | Writing more than life</title>
   
 
 
@@ -211,7 +213,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -340,79 +342,232 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>xdebug_debug_zval<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://diffnest.github.io/2019/09/16/札记之PHP实现BM算法/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Echo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/tx.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Writing more than life">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/06/札记之引用诡异xdebug-debug-zval输出/" itemprop="url">
-              
-                <span itemprop="name">札记之引用诡异xdebug_debug_zval输出</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">札记之PHP实现BM算法</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-06T15:16:12+08:00" content="2018-12-06">
-          12-06
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-16T14:33:58+08:00">2019-09-16</time>
+            
 
-    </header>
-  </article>
+            
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构，算法/" itemprop="url" rel="index"><span itemprop="name">数据结构，算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>暴力匹配（BF）算法是普通的模式匹配算法，BF算法的思想就是将目标串S的第一个字符与模式串T的第一个字符进行匹配，若相等，则继续比较S的第二个字符和T的第二个字符；若不相等，则比较S的第二个字符和T的第一个字符，依次比较，直到得出最后的匹配结果。</p>
+</blockquote>
+<h4 id="问题：有两个字符串，S1是母串，S2是子串，要在母串中找子串出现的位置。"><a href="#问题：有两个字符串，S1是母串，S2是子串，要在母串中找子串出现的位置。" class="headerlink" title="问题：有两个字符串，S1是母串，S2是子串，要在母串中找子串出现的位置。"></a>问题：有两个字符串，S1是母串，S2是子串，要在母串中找子串出现的位置。</h4><blockquote>
+<p>S1：WANGDENGKE<br>S2：KE</p>
+</blockquote>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>用s1[i]和s2[j]去匹配，如果匹配成功，i++，j++，即S1和S2都后移一位，匹配下一位；</li>
+<li>如果匹配失败，让i=i-j+1；j=0；即让S1后移一位，S2回溯，从S1的下一位重新匹配；</li>
+</ul>
+<h4 id="PHP代码实现"><a href="#PHP代码实现" class="headerlink" title="PHP代码实现"></a>PHP代码实现</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BF</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bfSearch</span><span class="params">($str, $targetStr)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $strLen = strlen($str);</span><br><span class="line">        $targetLen = strlen($targetStr);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> ($i = <span class="number">0</span>, $j = <span class="number">0</span>; $i &lt; $strLen &amp;&amp; $j &lt; $targetLen;) &#123;</span><br><span class="line">            <span class="comment">//如果当前字符匹配成功（即S[i] == T[j]），则i++，j++   </span></span><br><span class="line">            <span class="keyword">if</span> ($str[$i] == $targetStr[$j]) &#123;</span><br><span class="line">                $i ++;</span><br><span class="line">                $j ++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//如果失配（即S[i]! = P[j]），令i = i - (j - 1)，j = 0 </span></span><br><span class="line">                $i = $i - $j + <span class="number">1</span>;</span><br><span class="line">                $j = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//匹配成功，返回模式串p在文本串s中的位置，否则返回-1</span></span><br><span class="line">        <span class="keyword">if</span> ($j == $targetLen) &#123;</span><br><span class="line">            <span class="keyword">return</span> [<span class="string">'begin'</span> =&gt; $i - $targetLen + <span class="number">1</span>, <span class="string">'end'</span> =&gt; $i];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">match</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $str = <span class="string">'WANGDENGKE'</span>;</span><br><span class="line">        $targetStr = <span class="string">'KE'</span>;</span><br><span class="line">        var_dump(<span class="keyword">$this</span>-&gt;bfSearch($str, $targetStr));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$BF = <span class="keyword">new</span> BF();</span><br><span class="line">$BF-&gt;match();</span><br></pre></td></tr></table></figure>
+<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">array(2) &#123;</span><br><span class="line">	&apos;begin&apos; =&gt;</span><br><span class="line">  		int(9)</span><br><span class="line">  	&apos;end&apos; =&gt;</span><br><span class="line">  		int(10)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+              -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
 
       
     </div>
 
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://raw.githubusercontent.com/diffnest/diffnest.github.io/master/images/wxpay.png" alt="Echo WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/KMP/" rel="tag"><i class="fa fa-tag"> KMP</i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/28/札记之PHP实现动态规划01背包问题/" rel="next" title="札记之PHP实现动态规划01背包问题">
+                <i class="fa fa-chevron-left"></i> 札记之PHP实现动态规划01背包问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/17/札记之PHP实现KMP算法/" rel="prev" title="札记之PHP实现KMP算法">
+                札记之PHP实现KMP算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -433,8 +588,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -642,6 +806,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题：有两个字符串，S1是母串，S2是子串，要在母串中找子串出现的位置。"><span class="nav-number">1.</span> <span class="nav-text">问题：有两个字符串，S1是母串，S2是子串，要在母串中找子串出现的位置。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP代码实现"><span class="nav-number">3.</span> <span class="nav-text">PHP代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">4.</span> <span class="nav-text">运行结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -788,6 +968,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
 
   
 
