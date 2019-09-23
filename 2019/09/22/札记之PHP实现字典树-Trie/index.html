@@ -147,7 +147,7 @@
 <meta property="og:description" content="我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相识的搜索提示，这个是怎么做到的呢？？？  定义 Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计，它的优点是：最大限度地减少无谓的字符串比较，查询效率比哈希表高。 Trie的核心思想是空间换时间，利用字符串的公共">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/22/札记之PHP实现字典树-Trie/trie.png">
-<meta property="og:updated_time" content="2019-09-23T03:37:54.338Z">
+<meta property="og:updated_time" content="2019-09-23T03:40:58.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现字典树(Trie)">
 <meta name="twitter:description" content="我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相识的搜索提示，这个是怎么做到的呢？？？  定义 Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计，它的优点是：最大限度地减少无谓的字符串比较，查询效率比哈希表高。 Trie的核心思想是空间换时间，利用字符串的公共">
@@ -468,7 +468,7 @@
 </blockquote>
 <p><img src="/2019/09/22/札记之PHP实现字典树-Trie/trie.png" alt="札记之PHP实现字典树(Trie)"></p>
 <blockquote>
-<p>每个节点表示一个字符串中的字符，从根节点到红色节点的一条路径表示一个字符串（红色节点表示是某个单词的结束字符，但不一定都是叶子节点）。</p>
+<p>注：每个节点表示一个字符串中的字符，从根节点到红色节点的一条路径表示一个字符串（红色节点表示是某个单词的结束字符，但不一定都是叶子节点）。</p>
 </blockquote>
 <h4 id="PHP代码实现"><a href="#PHP代码实现" class="headerlink" title="PHP代码实现"></a>PHP代码实现</h4><blockquote>
 <p>将字符串集合构造成Trie树, 用数组存储每个结点的所有子节点</p>
