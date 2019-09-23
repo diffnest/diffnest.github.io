@@ -138,19 +138,19 @@
 
 
 
-  <meta name="description" content="我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相识的搜索提示，这个是怎么做到的呢？？？  定义 Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计，它的优点是：最大限度地减少无谓的字符串比较，查询效率比哈希表高。 Trie的核心思想是空间换时间，利用字符串的公共">
+  <meta name="description" content="我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相似的搜索提示，这个是怎么做到的呢？？？  定义 Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计，它的优点是：最大限度地减少无谓的字符串比较，查询效率比哈希表高。 Trie的核心思想是空间换时间，利用字符串的公共">
 <meta name="keywords" content="Trie">
 <meta property="og:type" content="article">
 <meta property="og:title" content="札记之PHP实现字典树(Trie)">
 <meta property="og:url" content="http://diffnest.github.io/2019/09/22/札记之PHP实现字典树-Trie/index.html">
 <meta property="og:site_name" content="Writing more than life">
-<meta property="og:description" content="我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相识的搜索提示，这个是怎么做到的呢？？？  定义 Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计，它的优点是：最大限度地减少无谓的字符串比较，查询效率比哈希表高。 Trie的核心思想是空间换时间，利用字符串的公共">
+<meta property="og:description" content="我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相似的搜索提示，这个是怎么做到的呢？？？  定义 Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计，它的优点是：最大限度地减少无谓的字符串比较，查询效率比哈希表高。 Trie的核心思想是空间换时间，利用字符串的公共">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/22/札记之PHP实现字典树-Trie/trie.png">
-<meta property="og:updated_time" content="2019-09-23T09:40:13.346Z">
+<meta property="og:updated_time" content="2019-09-23T09:49:36.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现字典树(Trie)">
-<meta name="twitter:description" content="我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相识的搜索提示，这个是怎么做到的呢？？？  定义 Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计，它的优点是：最大限度地减少无谓的字符串比较，查询效率比哈希表高。 Trie的核心思想是空间换时间，利用字符串的公共">
+<meta name="twitter:description" content="我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相似的搜索提示，这个是怎么做到的呢？？？  定义 Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计，它的优点是：最大限度地减少无谓的字符串比较，查询效率比哈希表高。 Trie的核心思想是空间换时间，利用字符串的公共">
 <meta name="twitter:image" content="http://diffnest.github.io/2019/09/22/札记之PHP实现字典树-Trie/trie.png">
 
 
@@ -449,7 +449,7 @@
 
       
         <blockquote>
-<p>我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相识的搜索提示，这个是怎么做到的呢？？？</p>
+<p>我们每天百度搜索的时候，输入一个字符，搜索框下会展示前缀相似的搜索提示，这个是怎么做到的呢？？？</p>
 </blockquote>
 <h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><ul>
 <li>Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计，它的优点是：最大限度地减少无谓的字符串比较，查询效率比哈希表高。</li>
