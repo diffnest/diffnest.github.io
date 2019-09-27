@@ -151,7 +151,7 @@
 <meta property="og:image" content="http://diffnest.github.io/2019/09/27/札记之PHP实现AVL树-平衡二叉树/LL.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/27/札记之PHP实现AVL树-平衡二叉树/RL.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/27/札记之PHP实现AVL树-平衡二叉树/LR.png">
-<meta property="og:updated_time" content="2019-09-27T10:03:50.789Z">
+<meta property="og:updated_time" content="2019-09-27T10:06:32.669Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现AVL树(平衡二叉树)">
 <meta name="twitter:description" content="定义： 一棵AVL树需要满足以下的条件:   它的左子树和右子树都是AVL树。 左子树和右子树的高度差不能超过1。  性质: 一棵n个节点的AVL树的其高度保持在O(log2(n))。 一棵n个节点的AVL树的平均搜索长度保持在O(log2(n))。 一棵n个节点的AVL树删除一个结点做平衡化旋转所需要的时间为O(log2(n))。  设计与实现:高度 注：空节点高度为0，叶子节点的高度为1，根节">
@@ -465,9 +465,9 @@
 <li>一棵n个节点的AVL树删除一个结点做平衡化旋转所需要的时间为O(log2(n))。</li>
 </ul>
 <h4 id="设计与实现"><a href="#设计与实现" class="headerlink" title="设计与实现:"></a>设计与实现:</h4><h5 id="高度"><a href="#高度" class="headerlink" title="高度"></a>高度</h5><ul>
-<li>注：空节点高度为0，叶子节点的高度为1，根节点的高度最大;<br><img src="/2019/09/27/札记之PHP实现AVL树-平衡二叉树/height.png" alt="札记之PHP实现AVL树"></li>
+<li>注：空节点高度为0，叶子节点的高度为1，根节点的高度最大;</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">height</span><span class="params">($node)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($node == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    $leftHeight = <span class="keyword">$this</span>-&gt;height($node-&gt;left);</span><br><span class="line">    $rightHeight = <span class="keyword">$this</span>-&gt;height($node-&gt;right);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + max($leftHeight, $rightHeight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/09/27/札记之PHP实现AVL树-平衡二叉树/height.png" alt="札记之PHP实现AVL树"><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">height</span><span class="params">($node)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($node == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    $leftHeight = <span class="keyword">$this</span>-&gt;height($node-&gt;left);</span><br><span class="line">    $rightHeight = <span class="keyword">$this</span>-&gt;height($node-&gt;right);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + max($leftHeight, $rightHeight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h5 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h5><blockquote>
 <p>在新插入节点时，可能会破坏树的平衡性，这时需要利用旋转节点之间的链接关系来调整使之平衡</p>
 </blockquote>
