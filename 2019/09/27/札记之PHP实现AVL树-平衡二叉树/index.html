@@ -147,11 +147,10 @@
 <meta property="og:description" content="定义： 一棵AVL树需要满足以下的条件:   它的左子树和右子树都是AVL树。 左子树和右子树的高度差不能超过1。  性质: 一棵n个节点的AVL树的其高度保持在O(log2(n))。 一棵n个节点的AVL树的平均搜索长度保持在O(log2(n))。 一棵n个节点的AVL树删除一个结点做平衡化旋转所需要的时间为O(log2(n))。  设计与实现:高度 注：空节点高度为0，叶子节点的高度为1，根节">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/27/札记之PHP实现AVL树-平衡二叉树/height.png">
-<meta property="og:image" content="http://diffnest.github.io/2019/09/27/札记之PHP实现AVL树-平衡二叉树/RR.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/27/札记之PHP实现AVL树-平衡二叉树/LL.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/27/札记之PHP实现AVL树-平衡二叉树/RL.png">
 <meta property="og:image" content="http://diffnest.github.io/2019/09/27/札记之PHP实现AVL树-平衡二叉树/LR.png">
-<meta property="og:updated_time" content="2019-09-27T10:12:52.323Z">
+<meta property="og:updated_time" content="2019-09-27T10:15:37.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="札记之PHP实现AVL树(平衡二叉树)">
 <meta name="twitter:description" content="定义： 一棵AVL树需要满足以下的条件:   它的左子树和右子树都是AVL树。 左子树和右子树的高度差不能超过1。  性质: 一棵n个节点的AVL树的其高度保持在O(log2(n))。 一棵n个节点的AVL树的平均搜索长度保持在O(log2(n))。 一棵n个节点的AVL树删除一个结点做平衡化旋转所需要的时间为O(log2(n))。  设计与实现:高度 注：空节点高度为0，叶子节点的高度为1，根节">
@@ -472,7 +471,7 @@
 <p>在新插入节点时，可能会破坏树的平衡性，这时需要利用旋转节点之间的链接关系来调整使之平衡</p>
 </blockquote>
 <ul>
-<li>RR型：调整方式为直接左旋：失衡根节点作旋转节点左孩子即可。<br><img src="/2019/09/27/札记之PHP实现AVL树-平衡二叉树/RR.png" alt="札记之PHP实现AVL树"></li>
+<li>RR型：调整方式为直接左旋：失衡根节点作旋转节点左孩子即可。</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">leftRotate</span><span class="params">(&amp;$node)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建新的结点，以当前根结点的值</span></span><br><span class="line">    $newNode = <span class="keyword">new</span> Node($node-&gt;data);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//把新的结点的左子树设置成当前结点的左子树</span></span><br><span class="line">    $newNode-&gt;left = $node-&gt;left; </span><br><span class="line"></span><br><span class="line">    <span class="comment">//把新的结点的右子树设置成带你过去结点的右子树的左子树 </span></span><br><span class="line">    $newNode-&gt;right = $node-&gt;right-&gt;left;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//把当前结点的值替换成右子结点的值</span></span><br><span class="line">    $node-&gt;data = $node-&gt;right-&gt;data;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//把当前结点的右子树设置成当前结点右子树的右子树</span></span><br><span class="line">    $node-&gt;right = $node-&gt;right-&gt;right;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//把当前结点的左子树(左子结点)设置成新的结点</span></span><br><span class="line">    $node-&gt;left = $newNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
